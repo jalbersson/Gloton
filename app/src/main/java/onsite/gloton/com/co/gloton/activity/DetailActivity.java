@@ -12,14 +12,14 @@ import java.util.ArrayList;
 
 import onsite.gloton.com.co.gloton.R;
 import onsite.gloton.com.co.gloton.adapter.DetailAdapter;
-import onsite.gloton.com.co.gloton.entity.Gallery;
+import onsite.gloton.com.co.gloton.entity.Categoria;
 
 public class DetailActivity extends AppCompatActivity {
 
     private DetailAdapter detailAdapter;
     private ListView listView;
     private TextView textViewTitle;
-    private ArrayList<Gallery> listGallery;
+    private ArrayList<Categoria> listCategoria;
     Intent intent;
 
 
@@ -37,14 +37,14 @@ public class DetailActivity extends AppCompatActivity {
         textViewTitle.setText(foodTitle);
         showOptionsMenuFood(optionSelected);
         listView = (ListView) findViewById(R.id.listView);
-        detailAdapter = new DetailAdapter(this,listGallery);
+        detailAdapter = new DetailAdapter(this, listCategoria);
         listView.setAdapter(detailAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 intent = new Intent(DetailActivity.this,RestaurantList.class);
-                intent.putExtra("plato",listGallery.get(position).getName());
+                intent.putExtra("plato", listCategoria.get(position).getName());
                 startActivity(intent);
             }
         });
@@ -73,28 +73,28 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    private ArrayList<Gallery> settingDummyDataMexican() {
-        listGallery = new ArrayList<>();
-        listGallery.add(new Gallery("Enchiladas",R.drawable.enchiladaa));
-        listGallery.add(new Gallery("Tacos",R.drawable.tacos));
-        listGallery.add(new Gallery("Burritos",R.drawable.burritos));
-        return listGallery;
+    private ArrayList<Categoria> settingDummyDataMexican() {
+        listCategoria = new ArrayList<>();
+        listCategoria.add(new Categoria("Enchiladas",R.drawable.enchiladaa,1));
+        listCategoria.add(new Categoria("Tacos",R.drawable.tacos,1));
+        listCategoria.add(new Categoria("Burritos",R.drawable.burritos,1));
+        return listCategoria;
     }
 
-    private ArrayList<Gallery> settingDummyDataFastFood() {
-        listGallery = new ArrayList<>();
-        listGallery.add(new Gallery("Hot Dog Hawaiano",R.drawable.hotdog));
-        listGallery.add(new Gallery("hamburguesa",R.drawable.hamburguesa));
-        listGallery.add(new Gallery("Pizza",R.drawable.pizza));
-        return listGallery;
+    private ArrayList<Categoria> settingDummyDataFastFood() {
+        listCategoria = new ArrayList<>();
+        listCategoria.add(new Categoria("Hot Dog Hawaiano",R.drawable.hotdog,1));
+        listCategoria.add(new Categoria("hamburguesa",R.drawable.hamburguesa,1));
+        listCategoria.add(new Categoria("Pizza",R.drawable.pizza,1));
+        return listCategoria;
     }
 
     public void configureDataSuggestions() {
-        listGallery = new ArrayList<>();
-        listGallery.add(new Gallery("Super Hot Dog",R.drawable.superhotdog));
-        listGallery.add(new Gallery("Combo hambuerguesa + Papas y Gaseosa",R.drawable.hamburguesacombo));
-        listGallery.add(new Gallery("Pinchos",R.drawable.pinchos));
-        listGallery.add(new Gallery("Lomo de cerdo",R.drawable.lomocerdo));
-        listGallery.add(new Gallery("Arroz chino",R.drawable.arrozchino));
+        listCategoria = new ArrayList<>();
+        listCategoria.add(new Categoria("Super Hot Dog",R.drawable.superhotdog,1));
+        listCategoria.add(new Categoria("Combo hambuerguesa + Papas y Gaseosa",R.drawable.hamburguesacombo,1));
+        listCategoria.add(new Categoria("Pinchos",R.drawable.pinchos,1));
+        listCategoria.add(new Categoria("Lomo de cerdo",R.drawable.lomocerdo,1));
+        listCategoria.add(new Categoria("Arroz chino",R.drawable.arrozchino,1));
     }
 }

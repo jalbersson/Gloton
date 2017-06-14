@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import onsite.gloton.com.co.gloton.R;
-import onsite.gloton.com.co.gloton.entity.Gallery;
+import onsite.gloton.com.co.gloton.entity.Categoria;
 
 /**
  * Created by admin on 4/06/17.
@@ -19,13 +19,13 @@ import onsite.gloton.com.co.gloton.entity.Gallery;
 
 public class DetailAdapter extends BaseAdapter {
 
-    public DetailAdapter(Context context, ArrayList<Gallery> data) {
+    public DetailAdapter(Context context, ArrayList<Categoria> data) {
         this.context = context;
         this.data = data;
     }
 
     private Context context;
-    private ArrayList<Gallery> data;
+    private ArrayList<Categoria> data;
 
     @Override
     public int getCount() {

@@ -7,21 +7,21 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 import onsite.gloton.com.co.gloton.R;
 import onsite.gloton.com.co.gloton.adapter.CoverFlowAdapter;
-import onsite.gloton.com.co.gloton.entity.Gallery;
+import onsite.gloton.com.co.gloton.entity.Categoria;
 
 public class GalleryActivity extends AppCompatActivity {
 
 
     private FeatureCoverFlow coverFlow;
     private CoverFlowAdapter adapter;
-    private ArrayList<Gallery> gallery;
+    private List<Categoria> categoria;
 
 
     @Override
@@ -30,8 +30,12 @@ public class GalleryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gallery);
         coverFlow = (FeatureCoverFlow) findViewById(R.id.coverflow);
 
-        settingDummyData();
-        adapter = new CoverFlowAdapter(gallery,this);
+        categoria = Categoria.listAll(Categoria.class);
+        Log.d("categoriaSize",String.valueOf(categoria.size()));
+        if (categoria.isEmpty()) {
+            settingDummyData();
+        }
+        adapter = new CoverFlowAdapter(categoria,this);
         coverFlow.setAdapter(adapter);
         coverFlow.setOnScrollPositionListener(onScrollListener());
     }
@@ -51,12 +55,13 @@ public class GalleryActivity extends AppCompatActivity {
     }
 
     private void settingDummyData() {
-        gallery = new ArrayList<>();
-        gallery.add(new Gallery("Arroz chino",R.drawable.arrozchino));
-        gallery.add(new Gallery("Arroz turco",R.drawable.arrozturco));
-        gallery.add(new Gallery("Azados al cárbon",R.drawable.azadosalcarbon));
-        gallery.add(new Gallery("Comidas rápidas",R.drawable.comidarapida));
-        gallery.add(new Gallery("Comida mexicana",R.drawable.mexicana));
+        categoria = new ArrayList<>();
+        categoria.add(new Categoria("Arroz chino",R.drawable.arrozchino,1));
+        categoria.add(new Categoria("Arroz turco",R.drawable.arrozturco,1));
+        categoria.add(new Categoria("Azados al cárbon",R.drawable.azadosalcarbon,1));
+        categoria.add(new Categoria("Comidas rápidas",R.drawable.comidarapida,1));
+        categoria.add(new Categoria("Comida mexicana",R.drawable.mexicana,1));
+        Categoria.saveInTx(categoria);
     }
 
     @Override

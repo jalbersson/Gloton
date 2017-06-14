@@ -11,12 +11,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
 import onsite.gloton.com.co.gloton.activity.DetailActivity;
-import onsite.gloton.com.co.gloton.activity.GalleryActivity;
-import onsite.gloton.com.co.gloton.entity.Gallery;
+import onsite.gloton.com.co.gloton.entity.Categoria;
 
 /**
  * Created by admin on 4/06/17.
@@ -24,10 +23,10 @@ import onsite.gloton.com.co.gloton.entity.Gallery;
 
 public class CoverFlowAdapter extends BaseAdapter {
 
-    private ArrayList<Gallery> data;
+    private List<Categoria> data;
     private AppCompatActivity activity;
 
-    public CoverFlowAdapter(ArrayList<Gallery> data, AppCompatActivity activity) {
+    public CoverFlowAdapter(List<Categoria> data, AppCompatActivity activity) {
         this.data = data;
         this.activity = activity;
     }
