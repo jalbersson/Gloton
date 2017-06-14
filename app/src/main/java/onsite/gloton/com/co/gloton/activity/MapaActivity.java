@@ -1,4 +1,4 @@
-package onsite.gloton.com.co.gloton;
+package onsite.gloton.com.co.gloton.activity;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import onsite.gloton.com.co.gloton.R;
 
 public class MapaActivity extends FragmentActivity implements OnMapReadyCallback {
 

@@ -1,4 +1,4 @@
-package onsite.gloton.com.co.gloton;
+package onsite.gloton.com.co.gloton.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import onsite.gloton.com.co.gloton.R;
+
 //import onsite.gloton.com.co.gloton.activity.MapaActivity;
 
-public class DetalleRestaurante extends AppCompatActivity {
+public class DetalleRestauranteActivity extends AppCompatActivity {
 
     ImageView ubicacion;
 
@@ -20,7 +22,7 @@ public class DetalleRestaurante extends AppCompatActivity {
         ubicacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(DetalleRestaurante.this, MapaActivity.class);
+                /*Intent intent = new Intent(DetalleRestauranteActivity.this, MapaActivity.class);
                 startActivity(intent);*/
             }
         });
