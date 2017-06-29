@@ -6,8 +6,7 @@ import com.orm.SugarRecord;
  * Created by Prometheus on 26/06/2017.
  */
 
-public class Plato extends SugarRecord
-{
+public class Plato extends SugarRecord{
     String nombre;
     String imagen;
     String estado;

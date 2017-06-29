@@ -6,8 +6,7 @@ import com.orm.SugarRecord;
  * Created by Prometheus on 26/06/2017.
  */
 
-public class Calificacion extends SugarRecord
-{
+public class Calificacion extends SugarRecord{
     int ide;
     int puntuacion;
     Caracteristicas_Plato caracteristicas;

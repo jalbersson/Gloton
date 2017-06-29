@@ -6,8 +6,7 @@ import com.orm.SugarRecord;
  * Created by Prometheus on 26/06/2017.
  */
 
-public class Caracteristicas_Plato extends SugarRecord
-{
+public class Caracteristicas_Plato extends SugarRecord{
     String ingredientes;
     String descripcion;
     int precio;
@@ -15,7 +14,7 @@ public class Caracteristicas_Plato extends SugarRecord
     Restaurant restaurante;
     Plato plato;
 
-    public Caracteristicas_Plato() {    }
+
 
     public Caracteristicas_Plato(String ingredientes, String descripcion, int precio, String estado, Restaurant restaurante, Plato plato)
     {
@@ -26,6 +25,9 @@ public class Caracteristicas_Plato extends SugarRecord
         this.restaurante = restaurante;
         this.plato = plato;
     }
+    public Caracteristicas_Plato() {
+    }
+
 
     public String getIngredientes() {
         return ingredientes;
