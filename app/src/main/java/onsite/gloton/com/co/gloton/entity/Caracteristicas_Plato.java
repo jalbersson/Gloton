@@ -2,6 +2,9 @@ package onsite.gloton.com.co.gloton.entity;
 
 import com.orm.SugarRecord;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by Prometheus on 26/06/2017.
  */
@@ -28,6 +31,19 @@ public class Caracteristicas_Plato extends SugarRecord{
     public Caracteristicas_Plato() {
     }
 
+    public List<Caracteristicas_Plato> ListarMenu(Restaurant rest)
+    {
+        List<Caracteristicas_Plato> platos = new LinkedList<Caracteristicas_Plato>();
+        List<Caracteristicas_Plato> todos = Caracteristicas_Plato.listAll(Caracteristicas_Plato.class);
+
+        for (Caracteristicas_Plato car : todos)
+        {
+            if (car.getRestaurante().equals(rest))
+                platos.add(car);
+        }
+
+        return  platos;
+    }
 
     public String getIngredientes() {
         return ingredientes;
