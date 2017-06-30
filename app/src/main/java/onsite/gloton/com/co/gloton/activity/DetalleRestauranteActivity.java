@@ -11,11 +11,14 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
 import onsite.gloton.com.co.gloton.adapter.MenuDetalleRestauranteAdapter;
 import onsite.gloton.com.co.gloton.entity.Caracteristicas_Plato;
+import onsite.gloton.com.co.gloton.entity.Categoria;
 import onsite.gloton.com.co.gloton.entity.Restaurant;
 
 //import onsite.gloton.com.co.gloton.activity.MapaActivity;
@@ -38,12 +41,13 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         Caracteristicas_Plato car = new Caracteristicas_Plato();
         datos = getIntent();
         extras = datos.getExtras();
+        Log.d("categoriasize", String.valueOf(Categoria.listAll(Categoria.class).size()));
+        long codigoRestaurante;
+        //codigoRestaurante = (long) extras.get("idRestaurante");
 
+        codigoRestaurante = 7;      //
 
-        int codigoRestaurante;
-        codigoRestaurante = (int) extras.get("idRestaurante");
         Restaurant rest = Restaurant.findById(Restaurant.class, codigoRestaurante);
-
 
         ubicacion = (ImageView) findViewById(R.id.icoUbicacion);
         ubicacion.setOnClickListener(new View.OnClickListener() {
@@ -66,10 +70,9 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         nit.setText(String.valueOf(rest.getNit()));
         direccion.setText(rest.getDireccion());
         telefono.setText(rest.getTelefono());
-        //logo.setImageResource(Integer.parseInt(rest.getLogo()));
+        Picasso.with(this).load(rest.getLogo()).into(logo);
 
         platos = car.ListarMenu(rest);
-        Log.d("**********restaurante: ",String.valueOf(platos.size()));
 
         adapter = new MenuDetalleRestauranteAdapter(this, platos);
 
