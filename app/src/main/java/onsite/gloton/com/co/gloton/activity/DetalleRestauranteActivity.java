@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -39,8 +40,10 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         extras = datos.getExtras();
 
         int codigoRestaurante;
-        codigoRestaurante = (int) extras.get("idRestaurante");
+        //codigoRestaurante = (int) extras.get("idRestaurante");
+        codigoRestaurante = 7;      //
         Restaurant rest = Restaurant.findById(Restaurant.class, codigoRestaurante);
+
 
         ubicacion = (ImageView) findViewById(R.id.icoUbicacion);
         ubicacion.setOnClickListener(new View.OnClickListener() {
@@ -60,12 +63,13 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         menu = (ListView) findViewById(R.id.lstDesResMenu);
 
 
-        nit.setText(rest.getNit());
+        nit.setText(String.valueOf(rest.getNit()));
         direccion.setText(rest.getDireccion());
         telefono.setText(rest.getTelefono());
-        logo.setImageResource(Integer.parseInt(rest.getLogo()));
+        //logo.setImageResource(Integer.parseInt(rest.getLogo()));
 
         platos = car.ListarMenu(rest);
+        Log.d("**********restaurante: ",String.valueOf(platos.size()));
 
         adapter = new MenuDetalleRestauranteAdapter(this, platos);
 

@@ -38,7 +38,7 @@ public class Caracteristicas_Plato extends SugarRecord{
 
         for (Caracteristicas_Plato car : todos)
         {
-            if (car.getRestaurante().equals(rest))
+            if (car.getRestaurante().getId().equals(rest.getId()))
                 platos.add(car);
         }
 
