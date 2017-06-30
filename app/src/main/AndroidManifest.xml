@@ -17,6 +17,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- Configuracion Sugar Database -->
+        <meta-data
+            android:name="DATABASE"
+            android:value="gloton.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="1" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="onsite.gloton.com.co.gloton" />
+
         <activity android:name=".MainActivity" />
         <activity android:name=".activity.GalleryActivity">
             <intent-filter>
@@ -44,23 +59,16 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <!-- Configuracion Sugar Database -->
-        <meta-data
-            android:name="DATABASE"
-            android:value="gloton.db" />
-        <meta-data
-            android:name="VERSION"
-            android:value="1" />
-        <meta-data
-            android:name="QUERY_LOG"
-            android:value="true" />
-        <meta-data
-            android:name="DOMAIN_PACKAGE_NAME"
-            android:value="onsite.gloton.com.co.gloton" />
-
         <activity
             android:name=".activity.MapaActivity"
-            android:label="@string/title_activity_mapa"></activity>
+            android:label="@string/title_activity_mapa" />
+        <activity android:name=".Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -13,8 +13,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/restaurantetequilas"
-            android:scaleType="fitXY"
-            android:id="@+id/imgLogoRest"/>
+            android:scaleType="centerCrop"
+            android:id="@+id/imgDetRestLogo"/>
 
         <ImageView
             android:layout_width="100dp"
@@ -50,7 +50,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="#######"
-                android:textSize="25sp"/>
+                android:textSize="25sp"
+                android:id="@+id/txtDetResNit"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,7 +72,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="***********"
-                android:textSize="25sp"/>
+                android:textSize="25sp"
+                android:id="@+id/txtDetResDir"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -92,7 +94,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="+++++++++"
-                android:textSize="25sp"/>
+                android:textSize="25sp"
+                android:id="@+id/txtDetResTel"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -106,7 +109,7 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/lstMenu">
+            android:id="@+id/lstDesResMenu">
         </ListView>
 
     </LinearLayout>
