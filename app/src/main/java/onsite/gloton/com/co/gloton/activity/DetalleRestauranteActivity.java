@@ -41,8 +41,7 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
 
 
         int codigoRestaurante;
-        //codigoRestaurante = (int) extras.get("idRestaurante");
-        codigoRestaurante = 7;      //
+        codigoRestaurante = (int) extras.get("idRestaurante");
         Restaurant rest = Restaurant.findById(Restaurant.class, codigoRestaurante);
 
 

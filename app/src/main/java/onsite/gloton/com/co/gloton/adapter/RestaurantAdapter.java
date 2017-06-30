@@ -56,7 +56,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(final RestaurantAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(RestaurantAdapter.ViewHolder holder, final int position) {
 
         Log.d("POSITIONNNNNNNN",String.valueOf(position));
         Picasso.with(context).load(caracteristicas_platos.get(position).getRestaurante().getLogo()).into(holder.imgRestaurante);
@@ -64,8 +64,8 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
         holder.imgRestaurante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,DetalleRestauranteActivity.class);
-                intent.putExtra("idRestaurante", caracteristicas_platos.get(position).getRestaurante().getId());
+                Intent intent = new Intent(context, DetalleRestauranteActivity.class);
+                intent.putExtra("codigoRestaurante",caracteristicas_platos.get(position).getRestaurante().getId());
                 context.startActivity(intent);
             }
         });
@@ -75,5 +75,4 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
     public int getItemCount() {
         return caracteristicas_platos.size();
     }
-
 }

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -45,7 +44,7 @@ public class RestaurantList extends AppCompatActivity {
 
 
         listaCaracteristicasPlatoQ = Cargar(nombreplato);
-
+        Log.d("lista",String.valueOf(listaCaracteristicasPlatoQ.size()));
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
