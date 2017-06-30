@@ -25,7 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.DetailActivity" />
+        <activity android:name=".activity.DetailActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.RestaurantList" />
         <activity android:name=".activity.DetalleRestauranteActivity" />
         <!--
