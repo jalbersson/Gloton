@@ -54,7 +54,7 @@ public class MenuDetalleRestauranteAdapter extends BaseAdapter {
         ImageView foto = (ImageView) v.findViewById(R.id.imgDetRestPlato);
 
         nom.setText(menu.get(position).getPlato().getNombre());
-        prec.setText(menu.get(position).getPrecio());
+        prec.setText(String.valueOf(menu.get(position).getPrecio()));
         foto.setImageResource(Integer.parseInt(menu.get(position).getPlato().getImagen()));
                 //menu.get(position).getPlato().getImagen());
 /**/
