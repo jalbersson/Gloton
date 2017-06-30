@@ -38,9 +38,11 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         datos = getIntent();
         extras = datos.getExtras();
 
+
         int codigoRestaurante;
         codigoRestaurante = (int) extras.get("idRestaurante");
         Restaurant rest = Restaurant.findById(Restaurant.class, codigoRestaurante);
+
 
         ubicacion = (ImageView) findViewById(R.id.icoUbicacion);
         ubicacion.setOnClickListener(new View.OnClickListener() {
