@@ -76,13 +76,12 @@ public class CoverFlowAdapter extends BaseAdapter {
 
             @Override
             public void onClick(View v) {
-                Log.d("ItemSelected",String.valueOf(position));
-                if (position == 3 || position == 4) {
-                    Intent intent = new Intent(activity, DetailActivity.class);
-                    intent.putExtra("titleFood",data.get(position).getName());
-                    intent.putExtra("optionSelected",position);
-                    activity.startActivity(intent);
-                }
+                Log.d("ItemSelected", String.valueOf(position));
+                Intent intent = new Intent(activity, DetailActivity.class);
+                intent.putExtra("titleFood", data.get(position).getName());
+                intent.putExtra("optionSelected", data.get(position).getId());
+                activity.startActivity(intent);
+
             }
         };
     }
@@ -97,8 +96,6 @@ public class CoverFlowAdapter extends BaseAdapter {
             foodName = (TextView) v.findViewById(R.id.name);
         }
     }
-
-
 
 
 }

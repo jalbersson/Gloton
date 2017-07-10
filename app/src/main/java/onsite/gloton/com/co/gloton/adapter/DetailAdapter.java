@@ -1,6 +1,7 @@
 package onsite.gloton.com.co.gloton.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,10 +9,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
 import onsite.gloton.com.co.gloton.entity.Categoria;
+import onsite.gloton.com.co.gloton.entity.Plato;
 
 /**
  * Created by admin on 4/06/17.
@@ -19,13 +24,15 @@ import onsite.gloton.com.co.gloton.entity.Categoria;
 
 public class DetailAdapter extends BaseAdapter {
 
-    public DetailAdapter(Context context, ArrayList<Categoria> data) {
+    private Context context;
+    private List<Plato> data;
+
+    public DetailAdapter(Context context, List<Plato> data) {
         this.context = context;
         this.data = data;
     }
 
-    private Context context;
-    private ArrayList<Categoria> data;
+
 
     @Override
     public int getCount() {
@@ -46,18 +53,24 @@ public class DetailAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
 
-        if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.item_detail_food, null, false);
+        try {
+            if (convertView == null) {
+                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(R.layout.item_detail_food, null, false);
 
-            viewHolder = new ViewHolder(convertView);
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) convertView.getTag();
+                viewHolder = new ViewHolder(convertView);
+                convertView.setTag(viewHolder);
+            } else {
+                viewHolder = (ViewHolder) convertView.getTag();
+            }
+            Log.d("Imagen url",String.valueOf(data.get(position).getImagen()));
+            //Picasso.with(context).load(data.get(position).getImagen()).into(viewHolder.foodImage);
+            viewHolder.foodName.setText(data.get(position).getNombre());
+            viewHolder.foodImage.setImageResource(Integer.valueOf(data.get(position).getImagen()));
+
+        }catch (NumberFormatException e){
+            Log.d("Error URL",String.valueOf(e));
         }
-
-        viewHolder.foodImage.setImageResource(data.get(position).getImageSource());
-        viewHolder.foodName.setText(data.get(position).getName());
 
         return convertView;
     }

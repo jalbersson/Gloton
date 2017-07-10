@@ -32,9 +32,6 @@ public class GalleryActivity extends AppCompatActivity {
 
         categoria = Categoria.listAll(Categoria.class);
         Log.d("categoriaSize",String.valueOf(categoria.size()));
-        if (categoria.isEmpty()) {
-            settingDummyData();
-        }
         adapter = new CoverFlowAdapter(categoria,this);
         coverFlow.setAdapter(adapter);
         coverFlow.setOnScrollPositionListener(onScrollListener());
@@ -54,15 +51,6 @@ public class GalleryActivity extends AppCompatActivity {
         };
     }
 
-    private void settingDummyData() {
-        categoria = new ArrayList<>();
-        categoria.add(new Categoria("Arroz chino",R.drawable.arrozchino,1));
-        categoria.add(new Categoria("Arroz turco",R.drawable.arrozturco,1));
-        categoria.add(new Categoria("Azados al cárbon",R.drawable.azadosalcarbon,1));
-        categoria.add(new Categoria("Comidas rápidas",R.drawable.comidarapida,1));
-        categoria.add(new Categoria("Comida mexicana",R.drawable.mexicana,1));
-        Categoria.saveInTx(categoria);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

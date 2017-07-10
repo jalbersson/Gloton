@@ -15,13 +15,5 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TimerTask tarea = new TimerTask() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(MainActivity.this, GalleryActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        };
     }
 }
