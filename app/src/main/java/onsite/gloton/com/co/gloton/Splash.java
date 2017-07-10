@@ -11,6 +11,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import onsite.gloton.com.co.gloton.activity.DetalleRestauranteActivity;
 import onsite.gloton.com.co.gloton.activity.GalleryActivity;
 import onsite.gloton.com.co.gloton.entity.Calificacion;
 import onsite.gloton.com.co.gloton.entity.Caracteristicas_Plato;
@@ -30,7 +31,8 @@ public class Splash extends AppCompatActivity {
         TimerTask tarea = new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(Splash.this, GalleryActivity.class);
+    //            Intent intent = new Intent(Splash.this, GalleryActivity.class);
+                Intent intent = new Intent(Splash.this, DetalleRestauranteActivity.class);
                 startActivity(intent);
                 finish();
             }
