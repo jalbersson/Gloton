@@ -66,6 +66,8 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetalleRestauranteActivity.class);
                 intent.putExtra("codigoRestaurante",caracteristicas_platos.get(position).getRestaurante().getId());
+                Log.d("***********************",String.valueOf(caracteristicas_platos.get(position).getRestaurante().getId())+"*******************************");
+
                 context.startActivity(intent);
             }
         });

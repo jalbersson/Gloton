@@ -43,9 +43,10 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         extras = datos.getExtras();
         Log.d("categoriasize", String.valueOf(Categoria.listAll(Categoria.class).size()));
         long codigoRestaurante;
-        //codigoRestaurante = (long) extras.get("idRestaurante");
+        codigoRestaurante = (long) extras.get("codigoRestaurante");
 
-        codigoRestaurante = 7;      //
+        Log.d("***********************",String.valueOf(codigoRestaurante)+"*******************************");
+        //codigoRestaurante = 7;      //
 
         Restaurant rest = Restaurant.findById(Restaurant.class, codigoRestaurante);
 
