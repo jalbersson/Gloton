@@ -33,18 +33,14 @@
             android:value="onsite.gloton.com.co.gloton" />
 
         <activity android:name=".MainActivity" />
-        <activity android:name=".activity.GalleryActivity">
-        
-        </activity>
+        <activity android:name=".activity.GalleryActivity"></activity>
         <activity android:name=".activity.DetailActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
         <activity android:name=".activity.RestaurantList" />
-        <activity android:name=".activity.DetalleRestauranteActivity" >
-
-        </activity>
+        <activity android:name=".activity.DetalleRestauranteActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -61,14 +57,14 @@
             android:name=".activity.MapaActivity"
             android:label="@string/title_activity_mapa" />
         <activity android:name=".Splash">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-           <!-- <!-->
+            <!-- <! -->
         </activity>
+        <activity android:name=".activity.detalle_plato"></activity>
     </application>
 
 </manifest>

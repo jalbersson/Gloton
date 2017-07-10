@@ -81,7 +81,9 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //to detalle plato...
+                Intent intent = new Intent(DetalleRestauranteActivity.this,detalle_plato.class);
+                intent.putExtra("caracPlato",platos.get(position).getId());
+                startActivity(intent);
             }
         });
 
