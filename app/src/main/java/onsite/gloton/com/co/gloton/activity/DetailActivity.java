@@ -65,15 +65,25 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
 
     private List<Plato> settingPlatos() {
         Log.d("optionSelected",String.valueOf(optionSelected));
-        Categoria categoria = Categoria.findById(Categoria.class,optionSelected);
+        Categoria categoria = null;
         List<Plato> listFinal = new ArrayList<>();
-        List<Plato> listPlatoTmp = Plato.listAll(Plato.class);
-        for (Plato plato:listPlatoTmp) {
-            Log.d("categoria.getId()",String.valueOf(categoria.getId()));
-            Log.d("plato.getId()",String.valueOf(plato.getCategoria().getId()));
-            if(plato.getCategoria().getId().equals(categoria.getId())){
-                listFinal.add(plato);
+        if (optionSelected == 0) {
+            categoria  = Categoria.findById(Categoria.class,3);
+            List<Plato> listPlatoTmp = Plato.listAll(Plato.class);
+            for (Plato plato:listPlatoTmp) {
+                if(plato.getCategoria().getId().equals(categoria.getId())){
+                    listFinal.add(plato);
+                }
             }
+        } else {
+            categoria = Categoria.findById(Categoria.class,optionSelected);
+            List<Plato> listPlatoTmp = Plato.listAll(Plato.class);
+            for (Plato plato:listPlatoTmp) {
+                if(plato.getCategoria().getId().equals(categoria.getId())){
+                    listFinal.add(plato);
+                }
+            }
+
         }
 
         return listFinal;

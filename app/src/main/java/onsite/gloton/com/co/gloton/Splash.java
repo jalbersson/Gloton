@@ -32,7 +32,7 @@ public class Splash extends AppCompatActivity {
             @Override
             public void run() {
     //            Intent intent = new Intent(Splash.this, GalleryActivity.class);
-                Intent intent = new Intent(Splash.this, DetalleRestauranteActivity.class);
+                Intent intent = new Intent(Splash.this, GalleryActivity.class);
                 startActivity(intent);
                 finish();
             }
