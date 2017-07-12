@@ -56,7 +56,7 @@ public class RestaurantList extends AppCompatActivity {
     public List<Caracteristicas_Plato> Cargar(String nombreplato) {
         Plato plat=null;
         List<Plato> listPla = Plato.listAll(Plato.class);
-        nombreplato = "Hamburguesa";
+        //nombreplato = "Hamburguesa";
         Log.d(" NOMBREEEEEEE PLAATO ", nombreplato + listPla.size() + "\n\n");
 
         for (Plato pla : listPla) {
