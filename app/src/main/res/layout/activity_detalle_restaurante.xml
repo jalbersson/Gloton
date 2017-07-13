@@ -16,95 +16,110 @@
             android:scaleType="centerCrop"
             android:id="@+id/imgDetRestLogo"/>
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/iconoubicacion"
-            android:id="@+id/icoUbicacion"/>
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
             android:orientation="vertical"
-            android:layout_alignParentBottom="true"
-            android:background="@android:drawable/screen_background_dark_transparent"
+            android:weightSum="2">
 
-            android:weightSum="3">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/icoUbicacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitEnd"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/iconoubicacion" />
+            </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_alignParentBottom="true"
+                android:background="@android:drawable/screen_background_dark_transparent"
+                android:weightSum="3"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:textColor="@color/cardview_light_background"
-                    android:text="NIT:"
-                    android:textSize="25sp" />
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textColor="@color/cardview_light_background"
+                        android:text="NIT:"
+                        android:textSize="25sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textColor="@color/cardview_light_background"
+                        android:text="#######"
+                        android:textSize="25sp"
+                        android:id="@+id/txtDetResNit"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:textColor="@color/cardview_light_background"
-                    android:text="#######"
-                    android:textSize="25sp"
-                    android:id="@+id/txtDetResNit"/>
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textColor="@color/cardview_light_background"
+                        android:text="Dirección:"
+                        android:textSize="25sp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="***********"
+                        android:textColor="@color/cardview_light_background"
+                        android:textSize="25sp"
+                        android:id="@+id/txtDetResDir"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textColor="@color/cardview_light_background"
+                        android:text="Telefono:"
+                        android:textSize="25sp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textColor="@color/cardview_light_background"
+                        android:text="+++++++++"
+                        android:textSize="25sp"
+                        android:id="@+id/txtDetResTel"/>
+                </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:weightSum="2">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:textColor="@color/cardview_light_background"
-                    android:text="Dirección:"
-                    android:textSize="25sp"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="***********"
-                    android:textColor="@color/cardview_light_background"
-                    android:textSize="25sp"
-                    android:id="@+id/txtDetResDir"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:textColor="@color/cardview_light_background"
-                    android:text="Telefono:"
-                    android:textSize="25sp"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:textColor="@color/cardview_light_background"
-                    android:text="+++++++++"
-                    android:textSize="25sp"
-                    android:id="@+id/txtDetResTel"/>
-            </LinearLayout>
         </LinearLayout>
+
 
     </RelativeLayout>
 
