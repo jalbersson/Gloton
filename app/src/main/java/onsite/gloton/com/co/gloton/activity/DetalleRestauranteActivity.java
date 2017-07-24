@@ -48,14 +48,18 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         Log.d("***********************",String.valueOf(codigoRestaurante)+"*******************************");
         //codigoRestaurante = 7;      //
 
-        Restaurant rest = Restaurant.findById(Restaurant.class, codigoRestaurante);
+        final Restaurant rest = Restaurant.findById(Restaurant.class, codigoRestaurante);
 
         ubicacion = (ImageView) findViewById(R.id.icoUbicacion);
         ubicacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(DetalleRestauranteActivity.this, MapaActivity.class);
-                startActivity(intent);*/
+                Intent intent = new Intent(DetalleRestauranteActivity.this, MapsActivity.class);
+                Log.d("rest.getLatitud()",String.valueOf(rest.getLatitud()));
+                Log.d("rest.getLongitud()",String.valueOf(rest.getLongitud()));
+                intent.putExtra("latitud",Double.valueOf(rest.getLatitud()));
+                intent.putExtra("longitud",Double.valueOf(rest.getLongitud()));
+                startActivity(intent);
             }
         });
 

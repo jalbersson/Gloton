@@ -83,7 +83,7 @@ public class Splash extends AppCompatActivity {
             listaRestaurantes.add(new Restaurant(4, "Mrchilon", "calle falsa 123", "23244", url4, "1", -2.3f, 2.3f));
             listaRestaurantes.add(new Restaurant(5, "Mcdonlas", "calle falsa 123", "23244", url5, "1", -2.3f, 2.3f));
             listaRestaurantes.add(new Restaurant(6, "Burguer King", "calle falsa 123", "23244", url6, "1", -2.3f, 2.3f));
-            listaRestaurantes.add(new Restaurant(7, "Pedro Parrilla", "calle falsa 123", "23244", url7, "1", -2.3f, 2.3f));
+            listaRestaurantes.add(new Restaurant(7, "Pedro Parrilla", "Carrera 10 #14 Norte-1 a 14 Norte-137", "23244", url7, "1", 2.4582293f, -76.5960889f));
             listaRestaurantes.add(new Restaurant(13, "La cosecha", "calle falsa 123", "23244", url7, "1", -2.3f, 2.3f));
             listaRestaurantes.add(new Restaurant(8, "Sandwich Cubano", "calle falsa 123", "23244", url8, "1", -2.3f, 2.3f));
             listaRestaurantes.add(new Restaurant(11, "Mr. Arroz", "calle falsa 123", "23244", url8, "1", -2.3f, 2.3f));
