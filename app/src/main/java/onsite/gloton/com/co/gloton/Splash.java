@@ -260,7 +260,7 @@ public class Splash extends AppCompatActivity {
                 for (int i = 0; i<cant; i++)
                 {
                     int punt = (int)(rnd.nextDouble() * 5 + 1);
-                    listaCalificaciones.add(new Calificacion(a,punt,cat));
+                    listaCalificaciones.add(new Calificacion(a,"",punt,cat));
                     a++;
                 }
             }

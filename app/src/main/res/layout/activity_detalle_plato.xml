@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1.5">
 
         <ImageView
             android:id="@+id/imgDetPlatImagenPlat"
@@ -39,80 +39,100 @@
             android:textSize="20sp" />
     </RelativeLayout>
 
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:orientation="vertical"
-    android:layout_alignParentBottom="true"
-    android:layout_weight="4"
-    android:weightSum="4">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5">
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:numStars="5"
+            android:rating="1"
+            android:stepSize="1"
+            android:id="@+id/ratPlato"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:padding="4dp">
-
-            <ImageView
-                android:id="@+id/imgDetPlatImagenRest"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:layout_weight="1"
-                android:src="@drawable/restaurantetequilas" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:drawable/screen_background_dark_transparent"
-                android:textColor="@color/cardview_light_background"
-                android:text="Quien lo vende?"
-                android:textAlignment="center"
-                android:textSize="20sp" />
-
-        </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.5"
-            android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:weightSum="4">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Descripción:"
-                android:textSize="25sp" />
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="#######"
-                android:textSize="25sp"
-                android:id="@+id/txtDetPlaDesc"/>
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:padding="4dp">
+
+                <ImageView
+                    android:id="@+id/imgDetPlatImagenRest"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:layout_weight="1"
+                    android:src="@drawable/restaurantetequilas" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/screen_background_dark_transparent"
+                    android:textColor="@color/cardview_light_background"
+                    android:text="Quien lo vende?"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.25"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Descripción:"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="#######"
+                    android:textSize="25sp"
+                    android:id="@+id/txtDetPlaDesc"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.25"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ingredientes:"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="#######"
+                    android:textSize="25sp"
+                    android:id="@+id/txtDetPlaIngre"/>
+            </LinearLayout>
+
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.5"
-            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ingredientes:"
-                android:textSize="25sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="#######"
-                android:textSize="25sp"
-                android:id="@+id/txtDetPlaIngre"/>
-        </LinearLayout>
-
-    </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>
