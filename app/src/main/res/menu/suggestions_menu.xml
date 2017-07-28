@@ -3,5 +3,8 @@
     <item
         android:id="@+id/suggestion"
         android:title="Recomendados"/>
-
+    <item
+        android:id="@+id/allrestaurantes"
+        android:title="Restaurantes">
+    </item>
 </menu>

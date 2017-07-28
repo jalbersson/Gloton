@@ -11,10 +11,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <ImageView
-            android:id="@+id/imgRestaurante"
+            android:id="@+id/imgRestauranteall"
             android:src="@drawable/restaurantechiles"
             android:layout_width="match_parent"
-            android:scaleType="centerCrop"
             android:layout_height="100dp" />
         <TextView
             android:layout_gravity="end"
@@ -22,6 +21,4 @@
             android:layout_height="wrap_content"
             android:hint="MAS CERCANO" />
     </LinearLayout>
-
-
 </LinearLayout>

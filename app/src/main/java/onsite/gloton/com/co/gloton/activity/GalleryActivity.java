@@ -68,6 +68,12 @@ public class GalleryActivity extends AppCompatActivity {
                 intent.putExtra("optionSelected",5);
                 startActivity(intent);
                 return true;
+            case R.id.allrestaurantes:
+                Intent intent1 = new Intent(this, AllRestaurant.class);
+                //intent.putExtra("titleFood","Recomendados");
+                //intent.putExtra("optionSelected",5);
+                startActivity(intent1);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

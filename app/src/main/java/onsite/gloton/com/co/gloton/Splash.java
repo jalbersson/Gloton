@@ -71,20 +71,25 @@ public class Splash extends AppCompatActivity {
             String url5 = "http://www.shoppinginformer.com/images/Retailerlogos/McDonalds-logo.png";
             String url6 = "https://static-s.aa-cdn.net/img/ios/925838466/75e615a4d974b5b6e4a57926d9123a0b?v=1";
             String url7 = "https://lh5.googleusercontent.com/-9cJxhvzsOZM/U1vUzW8MIiI/AAAAAAAAAHY/9mYrobEvC8E/w991-h336/logo%2BPedro%2BParrilla%2Bsin%2Bfondo.PNG";
-            String url8 = "http://www.chipichape.com.co/new/wp-content/uploads/2015/04/logo_s_qbano.jpg.PNG";
+            String url8 = "https://campanariopopayan.com/images/tiendas/tiendas/sandwich-cubano-1371576758.jpg";
+            String url9 = "http://www.restaurantechinoyoungfu.com/images/banner-restaurante-chino-young-fu.png";
+            String url10 = "http://www.restaurantechino-taiyuan.com/images/banner-restaurante-chino-young-fu.png";
+            String url11 = "http://logospararestaurantes.com/wp-content/uploads/2015/06/comida-china-logotipo.jpg";
+            String url12 = "http://www.lacosechaparrillada.com/wp-content/uploads/2014/11/logo-La-Cosecha-Parrillada-250-editada.png";
+            String url13 = "http://www.casadelarroz.com/img/0294/098.png";
 
 
             List<Restaurant> listaRestaurantes = new ArrayList<>();
-            listaRestaurantes.add(new Restaurant(1, "Tao Cheng","calle falsa 123", "23244",url1, "1", -2.3f, 2.3f));
-            listaRestaurantes.add(new Restaurant(9, "Chau Mein","calle falsa 123", "23244",url1, "1", -2.3f, 2.3f));
-            listaRestaurantes.add(new Restaurant(10, "Feng Huang","calle falsa 123", "23244",url1, "1", -2.3f, 2.3f));
+            listaRestaurantes.add(new Restaurant(1, "Tao Cheng","calle falsa 123", "23244",url9, "1", -2.3f, 2.3f));
+            listaRestaurantes.add(new Restaurant(9, "Chau Mein","calle falsa 123", "23244",url10, "1", -2.3f, 2.3f));
+            listaRestaurantes.add(new Restaurant(10, "Feng Huang","calle falsa 123", "23244",url11, "1", -2.3f, 2.3f));
             listaRestaurantes.add(new Restaurant(2, "Casa mexicana", "calle falsa 123", "23244", url2, "1", -2.3f, 2.3f));
             listaRestaurantes.add(new Restaurant(3, "La Frontera", "calle falsa 123", "23244", url3, "1", -2.3f, 2.3f));
             listaRestaurantes.add(new Restaurant(4, "Mrchilon", "calle falsa 123", "23244", url4, "1", -2.3f, 2.3f));
             listaRestaurantes.add(new Restaurant(5, "Mcdonlas", "calle falsa 123", "23244", url5, "1", -2.3f, 2.3f));
             listaRestaurantes.add(new Restaurant(6, "Burguer King", "calle falsa 123", "23244", url6, "1", -2.3f, 2.3f));
-            listaRestaurantes.add(new Restaurant(7, "Pedro Parrilla", "Carrera 10 #14 Norte-1 a 14 Norte-137", "23244", url7, "1", 2.4582293f, -76.5960889f));
-            listaRestaurantes.add(new Restaurant(13, "La cosecha", "calle falsa 123", "23244", url7, "1", -2.3f, 2.3f));
+            listaRestaurantes.add(new Restaurant(7, "Pedro Parrilla", "calle falsa 123", "23244", url7, "1", -2.3f, 2.3f));
+            listaRestaurantes.add(new Restaurant(13, "La cosecha", "calle falsa 123", "23244", url12, "1", -2.3f, 2.3f));
             listaRestaurantes.add(new Restaurant(8, "Sandwich Cubano", "calle falsa 123", "23244", url8, "1", -2.3f, 2.3f));
             listaRestaurantes.add(new Restaurant(11, "Mr. Arroz", "calle falsa 123", "23244", url8, "1", -2.3f, 2.3f));
             listaRestaurantes.add(new Restaurant(12, "La Valenciana", "calle falsa 123", "23244", url8, "1", -2.3f, 2.3f));
