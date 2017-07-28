@@ -1,4 +1,4 @@
-package onsite.gloton.com.co.gloton.utils;
+package onsite.gloton.com.co.gloton.location;
 
 import android.Manifest;
 import android.content.Context;
