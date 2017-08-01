@@ -68,4 +68,6 @@
         <activity android:name=".activity.AllRestaurant"></activity>
     </application>
 
+
+
 </manifest>
