@@ -1,8 +1,11 @@
 package onsite.gloton.com.co.gloton.activity;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -41,6 +44,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private List<Marker> destinationMarkers = new ArrayList<>();
     private List<Polyline> polylinePaths = new ArrayList<>();
 
+    private static final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,11 +55,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            requestPermission();
+        } else {
+            requestLocation();
+        }
+
         if (getIntent().getExtras() != null) {
             latitudRestaurante = getIntent().getExtras().getDouble("latitud");
             longitudRestaurante = getIntent().getExtras().getDouble("longitud");
         }
 
+
+
+
+
+    }
+
+    public void requestLocation() {
         GPSTracker mGPS = new GPSTracker(this);
         if (mGPS.canGetLocation()) {
             mGPS.getLocation();
@@ -63,6 +83,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Log.d("Unable", "location");
         }
     }
+
+
+
+    @TargetApi(Build.VERSION_CODES.M)
+    private void requestPermission() {
+        List<String> permissionsNeeded = new ArrayList<String>();
+
+        final List<String> permissionsList = new ArrayList<String>();
+      /*  if (!addPermission(permissionsList, Manifest.permission.ACCESS_FINE_LOCATION))
+            permissionsNeeded.add("GPS");*/
+        if (!addPermission(permissionsList, Manifest.permission.ACCESS_FINE_LOCATION))
+            permissionsNeeded.add("LOCATION");
+        if (permissionsList.size() > 0) {
+            if (permissionsNeeded.size() > 0) {
+                // Need Rationale
+                String message = "You need to grant access to " + permissionsNeeded.get(0);
+                Log.d("permisos ", message);
+            }
+            requestPermissions(permissionsList.toArray(new String[permissionsList.size()]),
+                    REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
+            return;
+        }
+
+    }
+
+
+
+    @TargetApi(Build.VERSION_CODES.M)
+    private boolean addPermission(List<String> permissionsList, String permission) {
+        if (checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+            permissionsList.add(permission);
+            // Check for Rationale Option
+            if (!shouldShowRequestPermissionRationale(permission))
+                return false;
+        }
+        return true;
+    }
+
+
+
+
 
 
     /**
@@ -146,7 +207,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             polylinePaths.add(mMap.addPolyline(polylineOptions));
         }
+
     }
 
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    requestLocation();
+                }
+                return;
+            }
+        }
+    }
 }

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "486499677157",
+    "firebase_url": "https://glotongit-def66.firebaseio.com",
+    "project_id": "glotongit-def66",
+    "storage_bucket": "glotongit-def66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486499677157:android:20225e0238a14038",
+        "android_client_info": {
+          "package_name": "onsite.gloton.com.co.gloton"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "486499677157-q8r0h0bqd81s910vj0f4orgpluh3sl5h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "onsite.gloton.com.co.gloton",
+            "certificate_hash": "2d55d9b0ff602fb33a923210855c16745aa37e42"
+          }
+        },
+        {
+          "client_id": "486499677157-0nk38vskjms4be6ht4nimpeoq969gqoe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNl8rGBa06hDoAaIz-jj8cMQMxJoN4U3g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "486499677157-0nk38vskjms4be6ht4nimpeoq969gqoe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
