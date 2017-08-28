@@ -11,6 +11,14 @@
         android:padding="5dp">
 
         <ImageView
+            android:scaleType="fitXY"
+            android:src="@drawable/fondo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+
+        <ImageView
             android:id="@+id/imgDetRestPlato"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -31,6 +33,17 @@ public class RestaurantList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //// parte de codigo para poner el icono y la letra en el actionbar
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        LayoutInflater inflator = LayoutInflater.from(this);
+        View v = inflator.inflate(R.layout.template_title_actionbar,null);
+        getSupportActionBar().setCustomView(v);
+        ////fin codigo poner icono y letra en el actionbar
+
+
+
         setContentView(R.layout.activity_restaurant_list);
         TextView titulorest = (TextView)findViewById(R.id.titulorest);
 

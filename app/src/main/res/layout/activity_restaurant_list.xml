@@ -5,6 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.GalleryActivity">
+
+    <ImageView
+        android:scaleType="fitXY"
+        android:src="@drawable/fondo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+
+
     <TextView
         android:layout_margin="20dp"
         android:layout_centerHorizontal="true"
@@ -19,8 +29,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/recyclerview"
-    android:layout_below="@id/titulorest"
-    >
+    android:layout_below="@id/titulorest">
+
 
 
 
