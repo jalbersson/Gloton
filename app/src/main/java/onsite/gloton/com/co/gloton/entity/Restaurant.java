@@ -6,29 +6,29 @@ import com.orm.SugarRecord;
  * Created by Prometheus on 5/06/2017.
  */
 
-public class Restaurant extends SugarRecord{
+public class Restaurant extends SugarRecord implements Comparable<Restaurant>{
 
     int nit;
     String nombre;
     String direccion;
     String telefono;
     String logo;
-    String estado;
-    float latitud;
-    float longitud;
+    double latitud;
+    double longitud;
+    float distancia;
 
     public Restaurant() {
     }
 
-    public Restaurant(int nit, String nombre, String direccion, String telefono, String logo, String estado, float latitud, float longitud) {
+    public Restaurant(int nit, String nombre, String direccion, String telefono, String logo, String estado, double latitud, double longitud, float distancia) {
         this.nit = nit;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
         this.logo = logo;
-        this.estado = estado;
         this.latitud = latitud;
         this.longitud = longitud;
+        this.distancia = distancia;
     }
 
     public int getNit() {
@@ -71,27 +71,39 @@ public class Restaurant extends SugarRecord{
         this.logo = logo;
     }
 
-    public String getEstado() {
-        return estado;
-    }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public float getLatitud() {
+    public double getLatitud() {
         return latitud;
     }
 
-    public void setLatitud(float latitud) {
+    public void setLatitud(double latitud) {
         this.latitud = latitud;
     }
 
-    public float getLongitud() {
+    public double getLongitud() {
         return longitud;
     }
 
-    public void setLongitud(float longitud) {
+    public void setLongitud(double longitud) {
         this.longitud = longitud;
+    }
+
+    public float getDistancia() {
+        return distancia;
+    }
+
+    public void setDistancia(float distancia) {
+        this.distancia = distancia;
+    }
+
+    @Override
+    public int compareTo(Restaurant o) {
+        if (distancia < o.distancia) {
+            return -1;
+        }
+        if (distancia > o.distancia) {
+            return 1;
+        }
+        return 0;
     }
 }

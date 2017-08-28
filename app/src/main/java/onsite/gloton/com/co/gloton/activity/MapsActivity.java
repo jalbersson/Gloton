@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
+import onsite.gloton.com.co.gloton.entity.Restaurant;
 import onsite.gloton.com.co.gloton.location.DirectionFinder;
 import onsite.gloton.com.co.gloton.location.DirectionFinderListener;
 import onsite.gloton.com.co.gloton.location.GPSTracker;
@@ -48,6 +49,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private static final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
 
+    Restaurant restaurante;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,12 +71,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (getIntent().getExtras() != null) {
             latitudRestaurante = getIntent().getExtras().getDouble("latitud");
             longitudRestaurante = getIntent().getExtras().getDouble("longitud");
+            Long coderest = getIntent().getExtras().getLong("restaurante");
+            restaurante = Restaurant.findById(Restaurant.class, coderest);
         }
-
-
-
-
-
     }
 
     public void requestLocation() {
@@ -194,7 +193,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         for (Route routeLocation : route) {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(routeLocation.startLocation, 16));
-            ((TextView) findViewById(R.id.txtDistance)).setText("Distancia: " + routeLocation.distance.text);
+            ((TextView) findViewById(R.id.txtDistance)).setText("Distancia: " + (int) restaurante.getDistancia()+ " metros");
             ((TextView) findViewById(R.id.txtTime)).setText("Tiempo: " + routeLocation.duration.text);
 
             destinationMarkers.add(mMap.addMarker(new MarkerOptions()

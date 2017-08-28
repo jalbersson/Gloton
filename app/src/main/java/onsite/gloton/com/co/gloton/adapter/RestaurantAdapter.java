@@ -19,6 +19,7 @@ import java.util.List;
 import onsite.gloton.com.co.gloton.R;
 import onsite.gloton.com.co.gloton.activity.DetalleRestauranteActivity;
 import onsite.gloton.com.co.gloton.entity.Caracteristicas_Plato;
+import onsite.gloton.com.co.gloton.entity.Restaurant;
 
 /**
  * Created by Prometheus on 5/06/2017.
@@ -27,22 +28,24 @@ import onsite.gloton.com.co.gloton.entity.Caracteristicas_Plato;
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.ViewHolder>{
 
     Context context;
-    private List<Caracteristicas_Plato> caracteristicas_platos;
+    private List<Restaurant> restaurantes;
 
 
 
-    public RestaurantAdapter(Context context, List<Caracteristicas_Plato> caracteristicas_platos) {
+    public RestaurantAdapter(Context context, List<Restaurant> restaurantes) {
         this.context = context;
-        this.caracteristicas_platos = caracteristicas_platos;
+        this.restaurantes = restaurantes;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView imgRestaurante;
         private TextView titulorest;
+        private TextView distRest;
         public ViewHolder(View itemView) {
             super(itemView);
             imgRestaurante = (ImageView) itemView.findViewById(R.id.imgRestaurante);
-            titulorest = (TextView) itemView.findViewById(R.id.titulorest);
+            titulorest = (TextView) itemView.findViewById(R.id.txtNombreResta);
+            distRest = (TextView) itemView.findViewById(R.id.txtItemRestDistancia);
         }
     }
 
@@ -58,23 +61,21 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
     @Override
     public void onBindViewHolder(RestaurantAdapter.ViewHolder holder, final int position) {
 
-        Log.d("POSITIONNNNNNNN",String.valueOf(position));
-        Picasso.with(context).load(caracteristicas_platos.get(position).getRestaurante().getLogo()).into(holder.imgRestaurante);
-        Log.d("AAAAAAAAAAAAAA",String.valueOf(caracteristicas_platos.get(position).getPlato().getCategoria().getName()));
+        Picasso.with(context).load(restaurantes.get(position).getLogo()).into(holder.imgRestaurante);
+        holder.distRest.setText(String.valueOf((int) restaurantes.get(position).getDistancia())+" metros");
+        holder.titulorest.setText(restaurantes.get(position).getNombre());
         holder.imgRestaurante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetalleRestauranteActivity.class);
-                intent.putExtra("codigoRestaurante",caracteristicas_platos.get(position).getRestaurante().getId());
-                Log.d("***********************",String.valueOf(caracteristicas_platos.get(position).getRestaurante().getId())+"*******************************");
-
-                context.startActivity(intent);
+                intent.putExtra("codigoRestaurante",restaurantes.get(position).getId());
+               context.startActivity(intent);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return caracteristicas_platos.size();
+        return restaurantes.size();
     }
 }
