@@ -82,8 +82,22 @@ public class RestaurantList extends AppCompatActivity {
 
     public List<Restaurant> ordenarPorCercania(List<Caracteristicas_Plato> desordenada) {
         List<Restaurant> desorden = new LinkedList<>();
-        for (Caracteristicas_Plato carac : desordenada) {
-            desorden.add(carac.getRestaurante());
+        Restaurant restaurant;
+        for (Caracteristicas_Plato carac : desordenada)
+        {
+            restaurant = carac.getRestaurante();
+            float distancia;
+            LocationManager loma = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            Location origen = loma.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            Location destino = new Location("");
+
+            destino.setLatitude(restaurant.getLatitud());
+            destino.setLongitude(restaurant.getLongitud());
+            distancia = origen.distanceTo(destino);
+            restaurant.setDistancia(distancia);
+            restaurant.save();
+
+            desorden.add(restaurant);
         }
         Collections.sort(desorden);
 
