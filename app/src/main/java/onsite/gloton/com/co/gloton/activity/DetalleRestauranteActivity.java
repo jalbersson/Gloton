@@ -55,10 +55,9 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DetalleRestauranteActivity.this, MapsActivity.class);
-                Log.d("rest.getLatitud()",String.valueOf(rest.getLatitud()));
-                Log.d("rest.getLongitud()",String.valueOf(rest.getLongitud()));
                 intent.putExtra("latitud",Double.valueOf(rest.getLatitud()));
                 intent.putExtra("longitud",Double.valueOf(rest.getLongitud()));
+                intent.putExtra("restaurante",rest.getId());
                 startActivity(intent);
             }
         });
