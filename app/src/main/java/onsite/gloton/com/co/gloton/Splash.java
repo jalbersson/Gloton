@@ -264,89 +264,49 @@ public class Splash extends AppCompatActivity {
 
             List<Restaurant> listaRestaurantes = new ArrayList<>();
 
-            LocationManager loma = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            Location origen = loma.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            Location destino = new Location("");
 
-            destino.setLatitude(2.45226);
-            destino.setLongitude(-76.60082);
-            float distancia = origen.distanceTo(destino);
+
+            float distancia = 0;
             listaRestaurantes.add(new Restaurant(1, "AKI MAKI","Carrera 7 # 13N35", "301 7284838","" +
                     "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/11401475_937996492910936_8715022944863399614_n.jpg?oh=7fffed40a8fc7ef22b7d4fbd598944fb&oe=5A59B192" +
                     "", "1", 2.45226, -76.60082,distancia));
 
-            destino.setLatitude(2.481354);
-            destino.setLongitude(-76.565012);
-            distancia = origen.distanceTo(destino);
             listaRestaurantes.add(new Restaurant(9, "China Min Wah","Calle 68A N", "23244","" +
                     "http://anfitrion.com.mx/wp-content/uploads/2017/04/Restaurant-Min-Wah-Logo.jpg" +
                     "", "1", 2.481354, -76.565012, distancia));
 
-            destino.setLatitude(2.490493);
-            destino.setLongitude(-76.559423);
-            distancia = origen.distanceTo(destino);
             listaRestaurantes.add(new Restaurant(10, "Mey Chow Norte","Carrera 9 78", "+5728246060","" +
                     "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/11147022_128586060812090_1833302662633474475_n.jpg?oh=982327562f009a477ba27dcfe179fb76&oe=5A286CD2" +
                     "", "1", 2.490493, -76.559423, distancia));
 
-            destino.setLatitude(2.48387);
-            destino.setLongitude(-76.564031);
-            distancia = origen.distanceTo(destino);
             listaRestaurantes.add(new Restaurant(2, "Mapanca", "Carrera 11 70", "23244", "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/1794799_303176843170314_7682520423875561195_n.jpg?oh=15eb92c1c8c63427695cedf86d75c4a2&oe=5A2896C0" +
                     "", "1", 2.48387, -76.564031, distancia));
 
-            destino.setLatitude(2.453629);
-            destino.setLongitude(-76.594135);
-            distancia = origen.distanceTo(destino);
             listaRestaurantes.add(new Restaurant(3, "Chingón Bar and Mexican Food", "Calle 20 Norte 6", "8335338", "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/15621797_1824066307877765_6771394614470824194_n.jpg?oh=9f9f97f9c9445c4bd6d6c6b74c5caa08&oe=5A128E03" +
                     "", "1", 2.453629, -76.594135, distancia));
 
-            destino.setLatitude(2.481551);
-            destino.setLongitude(-76.564666);
-            distancia = origen.distanceTo(destino);
             listaRestaurantes.add(new Restaurant(4, "Mrchilon", "Carrera 9", "23244", url4, "1", 2.481551, -76.564666, distancia));
 
-            destino.setLatitude(2.483709);
-            destino.setLongitude(-76.562419);
-            distancia = origen.distanceTo(destino);
             listaRestaurantes.add(new Restaurant(5, "Ciudad Blanca Restaurante - Bar", "Calle 72A Norte 9" +
                     "", "+573146495533", url5, "1", 2.483709, -76.562419, distancia));
 
-            destino.setLatitude(2.485826);
-            destino.setLongitude(-76.564971);
-            distancia = origen.distanceTo(destino);
             listaRestaurantes.add(new Restaurant(6, "Cort Pizza", "Calle 71 Norte 13", "+573116380607", "" +
                     "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/14224759_1809699155933211_4294108971835015611_n.jpg?oh=be49a4c4896327afc69c22969cabdb48&oe=5A23E787" +
                     "", "1", 2.485826, -76.564971, distancia));
 
-            destino.setLatitude(2.4582293f);
-            destino.setLongitude(-76.5960889f);
-            distancia = origen.distanceTo(destino);
             listaRestaurantes.add(new Restaurant(7, "Pedro Parrilla", "Carrera 10 #14 Norte-1 a 14 Norte-137", "23244" +
                     "", url7, "1", 2.4582293f, -76.5960889f, distancia));
 
-            destino.setLatitude(2.476689);
-            destino.setLongitude(-76.560772);
-            distancia = origen.distanceTo(destino);
             listaRestaurantes.add(new Restaurant(13, "Maderos Parrilla", "Calle 70 Norte 6", "+3235259170", "" +
                     "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/14224705_1077043299069942_7303976102058111738_n.png?oh=bda90b585d04ff913ac8fda139ba2c55&oe=5A5A4426" +
                     "", "1", 2.476689,  -76.560772, distancia));
 
-            destino.setLatitude(2.47893);
-            destino.setLongitude(-76.560601);
-            distancia = origen.distanceTo(destino);
             listaRestaurantes.add(new Restaurant(8, "Super Olafo", "Calle 71A Norte 7B", "+573175168649", "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/14717304_1814740288803481_1366031938565540257_n.jpg?oh=304f64eae7333499ca42794771787e84&oe=5A1CF972" +
                     "", "1",2.47893, -76.560601, distancia));
 
-            destino.setLatitude(2.453081);
-            destino.setLongitude(-76.594403);
-            distancia = origen.distanceTo(destino);
             listaRestaurantes.add(new Restaurant(11, "Mr. Arroz", "Carrera 6", "+5728204744", "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/14333128_1775321216070549_1927778484743364999_n.jpg?oh=f620ffc6727432b4ff4478a13ac48858&oe=5A5A19B6" +
                     "", "1", 2.453081, -76.594403, distancia));
 
-            destino.setLatitude(2.476848);
-            destino.setLongitude(-76.558155);
-            distancia = origen.distanceTo(destino);
             listaRestaurantes.add(new Restaurant(12, "La Valenciana", "Carrera 5A 72A", "23244", "http://www.mercerialavalenciana.com/comunes/imagenes/logo3.jpg" +
                     "" , "1", 2.476848, -76.558155, distancia));
             Restaurant.saveInTx(listaRestaurantes);
