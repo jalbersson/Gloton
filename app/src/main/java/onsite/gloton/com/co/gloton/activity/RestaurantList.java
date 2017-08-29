@@ -86,14 +86,17 @@ public class RestaurantList extends AppCompatActivity {
         for (Caracteristicas_Plato carac : desordenada)
         {
             restaurant = carac.getRestaurante();
-            float distancia;
+
+            float distancia = 0;
             LocationManager loma = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             Location origen = loma.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            Location destino = new Location("");
-
-            destino.setLatitude(restaurant.getLatitud());
-            destino.setLongitude(restaurant.getLongitud());
-            distancia = origen.distanceTo(destino);
+            if (origen != null)
+            {
+                Location destino = new Location("");
+                destino.setLatitude(restaurant.getLatitud());
+                destino.setLongitude(restaurant.getLongitud());
+                distancia = origen.distanceTo(destino);
+            }
             restaurant.setDistancia(distancia);
             restaurant.save();
 
