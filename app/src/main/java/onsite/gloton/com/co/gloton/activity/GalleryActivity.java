@@ -39,9 +39,13 @@ public class GalleryActivity extends AppCompatActivity {
 
         categoria = Categoria.listAll(Categoria.class);
         Log.d("categoriaSize",String.valueOf(categoria.size()));
-        adapter = new CoverFlowAdapter(categoria,this);
-        coverFlow.setAdapter(adapter);
-        coverFlow.setOnScrollPositionListener(onScrollListener());
+        if (categoria.size() >0)
+        {
+            adapter = new CoverFlowAdapter(categoria,this);
+            coverFlow.setAdapter(adapter);
+            coverFlow.setOnScrollPositionListener(onScrollListener());
+        }
+
 
         //// parte de codigo para poner el icono y la letra en el actionbar
         getSupportActionBar().setDisplayShowCustomEnabled(true);
