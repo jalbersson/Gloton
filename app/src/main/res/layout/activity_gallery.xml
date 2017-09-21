@@ -4,12 +4,18 @@
     xmlns:coverflow="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.GalleryActivity">
+    tools:context=".activity.GalleryActivity"
+    >
+
+    <ImageView
+        android:src="@drawable/fondo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow
         android:id="@+id/coverflow"
-        coverflow:coverHeight="150dp"
-        coverflow:coverWidth="100dp"
+        coverflow:coverHeight="250dp"
+        coverflow:coverWidth="150dp"
         coverflow:maxScaleFactor="1.5"
         coverflow:reflectionGap="0px"
         coverflow:rotationThreshold="0.5"

@@ -36,4 +36,12 @@ public class Categoria extends SugarRecord{
     public void setEstado(int estado) {
         this.estado = estado;
     }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setImageSource(int imagen) {
+        this.imageSource = imagen;
+    }
+
+
 }

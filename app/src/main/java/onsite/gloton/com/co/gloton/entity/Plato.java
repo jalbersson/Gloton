@@ -9,7 +9,6 @@ import com.orm.SugarRecord;
 public class Plato extends SugarRecord{
     String nombre;
     String imagen;
-    String estado;
     Categoria categoria;
 
     public Plato() {    }
@@ -18,7 +17,6 @@ public class Plato extends SugarRecord{
     {
         this.nombre = nombre;
         this.imagen = imagen;
-        this.estado = estado;
         this.categoria = categoria;
     }
 
@@ -38,13 +36,7 @@ public class Plato extends SugarRecord{
         this.imagen = imagen;
     }
 
-    public String getEstado() {
-        return estado;
-    }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
 
     public Categoria getCategoria() {
         return categoria;

@@ -1,6 +1,7 @@
 package onsite.gloton.com.co.gloton.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,6 +68,10 @@ public class DetailAdapter extends BaseAdapter {
             //Picasso.with(context).load(data.get(position).getImagen()).into(viewHolder.foodImage);
             viewHolder.foodName.setText(data.get(position).getNombre());
             viewHolder.foodImage.setImageResource(Integer.valueOf(data.get(position).getImagen()));
+            if (position%2==0) {
+                viewHolder.colorfondo.setImageResource(R.drawable.fondoamarillo);
+            }
+            //viewHolder.imgTitleCateg.setImageResource(Integer.valueOf(data.get(position).getCategoria().getImageSource()));
 
         }catch (NumberFormatException e){
             Log.d("Error URL",String.valueOf(e));
@@ -78,10 +83,14 @@ public class DetailAdapter extends BaseAdapter {
     private static class ViewHolder {
         private TextView foodName;
         private ImageView foodImage;
+        private ImageView colorfondo;
+        //
 
         public ViewHolder(View v) {
             foodImage = (ImageView) v.findViewById(R.id.image);
             foodName = (TextView) v.findViewById(R.id.title);
+            colorfondo = (ImageView) v.findViewById(R.id.colorfondo);
+            //imgTitleCateg = (ImageView) v.findViewById(R.id.imgTitleCateg);
         }
     }
 }

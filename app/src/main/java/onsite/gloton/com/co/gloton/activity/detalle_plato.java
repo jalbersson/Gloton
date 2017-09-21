@@ -5,6 +5,8 @@ import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -35,6 +37,17 @@ public class detalle_plato extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        //// parte de codigo para poner el icono y la letra en el actionbar
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        LayoutInflater inflator = LayoutInflater.from(this);
+        View v = inflator.inflate(R.layout.template_title_actionbar,null);
+        getSupportActionBar().setCustomView(v);
+        ////fin codigo poner icono y letra en el actionbar
+
+
         setContentView(R.layout.activity_detalle_plato);
 
         nomPlato = (TextView) findViewById(R.id.txtDetPlatNombre);

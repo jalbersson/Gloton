@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -36,6 +37,16 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //// parte de codigo para poner el icono y la letra en el actionbar
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        LayoutInflater inflator = LayoutInflater.from(this);
+        View v = inflator.inflate(R.layout.template_title_actionbar,null);
+        getSupportActionBar().setCustomView(v);
+        ////fin codigo poner icono y letra en el actionbar
+
+
         setContentView(R.layout.activity_detalle_restaurante);
 
         Caracteristicas_Plato car = new Caracteristicas_Plato();
@@ -55,10 +66,9 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DetalleRestauranteActivity.this, MapsActivity.class);
-                Log.d("rest.getLatitud()",String.valueOf(rest.getLatitud()));
-                Log.d("rest.getLongitud()",String.valueOf(rest.getLongitud()));
                 intent.putExtra("latitud",Double.valueOf(rest.getLatitud()));
                 intent.putExtra("longitud",Double.valueOf(rest.getLongitud()));
+                intent.putExtra("restaurante",rest.getId());
                 startActivity(intent);
             }
         });

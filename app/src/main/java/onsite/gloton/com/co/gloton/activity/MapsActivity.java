@@ -15,6 +15,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -33,6 +35,7 @@ import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
 import onsite.gloton.com.co.gloton.fragment.StreetViewFragment;
+import onsite.gloton.com.co.gloton.entity.Restaurant;
 import onsite.gloton.com.co.gloton.location.DirectionFinder;
 import onsite.gloton.com.co.gloton.location.DirectionFinderListener;
 import onsite.gloton.com.co.gloton.location.GPSTracker;
@@ -55,10 +58,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+    Restaurant restaurante;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         final SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -76,6 +82,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (getIntent().getExtras() != null) {
             latitudRestaurante = getIntent().getExtras().getDouble("latitud");
             longitudRestaurante = getIntent().getExtras().getDouble("longitud");
+            Long coderest = getIntent().getExtras().getLong("restaurante");
+            restaurante = Restaurant.findById(Restaurant.class, coderest);
         }
         fragmentManager = getSupportFragmentManager();
 
@@ -234,7 +242,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         for (Route routeLocation : route) {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(routeLocation.startLocation, 16));
-            ((TextView) findViewById(R.id.txtDistance)).setText("Distancia: " + routeLocation.distance.text);
+            ((TextView) findViewById(R.id.txtDistance)).setText("Distancia: " + (int) restaurante.getDistancia()+ " metros");
             ((TextView) findViewById(R.id.txtTime)).setText("Tiempo: " + routeLocation.duration.text);
 
             destinationMarkers.add(mMap.addMarker(new MarkerOptions()

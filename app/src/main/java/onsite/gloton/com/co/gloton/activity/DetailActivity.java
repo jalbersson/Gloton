@@ -8,10 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,11 +25,14 @@ import onsite.gloton.com.co.gloton.adapter.DetailAdapter;
 import onsite.gloton.com.co.gloton.entity.Categoria;
 import onsite.gloton.com.co.gloton.entity.Plato;
 
+import static com.orm.SugarRecord.find;
+
 public class DetailActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private DetailAdapter detailAdapter;
     private ListView listView;
     private TextView textViewTitle;
+    private ImageView imgTitleCateg;
     private List<Plato> listPlato;
     private Intent intent;
     private long optionSelected;
@@ -37,15 +42,34 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        //// parte de codigo para poner el icono y la letra en el actionbar
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        LayoutInflater inflator = LayoutInflater.from(this);
+        View v = inflator.inflate(R.layout.template_title_actionbar,null);
+        getSupportActionBar().setCustomView(v);
+        ////fin codigo poner icono y letra en el actionbar
+
+
+
         setContentView(R.layout.activity_detail);
         String foodTitle = "";
         if (getIntent().getExtras() != null) {
             foodTitle = getIntent().getExtras().getString("titleFood");
             optionSelected = getIntent().getExtras().getLong("optionSelected");
         }
+
+        Categoria cat;
+        cat = Categoria.find(Categoria.class, "name = ?", foodTitle).get(0);
+
         listPlato = settingPlatos();
         textViewTitle = (TextView) findViewById(R.id.txtTitle);
         textViewTitle.setText(foodTitle);
+        imgTitleCateg = (ImageView)findViewById(R.id.imgTitleCateg);
+        imgTitleCateg.setImageResource(cat.getImageSource());
+
         //showOptionsMenuFood(optionSelected);
         listView = (ListView) findViewById(R.id.listView);
         detailAdapter = new DetailAdapter(this, listPlato);

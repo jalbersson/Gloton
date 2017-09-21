@@ -8,6 +8,8 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
 
     <application
         android:name="com.orm.SugarApp"
@@ -56,30 +58,39 @@
         <activity
             android:name=".activity.MapsActivity"
             android:label="@string/title_activity_mapa" />
-        <activity android:name=".Splash">
+        <activity
+            android:name=".Splash"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <!-- <! -->
         </activity>
         <activity android:name=".activity.detalle_plato" />
-        <activity android:name=".activity.AllRestaurant"></activity>
+        <activity android:name=".activity.AllRestaurant" />
 
-        <!--Notificaciones push -->
+        <!-- Notificaciones push -->
         <service android:name=".notification.FirebaseMessaging">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <service android:name=".notification.FirebaseIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+<!--
+        <receiver
+            android:name=".entity.ConnFirebaseReci"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="onsite.gloton.com.co.firebasebroad"/>
+            </intent-filter>
+        </receiver>
+-->
     </application>
-
-
 
 </manifest>
