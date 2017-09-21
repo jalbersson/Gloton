@@ -2,14 +2,19 @@ package onsite.gloton.com.co.gloton.activity;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -27,12 +32,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
+import onsite.gloton.com.co.gloton.fragment.StreetViewFragment;
 import onsite.gloton.com.co.gloton.location.DirectionFinder;
 import onsite.gloton.com.co.gloton.location.DirectionFinderListener;
 import onsite.gloton.com.co.gloton.location.GPSTracker;
 import onsite.gloton.com.co.gloton.location.Route;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, DirectionFinderListener {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, DirectionFinderListener{
 
     private GoogleMap mMap;
     private double latitud;
@@ -45,16 +51,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private List<Polyline> polylinePaths = new ArrayList<>();
 
     private static final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
+    private ImageButton streetViewButton;
 
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        final SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        streetViewButton = (ImageButton) findViewById(R.id.streetViewButton);
 
         if (Build.VERSION.SDK_INT >= 23) {
             requestPermission();
@@ -66,11 +77,51 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             latitudRestaurante = getIntent().getExtras().getDouble("latitud");
             longitudRestaurante = getIntent().getExtras().getDouble("longitud");
         }
+        fragmentManager = getSupportFragmentManager();
 
 
+        streetViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentTransaction = fragmentManager
+                        .beginTransaction();
+                Fragment fragmentA = fragmentManager.findFragmentByTag("STREET");
+                Log.d("MapsActivity",String.valueOf(fragmentA));
+
+                if (fragmentA == null) {
+
+                    Bundle bundle = new Bundle();
+                    bundle.putDouble("latitud", latitudRestaurante );
+                    bundle.putDouble("longitud", longitudRestaurante );
+                    StreetViewFragment fragment = new StreetViewFragment();
+                    fragment.setArguments(bundle);
+                    fragmentTransaction.replace(R.id.map, fragment,"STREET");
+                } else {
+                    fragmentTransaction.replace(R.id.map, mapFragment,"MAP");
+                }
+                fragmentTransaction.commit();
 
 
+            }
+        });
 
+    }
+
+    public  void clearFragmentByTag(Context context, String tag) {
+        try {
+
+            for (int i = fragmentManager.getBackStackEntryCount() - 1; i >= 0; i--) {
+                String backEntry = fragmentManager.getBackStackEntryAt(i).getName();
+                if (backEntry.equals(tag)) {
+                    break;
+                } else {
+                    fragmentManager.popBackStack();
+                }
+            }
+        } catch (Exception e) {
+            System.out.print("!====Popbackstack error : " + e);
+            e.printStackTrace();
+        }
     }
 
     public void requestLocation() {
@@ -108,8 +159,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-
-
     @TargetApi(Build.VERSION_CODES.M)
     private boolean addPermission(List<String> permissionsList, String permission) {
         if (checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
@@ -120,11 +169,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         return true;
     }
-
-
-
-
-
 
     /**
      * Manipulates the map once available.
@@ -223,4 +267,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
     }
+
+
 }
