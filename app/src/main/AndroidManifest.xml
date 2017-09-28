@@ -70,7 +70,7 @@
         <activity android:name=".activity.detalle_plato" />
         <activity android:name=".activity.AllRestaurant" />
 
-        <!-- Notificaciones push -->
+        <!-- Notificaciones push
         <service android:name=".notification.FirebaseMessaging">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -80,7 +80,7 @@
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
-        </service>
+        </service>-->
 <!--
         <receiver
             android:name=".entity.ConnFirebaseReci"

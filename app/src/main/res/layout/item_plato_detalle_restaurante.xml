@@ -33,6 +33,10 @@
             android:background="@android:drawable/divider_horizontal_textfield"
             android:text="Nombre plato"
             android:textAlignment="center"
+            android:shadowColor="#000000"
+            android:shadowDx="7"
+            android:shadowDy="7"
+            android:shadowRadius="4"
             android:textColor="@color/cardview_light_background"
             android:textSize="30sp" />
 
@@ -45,6 +49,11 @@
             android:text="$$$$$$$$$$$"
             android:textColor="@android:color/background_light"
             android:textSize="25sp"
+            android:shadowColor="#000000"
+            android:shadowDx="7"
+            android:shadowDy="7"
+            android:shadowRadius="4"
+            android:textStyle="bold"
             android:id="@+id/txtDetPlatoPrecioPlato" />
 
 

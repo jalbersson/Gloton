@@ -4,11 +4,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.google.firebase.database.DataSnapshot;
+/*import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.ValueEventListener;*/
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,17 +16,17 @@ import java.util.Random;
 
 import onsite.gloton.com.co.gloton.R;
 
-public class ConnFirebaseReci extends BroadcastReceiver {
+/*public class ConnFirebaseReci extends BroadcastReceiver {
 
 
     public ConnFirebaseReci() {
-    }
+    }*
 
-    @Override
-    public void onReceive(Context context, Intent intent) {
+    //@Override
+    //public void onReceive(Context context, Intent intent) {
         // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("GlotOn");
 
         final DatabaseReference categFB = myRef.child("Categoria");
@@ -201,5 +201,5 @@ public class ConnFirebaseReci extends BroadcastReceiver {
 
         }
 
-    }
-}
+    }*/
+//}
