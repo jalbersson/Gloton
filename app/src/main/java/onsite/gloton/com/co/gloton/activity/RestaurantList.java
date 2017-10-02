@@ -13,9 +13,11 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -43,6 +45,7 @@ public class RestaurantList extends AppCompatActivity {
     private List<Caracteristicas_Plato> listaCarac;
     private List<Restaurant> listaRestaurantes;
     private List<Plato> listaPlatos;
+    Plato plat=null;
 
 
     @Override
@@ -61,7 +64,7 @@ public class RestaurantList extends AppCompatActivity {
 
         setContentView(R.layout.activity_restaurant_list);
         TextView titulorest = (TextView) findViewById(R.id.titulorest);
-
+        ImageView imagenTitulo = (ImageView) findViewById(R.id.imgTitlePlato);
         String nombreplato;
 
         Bundle extras = getIntent().getExtras();
@@ -70,8 +73,19 @@ public class RestaurantList extends AppCompatActivity {
         titulorest.setText(nombreplato);
 
         List<Restaurant> ordenados;
+        List<Plato> listPla = Plato.listAll(Plato.class);
+        for (Plato pla : listPla) {
+
+            if (pla.getNombre().equalsIgnoreCase(nombreplato)) {
+                plat = pla;
+                Picasso.with(this).load(plat.getImagen()).into(imagenTitulo);
+            }
+        }
 
         listaCaracteristicasPlatoQ = Cargar(nombreplato);
+
+
+
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -121,14 +135,7 @@ public class RestaurantList extends AppCompatActivity {
     }
 
     public List<Caracteristicas_Plato> Cargar(String nombreplato) {
-        Plato plat=null;
-        List<Plato> listPla = Plato.listAll(Plato.class);
-        for (Plato pla : listPla) {
 
-            if (pla.getNombre().equalsIgnoreCase(nombreplato)) {
-                plat = pla;
-            }
-        }
         listaCaracteristicasPlatoQ = Caracteristicas_Plato.listAll(Caracteristicas_Plato.class);
         if(plat!=null){
             listaCarac = new ArrayList<>();

@@ -26,7 +26,7 @@ import onsite.gloton.com.co.gloton.entity.Restaurant;
 public class detalle_plato extends AppCompatActivity {
 
     TextView nomPlato,descri,ingre,precio;
-    ImageView imgPlato, rest;
+    ImageView imgPlato;
     Intent datos;
     Bundle extras;
     RatingBar ratingBar;
@@ -56,7 +56,6 @@ public class detalle_plato extends AppCompatActivity {
         precio = (TextView) findViewById(R.id.txtDetPlaPrecio);
 
         imgPlato = (ImageView) findViewById(R.id.imgDetPlatImagenPlat);
-        rest = (ImageView) findViewById(R.id.imgDetPlatImagenRest);
 
         ratingBar = (RatingBar) findViewById(R.id.ratPlato);
 
@@ -77,7 +76,6 @@ public class detalle_plato extends AppCompatActivity {
         precio.setText(String.valueOf(caract.getPrecio()));
 
         imgPlato.setImageResource(Integer.parseInt(plato.getImagen()));
-        Picasso.with(this).load(restaurant.getLogo()).into(rest);
 
         //ratingBar.setSaveEnabled(true);
         List<Calificacion> listcal = Calificacion.listAll(Calificacion.class);
