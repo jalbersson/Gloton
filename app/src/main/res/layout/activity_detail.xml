@@ -24,22 +24,41 @@
             android:layout_width="match_parent"
             android:background="@drawable/fondotitulocateg"
             android:layout_centerInParent="true"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:id="@+id/imgFondo"/>
 
-        <LinearLayout
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:weightSum="1">
+            android:background="@drawable/fondotitulocateg"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/colorTitle"
+            android:layout_centerVertical="true"
+            android:hint="PLATOS"
+            android:textAlignment="center"
+            android:id="@+id/txtTitle"
+            android:textSize="25sp"
+            android:layout_toRightOf="@+id/imgTitleCateg"/>
+
         <ImageView
             android:layout_margin="5dp"
             android:id="@+id/imgTitleCateg"
             android:layout_width="120dp"
             android:layout_height="140dp" />
 
+<<<<<<< .mine
+||||||| .r51
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:textColor="@color/colorTitle"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textSize="25sp" />
+        </LinearLayout>
+=======
             <TextView
                 android:id="@+id/txtTitle"
                 android:layout_width="match_parent"
@@ -50,6 +69,7 @@
                 android:gravity="center"
                 android:textSize="25sp" />
         </LinearLayout>
+>>>>>>> .r53
     </RelativeLayout>
 
     <ListView

@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,8 +32,9 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
 
     private DetailAdapter detailAdapter;
     private ListView listView;
-    private TextView textViewTitle;
+    private Button textViewTitle;
     private ImageView imgTitleCateg;
+    private ImageView imgFondo;
     private List<Plato> listPlato;
     private Intent intent;
     private long optionSelected;
@@ -65,10 +67,13 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
         cat = Categoria.find(Categoria.class, "name = ?", foodTitle).get(0);
 
         listPlato = settingPlatos();
-        textViewTitle = (TextView) findViewById(R.id.txtTitle);
+        textViewTitle = (Button) findViewById(R.id.txtTitle);
+        imgFondo = (ImageView) findViewById(R.id.imgFondo);
         textViewTitle.setText(foodTitle);
         imgTitleCateg = (ImageView)findViewById(R.id.imgTitleCateg);
         imgTitleCateg.setImageResource(cat.getImageSource());
+
+        imgFondo.setMinimumHeight(textViewTitle.getHeight());
 
         //showOptionsMenuFood(optionSelected);
         listView = (ListView) findViewById(R.id.listView);

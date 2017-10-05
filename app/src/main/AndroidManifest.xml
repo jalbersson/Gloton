@@ -9,7 +9,7 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name="com.orm.SugarApp"
@@ -63,6 +63,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <!-- <! -->
@@ -81,7 +82,7 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>-->
-<!--
+        <!--
         <receiver
             android:name=".entity.ConnFirebaseReci"
             android:enabled="true"
@@ -90,7 +91,8 @@
                 <action android:name="onsite.gloton.com.co.firebasebroad"/>
             </intent-filter>
         </receiver>
--->
+        -->
+        <activity android:name=".recomendados"></activity>
     </application>
 
 </manifest>
