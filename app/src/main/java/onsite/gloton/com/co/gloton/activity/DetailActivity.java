@@ -20,8 +20,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import onsite.gloton.com.co.gloton.R;
+
 import onsite.gloton.com.co.gloton.adapter.DetailAdapter;
 import onsite.gloton.com.co.gloton.entity.Categoria;
 import onsite.gloton.com.co.gloton.entity.Plato;

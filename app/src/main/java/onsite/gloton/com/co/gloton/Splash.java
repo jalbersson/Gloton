@@ -291,14 +291,13 @@ public class Splash extends AppCompatActivity {
             for (Caracteristicas_Plato cat : caracteristicas)
             {
                 Random rnd = new Random();
-                int cant = (int)(rnd.nextDouble() * 10 + 0);
-                for (int i = 0; i<cant; i++)
-                {
+
                     int punt = (int)(rnd.nextDouble() * 5 + 1);
                     listaCalificaciones.add(new Calificacion(a,"",punt,cat));
                     a++;
-                }
             }
+
+
 
             Calificacion.saveInTx(listaCalificaciones);
         }

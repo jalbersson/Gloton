@@ -19,6 +19,7 @@ import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 import onsite.gloton.com.co.gloton.R;
 import onsite.gloton.com.co.gloton.adapter.CoverFlowAdapter;
 import onsite.gloton.com.co.gloton.entity.Categoria;
+import onsite.gloton.com.co.gloton.recomendados;
 
 public class GalleryActivity extends AppCompatActivity {
 
@@ -85,9 +86,9 @@ public class GalleryActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.suggestion:
-                Intent intent = new Intent(this, DetailActivity.class);
-                intent.putExtra("titleFood","Recomendados");
-                intent.putExtra("optionSelected",5);
+                Intent intent = new Intent(this, recomendados.class);
+                //intent.putExtra("titleFood","Recomendados");
+                //intent.putExtra("optionSelected",5);
 
                 startActivity(intent);
                 return true;
