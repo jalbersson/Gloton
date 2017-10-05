@@ -4,7 +4,7 @@
 
 
     <ImageView
-        android:src="@drawable/logo2"
+        android:src="@drawable/barra"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

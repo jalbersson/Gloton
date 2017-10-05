@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:gloton="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/action_refresh"
+        android:icon="@drawable/icon_overflow_menu"
+        gloton:showAsAction="collapseActionView|ifRoom"
+        android:title="" />
+
+
     <item
         android:id="@+id/suggestion"
         android:title="Recomendados"/>

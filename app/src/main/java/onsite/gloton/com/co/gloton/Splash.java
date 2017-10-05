@@ -57,11 +57,12 @@ public class Splash extends AppCompatActivity {
 
         if (Categoria.listAll(Categoria.class).size() == 0)
         {
-            categorias.add(new Categoria("Comida China",R.drawable.arrozchino,1));
-            categorias.add(new Categoria("Arroz especial",R.drawable.arrozturco,1));
-            categorias.add(new Categoria("Parrilla",R.drawable.azadosalcarbon,1));
-            categorias.add(new Categoria("Comidas rápidas",R.drawable.comidarapida,1));
-            categorias.add(new Categoria("Comida mexicana",R.drawable.mexicana,1));
+            categorias.add(new Categoria("Comida China",R.drawable.food_chinesse,1));
+            categorias.add(new Categoria("Postres",R.drawable.postres,1));
+            categorias.add(new Categoria("Parrilla",R.drawable.parrilla,1));
+            categorias.add(new Categoria("Comidas rápidas",R.drawable.food_fast,1));
+            categorias.add(new Categoria("Comida mexicana",R.drawable.food_mexican,1));
+            categorias.add(new Categoria("Comida Italiana",R.drawable.food_italian,1));
             Categoria.saveInTx(categorias);
         }
 
@@ -132,12 +133,12 @@ public class Splash extends AppCompatActivity {
         if (Plato.listAll(Plato.class).size() == 0)
         {
             Categoria aux = Categoria.find(Categoria.class, "name = ?", "Comida China").get(0);
-            listaPlatos.add(new Plato("Arroz Chino", String.valueOf(R.drawable.arrozchino),"activo",aux));
+            listaPlatos.add(new Plato("Arroz Chino", String.valueOf(R.drawable.food_chinesse),"activo",aux));
             listaPlatos.add(new Plato("Pollo Kung Pao", String.valueOf(R.drawable.pollo_kung_pao),"activo",aux));
             listaPlatos.add(new Plato("Chop Suey", String.valueOf(R.drawable.chop_suey),"activo",aux));
             listaPlatos.add(new Plato("Chow Mein", String.valueOf(R.drawable.chow_mein),"activo",aux));
 
-            aux = Categoria.find(Categoria.class, "name = ?", "Arroz especial").get(0);
+            aux = Categoria.find(Categoria.class, "name = ?", "Postres").get(0);
             listaPlatos.add(new Plato("Arroz Ranchero", String.valueOf(R.drawable.ranchero),"activo",aux));
             listaPlatos.add(new Plato("Arroz con pollo", String.valueOf(R.drawable.pollo),"activo",aux));
             listaPlatos.add(new Plato("Arroz Paisa", String.valueOf(R.drawable.paisa),"activo",aux));

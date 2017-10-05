@@ -8,13 +8,12 @@
         android:contentDescription="@string/app_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop" />
+        android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:textAlignment="center"
         android:layout_marginBottom="20dp"
         android:shadowColor="#000000"
@@ -23,10 +22,10 @@
         android:shadowRadius="4"
         android:textStyle="bold"
         android:textSize="30dp"
-        android:background="@android:drawable/divider_horizontal_textfield"
+        android:layout_marginTop="20dp"
         android:textColor="@android:color/background_light"
-
-        android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+        android:textAppearance="?android:attr/textAppearanceSmallInverse"
+        android:layout_alignParentTop="true"/>
 
 
 
