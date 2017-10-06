@@ -2,12 +2,14 @@ package onsite.gloton.com.co.gloton.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -67,9 +69,11 @@ public class DetailAdapter extends BaseAdapter {
             Log.d("Imagen url",String.valueOf(data.get(position).getImagen()));
             //Picasso.with(context).load(data.get(position).getImagen()).into(viewHolder.foodImage);
             viewHolder.foodName.setText(data.get(position).getNombre());
-            viewHolder.foodImage.setImageResource(Integer.valueOf(data.get(position).getImagen()));
-            if (position%2==0) {
-                viewHolder.colorfondo.setImageResource(R.drawable.fondoamarillo);
+            viewHolder.foodImage.setImageResource(R.drawable.platocubiertos);
+            if (position % 2 == 0) {
+                viewHolder.relativeLayoutPpal.setBackgroundColor(ContextCompat.getColor(context, R.color.colorTitle));
+            } else {
+                viewHolder.relativeLayoutPpal.setBackgroundColor(ContextCompat.getColor(context, R.color.colorTitleTransparent));
             }
             //viewHolder.imgTitleCateg.setImageResource(Integer.valueOf(data.get(position).getCategoria().getImageSource()));
 
@@ -83,14 +87,13 @@ public class DetailAdapter extends BaseAdapter {
     private static class ViewHolder {
         private TextView foodName;
         private ImageView foodImage;
-        private ImageView colorfondo;
+        private RelativeLayout relativeLayoutPpal;
         //
 
         public ViewHolder(View v) {
             foodImage = (ImageView) v.findViewById(R.id.image);
             foodName = (TextView) v.findViewById(R.id.title);
-            colorfondo = (ImageView) v.findViewById(R.id.colorfondo);
-            //imgTitleCateg = (ImageView) v.findViewById(R.id.imgTitleCateg);
+            relativeLayoutPpal = (RelativeLayout) v.findViewById(R.id.relativePpal);
         }
     }
 }
