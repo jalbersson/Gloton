@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/fondotitulocateg"
         android:textColor="@color/colorTitle"
-        android:hint="Recomendados"
+        android:text="Recomendados"
         android:layout_margin="10dp"
         android:id="@+id/titleRecomendados"
         android:textAlignment="center"

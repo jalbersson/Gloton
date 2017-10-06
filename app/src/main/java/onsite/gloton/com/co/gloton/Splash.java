@@ -120,11 +120,11 @@ public class Splash extends AppCompatActivity {
             listaRestaurantes.add(new Restaurant(8, "Super Olafo", "Calle 71A Norte 7B", "+573175168649", "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/14717304_1814740288803481_1366031938565540257_n.jpg?oh=304f64eae7333499ca42794771787e84&oe=5A1CF972" +
                     "", "1",2.47893, -76.560601, distancia));
 
-            listaRestaurantes.add(new Restaurant(11, "Mr. Arroz", "Carrera 6", "+5728204744", "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/14333128_1775321216070549_1927778484743364999_n.jpg?oh=f620ffc6727432b4ff4478a13ac48858&oe=5A5A19B6" +
-                    "", "1", 2.453081, -76.594403, distancia));
+            listaRestaurantes.add(new Restaurant(11, "San Carlo Pastelería Artesanal", "Cra. 9 Nte. #79-105", "+57 312 7784603", "https://i.pinimg.com/originals/48/0d/dc/480ddc5c8f3f392ce47d0cb061a4999a.jpg" +
+                    "", "1", 2.491423, -76.559320, distancia));
 
-            listaRestaurantes.add(new Restaurant(12, "La Valenciana", "Carrera 5A 72A", "23244", "http://www.mercerialavalenciana.com/comunes/imagenes/logo3.jpg" +
-                    "" , "1", 2.476848, -76.558155, distancia));
+            listaRestaurantes.add(new Restaurant(12, "Mi vaquita", " Cra. 6 #45N-49", "+57 2 8339555", "https://img.pystatic.com/restaurants/mi-vaquita.jpg" +
+                    "" , "1", 2.469482, -76.577619, distancia));
             Restaurant.saveInTx(listaRestaurantes);
         }
 
@@ -139,9 +139,12 @@ public class Splash extends AppCompatActivity {
             listaPlatos.add(new Plato("Chow Mein", String.valueOf(R.drawable.chow_mein),"activo",aux));
 
             aux = Categoria.find(Categoria.class, "name = ?", "Postres").get(0);
-            listaPlatos.add(new Plato("Arroz Ranchero", String.valueOf(R.drawable.ranchero),"activo",aux));
+            /*listaPlatos.add(new Plato("Arroz Ranchero", String.valueOf(R.drawable.ranchero),"activo",aux));
             listaPlatos.add(new Plato("Arroz con pollo", String.valueOf(R.drawable.pollo),"activo",aux));
-            listaPlatos.add(new Plato("Arroz Paisa", String.valueOf(R.drawable.paisa),"activo",aux));
+            listaPlatos.add(new Plato("Arroz Paisa", String.valueOf(R.drawable.paisa),"activo",aux));*/
+            listaPlatos.add(new Plato("Banana Split", String.valueOf(R.drawable.bananasplit),"activo",aux));
+            listaPlatos.add(new Plato("Cheese Cake", String.valueOf(R.drawable.cheesecake),"activo",aux));
+            listaPlatos.add(new Plato("Tres Leches", String.valueOf(R.drawable.tresleches),"activo",aux));
 
             aux = Categoria.find(Categoria.class, "name = ?", "Parrilla").get(0);
             listaPlatos.add(new Plato("Churrasco", String.valueOf(R.drawable.churrasco),"activo",aux));
@@ -194,22 +197,22 @@ public class Splash extends AppCompatActivity {
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "10").get(0);
             listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa especial","Arroz chino tracicional",14000,"activo",restaurante,plato));
 
-            //restaurantes que venden Arroz especial
-            plato = Plato.find(Plato.class, "nombre = ?", "Arroz Ranchero").get(0);
+            //restaurantes que venden Postres
+            plato = Plato.find(Plato.class, "nombre = ?", "Banana Split").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "11").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new Caracteristicas_Plato("Banano, Helado, gomitas, salsas dulces","Super Banana Split del tio Tom",14000,"activo",restaurante,plato));
 
-            plato = Plato.find(Plato.class, "nombre = ?", "Arroz con pollo").get(0);
+            plato = Plato.find(Plato.class, "nombre = ?", "Cheese Cake").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "11").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new Caracteristicas_Plato("queso, fruta, chocolate y salsas dulces","Cheese Cake de distintos tipos",14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "12").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa especial","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new Caracteristicas_Plato("queso, fruta, cremas, y más","Cheese Cake, pasteles y tortas",14000,"activo",restaurante,plato));
 
-            plato = Plato.find(Plato.class, "nombre = ?", "Arroz Paisa").get(0);
+            plato = Plato.find(Plato.class, "nombre = ?", "Tres Leches").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "11").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new Caracteristicas_Plato("ingredientes secretos","clásico postre de tres leches",14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "12").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa especial","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new Caracteristicas_Plato("leche, leche condensada, arequipe, galleta","tu paladar te traerá por más",14000,"activo",restaurante,plato));
 
             //restaurantes que venden parrilla
             plato = Plato.find(Plato.class, "nombre = ?", "Churrasco").get(0);
@@ -291,14 +294,13 @@ public class Splash extends AppCompatActivity {
             for (Caracteristicas_Plato cat : caracteristicas)
             {
                 Random rnd = new Random();
-                int cant = (int)(rnd.nextDouble() * 10 + 0);
-                for (int i = 0; i<cant; i++)
-                {
+
                     int punt = (int)(rnd.nextDouble() * 5 + 1);
                     listaCalificaciones.add(new Calificacion(a,"",punt,cat));
                     a++;
-                }
             }
+
+
 
             Calificacion.saveInTx(listaCalificaciones);
         }

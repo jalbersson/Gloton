@@ -6,7 +6,7 @@ import com.orm.SugarRecord;
  * Created by Prometheus on 26/06/2017.
  */
 
-public class Calificacion extends SugarRecord{
+public class Calificacion extends SugarRecord  implements Comparable<Calificacion>{
     int ide;
     String usuario; //id android del celular que se usa
     int puntuacion;
@@ -51,5 +51,16 @@ public class Calificacion extends SugarRecord{
 
     public void setCaracteristicas(Caracteristicas_Plato caracteristicas) {
         this.caracteristicas = caracteristicas;
+    }
+
+    @Override
+    public int compareTo(Calificacion o) {
+        if (puntuacion < o.puntuacion) {
+            return 1;
+        }
+        if (puntuacion > o.puntuacion) {
+            return -1;
+        }
+        return 0;
     }
 }
