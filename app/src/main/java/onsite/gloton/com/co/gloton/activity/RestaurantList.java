@@ -97,19 +97,20 @@ public class RestaurantList extends AppCompatActivity {
     public List<Restaurant> ordenarPorCercania(List<Caracteristicas_Plato> desordenada) {
         List<Restaurant> desorden = new LinkedList<>();
         Restaurant restaurant;
+        Location location = requestLocation();
+
         for (Caracteristicas_Plato carac : desordenada)
         {
             restaurant = carac.getRestaurante();
 
             float distancia = 0;
-            LocationManager loma = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            Location origen = loma.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            if (origen != null)
+            Log.d("location",String.valueOf(location));
+            if (location != null)
             {
                 Location destino = new Location("");
                 destino.setLatitude(restaurant.getLatitud());
                 destino.setLongitude(restaurant.getLongitud());
-                distancia = origen.distanceTo(destino);
+                distancia = location.distanceTo(destino);
             }
             restaurant.setDistancia(distancia);
             restaurant.save();
@@ -133,6 +134,17 @@ public class RestaurantList extends AppCompatActivity {
 */
         return desorden;
     }
+
+    public Location requestLocation() {
+        GPSTracker mGPS = new GPSTracker(this);
+        if (mGPS.canGetLocation()) {
+            return mGPS.getLocation();
+        } else {
+            Log.d("Unable", "location");
+            return null;
+        }
+    }
+
 
     public List<Caracteristicas_Plato> Cargar(String nombreplato) {
 
