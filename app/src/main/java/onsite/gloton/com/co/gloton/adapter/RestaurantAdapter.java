@@ -62,7 +62,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
     public void onBindViewHolder(RestaurantAdapter.ViewHolder holder, final int position) {
 
         Picasso.with(context).load(restaurantes.get(position).getLogo()).into(holder.imgRestaurante);
-        holder.distRest.setText(String.valueOf((int) restaurantes.get(position).getDistancia())+" metros");
+        holder.distRest.setText("Estás a "+String.valueOf((int) restaurantes.get(position).getDistancia())+" mts");
         holder.titulorest.setText(restaurantes.get(position).getNombre());
         holder.imgRestaurante.setOnClickListener(new View.OnClickListener() {
             @Override

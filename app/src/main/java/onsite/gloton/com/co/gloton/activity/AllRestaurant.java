@@ -34,7 +34,7 @@ public class AllRestaurant extends AppCompatActivity {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         LayoutInflater inflator = LayoutInflater.from(this);
-        View v = inflator.inflate(R.layout.template_title_actionbar, null);
+        View v = inflator.inflate(R.layout.template_title_actionbar,null);
         getSupportActionBar().setCustomView(v);
         ////fin codigo poner icono y letra en el actionbar
 
@@ -54,28 +54,17 @@ public class AllRestaurant extends AppCompatActivity {
         for (Restaurant rest : desorden) {
             float distancia = 0;
             LocationManager loma = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                //return TODO;
 
-                Location origen = loma.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                if (origen != null)
-                {
-                    Location destino = new Location("");
-                    destino.setLatitude(rest.getLatitud());
-                    destino.setLongitude(rest.getLongitud());
-                    distancia = origen.distanceTo(destino);
-                }
-                rest.setDistancia(distancia);
-                rest.save();
+            Location origen = loma.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            if (origen != null)
+            {
+                Location destino = new Location("");
+                destino.setLatitude(rest.getLatitud());
+                destino.setLongitude(rest.getLongitud());
+                distancia = origen.distanceTo(destino);
             }
-
+            rest.setDistancia(distancia);
+            rest.save();
         }
         Collections.sort(desorden);
 
