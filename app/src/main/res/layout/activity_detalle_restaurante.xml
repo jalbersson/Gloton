@@ -4,131 +4,86 @@
     android:weightSum="5"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <RelativeLayout
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2">
+        android:src="@drawable/restaurantetequilas"
+        android:scaleType="centerCrop"
+        android:layout_margin="1dp"
+        android:id="@+id/imgDetRestLogo"
+        android:layout_weight="1.25"/>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/restaurantetequilas"
-            android:scaleType="centerCrop"
-            android:id="@+id/imgDetRestLogo"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:background="@color/colorTitle"
+        android:layout_weight="1"
+        android:paddingLeft="15dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:weightSum="3">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3"
             android:orientation="vertical"
-            android:weightSum="2">
+            android:weightSum="4"
+            android:layout_weight="2">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-                <ImageView
-                    android:id="@+id/icoUbicacion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitEnd"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/iconoubicacion" />
-            </RelativeLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:orientation="vertical"
-                android:layout_alignParentBottom="true"
-                android:background="@android:drawable/screen_background_dark_transparent"
-                android:weightSum="3"
-                android:layout_weight="1">
-                <LinearLayout
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:textColor="@color/ListLabels"
+                    android:text="Dirección:"
+                    android:textSize="15sp"/>
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:text="***********"
+                    android:textColor="@color/ListLabels"
+                    android:textSize="15sp"
+                    android:id="@+id/txtDetResDir"/>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:textColor="@color/cardview_light_background"
-                        android:text="NIT:"
-                        android:textSize="25sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:textColor="@color/ListLabels"
+                    android:text="Telefono:"
+                    android:textSize="15sp"/>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:textColor="@color/cardview_light_background"
-                        android:text="#######"
-                        android:textSize="25sp"
-                        android:id="@+id/txtDetResNit"/>
-                </LinearLayout>
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:textColor="@color/cardview_light_background"
-                        android:text="Dirección:"
-                        android:textSize="25sp"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="***********"
-                        android:textColor="@color/cardview_light_background"
-                        android:textSize="25sp"
-                        android:id="@+id/txtDetResDir"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:textColor="@color/cardview_light_background"
-                        android:text="Telefono:"
-                        android:textSize="25sp"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:textColor="@color/cardview_light_background"
-                        android:text="+++++++++"
-                        android:textSize="25sp"
-                        android:id="@+id/txtDetResTel"/>
-                </LinearLayout>
-            </LinearLayout>
-
+                    android:textColor="@color/ListLabels"
+                    android:text="+++++++++"
+                    android:textSize="15sp"
+                    android:id="@+id/txtDetResTel"/>
         </LinearLayout>
+        <ImageView
+            android:id="@+id/icoUbicacion"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/iconoubicacion" />
 
-
-    </RelativeLayout>
+    </LinearLayout>
 
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="2.75"
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -138,6 +93,19 @@
             android:id="@+id/lstDesResMenu">
         </ListView>
 
-    </LinearLayout>
+        <!--
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnWidth="90dp"
+                    android:numColumns="auto_fit"
+                    android:verticalSpacing="10dp"
+                    android:horizontalSpacing="10dp"
+                    android:stretchMode="columnWidth"
+                    android:gravity="center"
+                    android:id="@+id/grdMenu">
 
-    </LinearLayout>
+                </GridLayout>
+         -->   </LinearLayout>
+
+            </LinearLayout>

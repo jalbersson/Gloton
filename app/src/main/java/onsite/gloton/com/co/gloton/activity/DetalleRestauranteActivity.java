@@ -27,7 +27,7 @@ import onsite.gloton.com.co.gloton.entity.Restaurant;
 public class DetalleRestauranteActivity extends AppCompatActivity {
 
     ImageView ubicacion, logo;
-    TextView nit, direccion, telefono;
+    TextView direccion, telefono;
     ListView menu;
     Intent datos;
     Bundle extras;
@@ -52,7 +52,7 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         Caracteristicas_Plato car = new Caracteristicas_Plato();
         datos = getIntent();
         extras = datos.getExtras();
-        Log.d("categoriasize", String.valueOf(Categoria.listAll(Categoria.class).size()));
+        //Log.d("categoriasize", String.valueOf(Categoria.listAll(Categoria.class).size()));
         long codigoRestaurante;
         codigoRestaurante = (long) extras.get("codigoRestaurante");
 
@@ -74,7 +74,7 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         });
 
 
-        nit = (TextView) findViewById(R.id.txtDetResNit);
+        //nit = (TextView) findViewById(R.id.txtDetResNit);
         direccion = (TextView) findViewById(R.id.txtDetResDir);
         telefono = (TextView) findViewById(R.id.txtDetResTel);
         logo = (ImageView) findViewById(R.id.imgDetRestLogo);
@@ -82,7 +82,7 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         menu = (ListView) findViewById(R.id.lstDesResMenu);
 
 
-        nit.setText(String.valueOf(rest.getNit()));
+        //nit.setText(String.valueOf(rest.getNit()));
         direccion.setText(rest.getDireccion());
         telefono.setText(rest.getTelefono());
         Picasso.with(this).load(rest.getLogo()).into(logo);

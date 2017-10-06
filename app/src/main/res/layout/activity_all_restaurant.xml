@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+   xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="onsite.gloton.com.co.gloton.activity.AllRestaurant">
-
-    <TextView
-        android:layout_margin="20dp"
-        android:layout_centerHorizontal="true"
+    <ImageView
+        android:scaleType="fitXY"
+        android:src="@drawable/fondo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/fondotitulocateg"
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/colorTitle"
+        android:layout_margin="7dp"
+        android:text="RESTAURANTES"
+        android:textAlignment="center"
         android:id="@+id/titulorest"
-        android:hint="RESTAURANTES"
-        android:layout_width="wrap_content"
-        android:textSize="20sp"
-        android:layout_height="wrap_content" />
+        android:textSize="25sp" />
 
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"

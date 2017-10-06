@@ -3,6 +3,7 @@ package onsite.gloton.com.co.gloton.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,14 +20,14 @@ import onsite.gloton.com.co.gloton.activity.detalle_plato;
 import onsite.gloton.com.co.gloton.entity.Calificacion;
 import onsite.gloton.com.co.gloton.entity.Caracteristicas_Plato;
 
-/**
- * Created by Apollo on 2/10/2017.
- */
+import static onsite.gloton.com.co.gloton.R.color.colorTitle;
+
+
 
 public class RecomendadosAdapter extends RecyclerView.Adapter<RecomendadosAdapter.ViewHolder> {
 
-    Context contexto;
-    List<Calificacion> menu;
+    private Context contexto;
+    private List<Calificacion> menu;
 
     public RecomendadosAdapter(Context contexto, List<Calificacion> menu) {
         this.contexto = contexto;
@@ -44,10 +45,12 @@ public class RecomendadosAdapter extends RecyclerView.Adapter<RecomendadosAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         final Caracteristicas_Plato plato = menu.get(position).getCaracteristicas();
-        String descrip = menu.get(position).getPuntuacion()+"\n"+plato.getRestaurante().getNombre()+"\n"+ String.valueOf(plato.getPrecio());
 
         holder.nom.setText(plato.getPlato().getNombre());
-        holder.desc.setText(descrip);
+        holder.cal.setText(String.valueOf(menu.get(position).getPuntuacion()));
+        holder.rest.setText(plato.getRestaurante().getNombre());
+        holder.prec.setText(String.valueOf(plato.getPrecio()));
+       // holder.fondo.setBackgroundColor(colorTitle);
         Picasso.with(contexto).load(R.drawable.platocubiertos).into(holder.foto);
 
         holder.foto.setOnClickListener(new View.OnClickListener() {
@@ -68,15 +71,20 @@ public class RecomendadosAdapter extends RecyclerView.Adapter<RecomendadosAdapte
     public class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView foto;
         private TextView nom;
-        private TextView desc;
+        private TextView cal;
+        private TextView rest;
+        private TextView prec;
+        private View fondo;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
 
-
+             fondo = itemView.findViewById(R.id.layoutItemRecomendado);
              nom = (TextView) itemView.findViewById(R.id.txtRecNomPlato);
-             desc = (TextView) itemView.findViewById(R.id.txtRecPrecioPlato);
+             cal = (TextView) itemView.findViewById(R.id.txtRecCalPlato);
+             rest = (TextView) itemView.findViewById(R.id.txtRecRestPlato);
+             prec = (TextView) itemView.findViewById(R.id.txtRecPrecioPlato);
              foto = (ImageView) itemView.findViewById(R.id.imgRecPlato);
         }
 
