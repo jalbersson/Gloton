@@ -34,7 +34,7 @@ public class AllRestaurant extends AppCompatActivity {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         LayoutInflater inflator = LayoutInflater.from(this);
-        View v = inflator.inflate(R.layout.template_title_actionbar, null);
+        View v = inflator.inflate(R.layout.template_title_actionbar,null);
         getSupportActionBar().setCustomView(v);
         ////fin codigo poner icono y letra en el actionbar
 

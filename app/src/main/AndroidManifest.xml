@@ -92,7 +92,7 @@
             </intent-filter>
         </receiver>
         -->
-        <activity android:name=".recomendados"></activity>
+        <activity android:name=".activity.recomendados"></activity>
     </application>
 
 </manifest>

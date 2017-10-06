@@ -4,13 +4,14 @@
     android:id="@+id/activity_recomendados"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="onsite.gloton.com.co.gloton.recomendados">
+    tools:context="onsite.gloton.com.co.gloton.activity.recomendados">
 
     <ImageView
-        android:scaleType="fitXY"
-        android:src="@drawable/fondo"
+        android:scaleType="centerCrop"
+        android:src="@drawable/markwater"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        />
 
     <Button
         android:layout_width="match_parent"
