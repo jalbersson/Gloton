@@ -295,9 +295,9 @@ public class Splash extends AppCompatActivity {
             {
                 Random rnd = new Random();
 
-                    int punt = (int)(rnd.nextDouble() * 5 + 1);
-                    listaCalificaciones.add(new Calificacion(a,"",punt,cat));
-                    a++;
+                int punt = (int)(rnd.nextDouble() * 5 + 1);
+                listaCalificaciones.add(new Calificacion(a,"",punt,cat));
+                a++;
             }
 
 

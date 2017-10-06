@@ -1,5 +1,11 @@
 package onsite.gloton.com.co.gloton.activity;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +14,7 @@ import android.widget.TextView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;
 
+import java.util.Collections;
 import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
@@ -27,18 +34,52 @@ public class AllRestaurant extends AppCompatActivity {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         LayoutInflater inflator = LayoutInflater.from(this);
-        View v = inflator.inflate(R.layout.template_title_actionbar,null);
+        View v = inflator.inflate(R.layout.template_title_actionbar, null);
         getSupportActionBar().setCustomView(v);
         ////fin codigo poner icono y letra en el actionbar
 
 
         setContentView(R.layout.activity_all_restaurant);
-        TextView titulorest = (TextView)findViewById(R.id.titulorest);
-        listrestaurantesall = Restaurant.listAll(Restaurant.class);
+        TextView titulorest = (TextView) findViewById(R.id.titulorest);
+        listrestaurantesall = ordenarPorCercania();
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerviewrestall);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new AllRestaurantAdapter(this,listrestaurantesall));
+        recyclerView.setAdapter(new AllRestaurantAdapter(this, listrestaurantesall));
     }
+
+    public List<Restaurant> ordenarPorCercania() {
+        List<Restaurant> desorden = Restaurant.listAll(Restaurant.class);
+        for (Restaurant rest : desorden) {
+            float distancia = 0;
+            LocationManager loma = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                //return TODO;
+
+                Location origen = loma.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                if (origen != null)
+                {
+                    Location destino = new Location("");
+                    destino.setLatitude(rest.getLatitud());
+                    destino.setLongitude(rest.getLongitud());
+                    distancia = origen.distanceTo(destino);
+                }
+                rest.setDistancia(distancia);
+                rest.save();
+            }
+
+        }
+        Collections.sort(desorden);
+
+        return desorden;
+    }
+
 }

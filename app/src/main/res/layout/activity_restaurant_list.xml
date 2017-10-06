@@ -31,32 +31,18 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:weightSum="1">
-                <ImageView
-                    android:layout_margin="5dp"
-                    android:id="@+id/imgTitleCateg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                android:background="@drawable/fondotitulocateg"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/colorTitle"
+                android:layout_centerVertical="true"
+                android:hint="RESTAURANTES"
+                android:textAlignment="center"
+                android:id="@+id/titulorest"
+                android:textSize="25sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:textColor="@color/colorTitle"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="35dp"
-                    android:layout_centerHorizontal="true"
-                    android:hint="RESTAURANTES"
-                    android:textAlignment="center"
-                    android:id="@+id/titulorest"
-                    android:gravity="center"
-                    android:textSize="25sp" />
-            </LinearLayout>
             <ImageView
                 android:layout_margin="5dp"
-                android:src="@drawable/arrozturco"
+                android:src="@drawable/baby_beef"
                 android:id="@+id/imgTitlePlato"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

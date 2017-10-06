@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 
 import com.squareup.picasso.Picasso;
@@ -20,13 +21,11 @@ import onsite.gloton.com.co.gloton.entity.Restaurant;
 
 
 
-/**
- * Created by daniel on 18/07/17.
- */
+
 
 public class AllRestaurantAdapter extends RecyclerView.Adapter<AllRestaurantAdapter.ViewHolder>{
 
-    Context context;
+    private Context context;
     private List<Restaurant> restaurants;
 
     public AllRestaurantAdapter(Context context, List<Restaurant> restaurants) {
@@ -37,10 +36,11 @@ public class AllRestaurantAdapter extends RecyclerView.Adapter<AllRestaurantAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView imgRestauranteall;
-
+        private TextView dist;
         public ViewHolder(View itemView) {
             super(itemView);
             imgRestauranteall = (ImageView) itemView.findViewById(R.id.imgRestauranteall);
+            dist = (TextView) itemView.findViewById(R.id.txtAllRestDist);
         }
     }
 
@@ -63,6 +63,7 @@ public class AllRestaurantAdapter extends RecyclerView.Adapter<AllRestaurantAdap
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         Picasso.with(context).load(restaurants.get(position).getLogo()).into(holder.imgRestauranteall);
+        holder.dist.setText("Estás a "+String.valueOf((int) restaurants.get(position).getDistancia())+" metros");
         holder.imgRestauranteall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
