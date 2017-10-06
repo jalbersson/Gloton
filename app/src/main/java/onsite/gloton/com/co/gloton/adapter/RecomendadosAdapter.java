@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -53,7 +54,7 @@ public class RecomendadosAdapter extends RecyclerView.Adapter<RecomendadosAdapte
        // holder.fondo.setBackgroundColor(colorTitle);
         Picasso.with(contexto).load(R.drawable.platocubiertos).into(holder.foto);
 
-        holder.foto.setOnClickListener(new View.OnClickListener() {
+        holder.fondo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(contexto, detalle_plato.class);
@@ -74,13 +75,13 @@ public class RecomendadosAdapter extends RecyclerView.Adapter<RecomendadosAdapte
         private TextView cal;
         private TextView rest;
         private TextView prec;
-        private View fondo;
+        private LinearLayout fondo;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
 
-             fondo = itemView.findViewById(R.id.layoutItemRecomendado);
+             fondo = (LinearLayout) itemView.findViewById(R.id.layoutItemRecomendado);
              nom = (TextView) itemView.findViewById(R.id.txtRecNomPlato);
              cal = (TextView) itemView.findViewById(R.id.txtRecCalPlato);
              rest = (TextView) itemView.findViewById(R.id.txtRecRestPlato);
