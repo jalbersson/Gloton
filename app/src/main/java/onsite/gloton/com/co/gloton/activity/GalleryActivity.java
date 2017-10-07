@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
@@ -109,7 +110,7 @@ public class GalleryActivity extends AppCompatActivity {
 
     @TargetApi(Build.VERSION_CODES.M)
     private void requestPermission() {
-        List<String> permissionsNeeded = new ArrayList<String>();
+        List<String> permissionsNeeded = new ArrayList<>();
 
         final List<String> permissionsList = new ArrayList<String>();
       /*  if (!addPermission(permissionsList, Manifest.permission.ACCESS_FINE_LOCATION))
