@@ -1,7 +1,11 @@
 package onsite.gloton.com.co.gloton.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,8 +46,16 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         LayoutInflater inflator = LayoutInflater.from(this);
-        View v = inflator.inflate(R.layout.template_title_actionbar,null);
+        View v = inflator.inflate(R.layout.template_title_actionbar, null);
         getSupportActionBar().setCustomView(v);
+        //listener para ir a home
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetalleRestauranteActivity.this, GalleryActivity.class);
+                startActivity(intent);
+            }
+        });
         ////fin codigo poner icono y letra en el actionbar
 
 
@@ -56,7 +68,7 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         long codigoRestaurante;
         codigoRestaurante = (long) extras.get("codigoRestaurante");
 
-        Log.d("***********************",String.valueOf(codigoRestaurante)+"*******************************");
+        Log.d("***********************", String.valueOf(codigoRestaurante) + "*******************************");
         //codigoRestaurante = 7;      //
 
         final Restaurant rest = Restaurant.findById(Restaurant.class, codigoRestaurante);
@@ -66,9 +78,9 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DetalleRestauranteActivity.this, MapsActivity.class);
-                intent.putExtra("latitud",Double.valueOf(rest.getLatitud()));
-                intent.putExtra("longitud",Double.valueOf(rest.getLongitud()));
-                intent.putExtra("restaurante",rest.getId());
+                intent.putExtra("latitud", Double.valueOf(rest.getLatitud()));
+                intent.putExtra("longitud", Double.valueOf(rest.getLongitud()));
+                intent.putExtra("restaurante", rest.getId());
                 startActivity(intent);
             }
         });
@@ -96,8 +108,17 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(DetalleRestauranteActivity.this,detalle_plato.class);
-                intent.putExtra("caracPlato",platos.get(position).getId());
+                Intent intent = new Intent(DetalleRestauranteActivity.this, detalle_plato.class);
+                intent.putExtra("caracPlato", platos.get(position).getId());
+                startActivity(intent);
+            }
+        });
+
+        telefono.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:" + rest.getTelefono()));
                 startActivity(intent);
             }
         });

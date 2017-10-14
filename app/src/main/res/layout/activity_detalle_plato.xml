@@ -50,20 +50,37 @@
                 android:layout_alignParentRight="true"
                 android:textSize="20sp" />
         </RelativeLayout>
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5">
-            <RatingBar
-                android:layout_width="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            android:weightSum="3">
+            <TextView
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:numStars="5"
-                android:rating="1"
-                android:stepSize="1"
-                android:id="@+id/ratPlato"
-                android:layout_centerHorizontal="true"/>
-        </RelativeLayout>
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:textColor="@color/ListLabels"
+                android:textAlignment="center"
+                android:text="Mi calificacion:"
+                android:textSize="20sp"/>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:numStars="5"
+                    android:rating="1"
+                    android:stepSize="1"
+                    android:id="@+id/ratPlato"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+        </LinearLayout>
+
 
         <ScrollView
             android:layout_width="match_parent"
@@ -81,6 +98,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:layout_marginTop="25dp"
+                    android:background="@color/colorTitle"
                     android:orientation="vertical">
 
                     <TextView
@@ -100,6 +119,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:layout_marginTop="25dp"
+                    android:background="@color/colorTitleTransparent"
                     android:orientation="vertical">
 
                     <TextView

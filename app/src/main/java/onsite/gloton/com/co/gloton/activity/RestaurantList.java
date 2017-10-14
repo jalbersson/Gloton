@@ -2,6 +2,7 @@ package onsite.gloton.com.co.gloton.activity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
@@ -58,6 +59,14 @@ public class RestaurantList extends AppCompatActivity {
         LayoutInflater inflator = LayoutInflater.from(this);
         View v = inflator.inflate(R.layout.template_title_actionbar,null);
         getSupportActionBar().setCustomView(v);
+        //listener para ir a home
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RestaurantList.this, GalleryActivity.class);
+                startActivity(intent);
+            }
+        });
         ////fin codigo poner icono y letra en el actionbar
 
 

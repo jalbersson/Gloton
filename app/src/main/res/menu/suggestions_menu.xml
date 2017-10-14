@@ -8,4 +8,8 @@
         android:id="@+id/allrestaurantes"
         android:title="Restaurantes">
     </item>
+    <item
+        android:id="@+id/menBuscPlat"
+        android:title="Buscar Plato">
+    </item>
 </menu>

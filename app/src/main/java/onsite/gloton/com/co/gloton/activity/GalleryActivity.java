@@ -92,16 +92,18 @@ public class GalleryActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.suggestion:
                 Intent intent = new Intent(this, recomendados.class);
-                //intent.putExtra("titleFood","Recomendados");
-                //intent.putExtra("optionSelected",5);
 
                 startActivity(intent);
                 return true;
             case R.id.allrestaurantes:
                 Intent intent1 = new Intent(this, AllRestaurant.class);
-                //intent.putExtra("titleFood","Recomendados");
-                //intent.putExtra("optionSelected",5);
                 startActivity(intent1);
+                return true;
+            case R.id.menBuscPlat:
+                Intent intent2 = new Intent(this, DetailActivity.class);
+                intent2.putExtra("titleFood","Platos");
+                intent2.putExtra("optionSelected",-1);
+                startActivity(intent2);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

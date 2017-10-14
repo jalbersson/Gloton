@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.provider.Settings.Secure;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -73,7 +74,7 @@ public class detalle_plato extends AppCompatActivity {
         nomPlato.setText(plato.getNombre());
         descri.setText(caract.getDescripcion());
         ingre.setText(caract.getIngredientes());
-        precio.setText(String.valueOf(caract.getPrecio()));
+        precio.setText("Precio:"+String.valueOf(caract.getPrecio()));
 
         imgPlato.setImageResource(Integer.parseInt(plato.getImagen()));
 
@@ -101,6 +102,15 @@ public class detalle_plato extends AppCompatActivity {
         ratingBar.setProgress(cal.getPuntuacion());
         //ingre.setText(String.valueOf(cal.getPuntuacion()));
         ListennerRatingBar();
+
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(detalle_plato.this, GalleryActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public void ListennerRatingBar()
@@ -122,6 +132,20 @@ public class detalle_plato extends AppCompatActivity {
                 }
                 ingre.setText(calis);
                 */
+                if (cal.getId() == null)
+                {
+                    Toast toast1 =
+                    Toast.makeText(getApplicationContext(),
+                            "Calificación registrada", Toast.LENGTH_SHORT);
+                    toast1.show();
+                }
+                else
+                {
+                    Toast toast1 =
+                            Toast.makeText(getApplicationContext(),
+                                    "Calificación modificada", Toast.LENGTH_SHORT);
+                    toast1.show();
+                }
                 cal.save();
             }
         });

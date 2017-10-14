@@ -52,9 +52,21 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
         LayoutInflater inflator = LayoutInflater.from(this);
         View v = inflator.inflate(R.layout.template_title_actionbar,null);
         getSupportActionBar().setCustomView(v);
+
+        //listener para ir a home
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailActivity.this, GalleryActivity.class);
+                startActivity(intent);
+            }
+        });
         ////fin codigo poner icono y letra en el actionbar
 
 
+
+        imgFondo = (ImageView) findViewById(R.id.imgFondo);
+        imgTitleCateg = (ImageView)findViewById(R.id.imgTitleCateg);
 
         setContentView(R.layout.activity_detail);
         String foodTitle = "";
@@ -63,15 +75,29 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
             optionSelected = getIntent().getExtras().getLong("optionSelected");
         }
 
-        Categoria cat;
-        cat = Categoria.find(Categoria.class, "name = ?", foodTitle).get(0);
+        if (foodTitle.equals("Platos"))
+        {
+            imgFondo = (ImageView) findViewById(R.id.imgFondo);
+            imgTitleCateg = (ImageView)findViewById(R.id.imgTitleCateg);
+            textViewTitle = (Button) findViewById(R.id.txtTitle);
+            listPlato = Plato.listAll(Plato.class);
+            textViewTitle.setText("Glot-On");
+            imgTitleCateg.setImageResource(R.drawable.splash4);
+        }
+        else
+        {
+            textViewTitle = (Button) findViewById(R.id.txtTitle);
+            imgFondo = (ImageView) findViewById(R.id.imgFondo);
+            imgTitleCateg = (ImageView)findViewById(R.id.imgTitleCateg);
+            Categoria cat = Categoria.find(Categoria.class, "name = ?", foodTitle).get(0);
+            listPlato = settingPlatos();
 
-        listPlato = settingPlatos();
-        textViewTitle = (Button) findViewById(R.id.txtTitle);
-        imgFondo = (ImageView) findViewById(R.id.imgFondo);
-        textViewTitle.setText(foodTitle);
-        imgTitleCateg = (ImageView)findViewById(R.id.imgTitleCateg);
-        imgTitleCateg.setImageResource(cat.getImageSource());
+            textViewTitle.setText(foodTitle);
+            imgTitleCateg.setImageResource(cat.getImageSource());
+
+        }
+
+
 
         imgFondo.setMinimumHeight(textViewTitle.getHeight());
 
@@ -90,7 +116,6 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
         });
 
     }
-
 
     private List<Plato> settingPlatos() {
         Log.d("optionSelected",String.valueOf(optionSelected));

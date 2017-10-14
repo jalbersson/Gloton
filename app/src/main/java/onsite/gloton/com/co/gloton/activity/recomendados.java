@@ -1,5 +1,6 @@
 package onsite.gloton.com.co.gloton.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,6 +29,14 @@ public class recomendados extends AppCompatActivity {
         LayoutInflater inflator = LayoutInflater.from(this);
         View v = inflator.inflate(R.layout.template_title_actionbar,null);
         getSupportActionBar().setCustomView(v);
+        //listener para ir a home
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(recomendados.this, GalleryActivity.class);
+                startActivity(intent);
+            }
+        });
         ////fin codigo poner icono y letra en el actionbar
 
         List<Calificacion> recos;
