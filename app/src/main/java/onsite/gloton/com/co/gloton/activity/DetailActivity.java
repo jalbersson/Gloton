@@ -69,7 +69,7 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
         String foodTitle = "";
         if (getIntent().getExtras() != null) {
             foodTitle = getIntent().getExtras().getString("titleFood");
-            optionSelected = getIntent().getExtras().getInt("optionSelected");
+            optionSelected = getIntent().getExtras().getLong("optionSelected");
         }
 
         if (foodTitle.equals("Platos"))

@@ -102,7 +102,7 @@ public class GalleryActivity extends AppCompatActivity {
             case R.id.menBuscPlat:
                 Intent intent2 = new Intent(this, DetailActivity.class);
                 intent2.putExtra("titleFood","Platos");
-                intent2.putExtra("optionSelected",-1);
+                intent2.putExtra("optionSelected",-1L);
                 startActivity(intent2);
                 return true;
             default:

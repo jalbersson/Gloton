@@ -13,15 +13,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
-import onsite.gloton.com.co.gloton.activity.DetailActivity;
 import onsite.gloton.com.co.gloton.activity.RestaurantList;
-import onsite.gloton.com.co.gloton.entity.Categoria;
 import onsite.gloton.com.co.gloton.entity.Plato;
 
 /**
