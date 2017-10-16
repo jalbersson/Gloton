@@ -1,6 +1,7 @@
 package onsite.gloton.com.co.gloton.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
+import onsite.gloton.com.co.gloton.activity.DetailActivity;
+import onsite.gloton.com.co.gloton.activity.RestaurantList;
 import onsite.gloton.com.co.gloton.entity.Categoria;
 import onsite.gloton.com.co.gloton.entity.Plato;
 
@@ -53,7 +56,7 @@ public class DetailAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
 
         try {
@@ -75,6 +78,14 @@ public class DetailAdapter extends BaseAdapter {
             } else {
                 viewHolder.relativeLayoutPpal.setBackgroundColor(ContextCompat.getColor(context, R.color.colorTitleTransparent));
             }
+            viewHolder.relativeLayoutPpal.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, RestaurantList.class);
+                    intent.putExtra("plato", data.get(position).getNombre());
+                    context.startActivity(intent);
+                }
+            });
             //viewHolder.imgTitleCateg.setImageResource(Integer.valueOf(data.get(position).getCategoria().getImageSource()));
 
         }catch (NumberFormatException e){

@@ -16,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +25,6 @@ import onsite.gloton.com.co.gloton.adapter.DetailAdapter;
 import onsite.gloton.com.co.gloton.entity.Categoria;
 import onsite.gloton.com.co.gloton.entity.Plato;
 
-import static com.orm.SugarRecord.find;
 
 public class DetailActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
@@ -36,7 +34,6 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
     private ImageView imgTitleCateg;
     private ImageView imgFondo;
     private List<Plato> listPlato;
-    private Intent intent;
     private long optionSelected;
 
 
@@ -72,11 +69,12 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
         String foodTitle = "";
         if (getIntent().getExtras() != null) {
             foodTitle = getIntent().getExtras().getString("titleFood");
-            optionSelected = getIntent().getExtras().getLong("optionSelected");
+            optionSelected = getIntent().getExtras().getInt("optionSelected");
         }
 
         if (foodTitle.equals("Platos"))
         {
+            Log.d("entroporplato","plato");
             imgFondo = (ImageView) findViewById(R.id.imgFondo);
             imgTitleCateg = (ImageView)findViewById(R.id.imgTitleCateg);
             textViewTitle = (Button) findViewById(R.id.txtTitle);
@@ -86,6 +84,7 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
         }
         else
         {
+            Log.d("diferente","plato");
             textViewTitle = (Button) findViewById(R.id.txtTitle);
             imgFondo = (ImageView) findViewById(R.id.imgFondo);
             imgTitleCateg = (ImageView)findViewById(R.id.imgTitleCateg);
@@ -105,23 +104,14 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
         listView = (ListView) findViewById(R.id.listView);
         detailAdapter = new DetailAdapter(this, listPlato);
         listView.setAdapter(detailAdapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                intent = new Intent(DetailActivity.this, RestaurantList.class);
-                intent.putExtra("plato", listPlato.get(position).getNombre());
-                startActivity(intent);
-            }
-        });
-
     }
 
     private List<Plato> settingPlatos() {
         Log.d("optionSelected",String.valueOf(optionSelected));
-        Categoria categoria = null;
+        Categoria categoria;
         List<Plato> listFinal = new ArrayList<>();
         if (optionSelected == 0) {
+            Log.d("CATEGORIACERO","CERO");
             categoria  = Categoria.findById(Categoria.class,3);
             List<Plato> listPlatoTmp = Plato.listAll(Plato.class);
             for (Plato plato:listPlatoTmp) {
@@ -130,9 +120,12 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
                 }
             }
         } else {
+            Log.d("CATEGORIA",String.valueOf(optionSelected));
             categoria = Categoria.findById(Categoria.class,optionSelected);
             List<Plato> listPlatoTmp = Plato.listAll(Plato.class);
+            Log.d("tamañolistaplato",String.valueOf(listPlatoTmp.size()));
             for (Plato plato:listPlatoTmp) {
+                Log.d("plato",String.valueOf(plato.getNombre()));
                 if(plato.getCategoria().getId().equals(categoria.getId())){
                     listFinal.add(plato);
                 }
@@ -156,8 +149,8 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
         searchView.setIconified(true);
         searchView.setQuery("", false);
         searchView.setOnQueryTextListener(this);
-        View searchPlate = searchView
-                .findViewById(android.support.v7.appcompat.R.id.search_plate);
+       // View searchPlate = searchView
+       //         .findViewById(android.support.v7.appcompat.R.id.search_plate);
        // searchPlate.setBackgroundResource(R.drawable.search_view_selector);
         return true;
 
