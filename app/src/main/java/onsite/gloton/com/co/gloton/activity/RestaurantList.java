@@ -1,12 +1,7 @@
 package onsite.gloton.com.co.gloton.activity;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,10 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.model.LatLng;
 import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Array;
@@ -72,14 +67,14 @@ public class RestaurantList extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_restaurant_list);
-        TextView titulorest = (TextView) findViewById(R.id.titulorest);
-        ImageView imagenTitulo = (ImageView) findViewById(R.id.imgTitlePlato);
+        Button btnRestaurant = (Button) findViewById(R.id.btnTitle);
+        ImageView imagenTitulo = (ImageView) findViewById(R.id.imgTitleCateg);
         String nombreplato;
 
         Bundle extras = getIntent().getExtras();
         nombreplato = extras.getString("plato");
 
-        titulorest.setText(nombreplato);
+        btnRestaurant.setText(nombreplato);
 
         List<Restaurant> ordenados;
         List<Plato> listPla = Plato.listAll(Plato.class);
