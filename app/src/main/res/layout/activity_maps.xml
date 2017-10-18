@@ -44,6 +44,6 @@
         android:src="@drawable/streetview"
         android:layout_below="@+id/linearMaps"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"/>
+        android:background="@color/color_transparent"/>
 
 </RelativeLayout>

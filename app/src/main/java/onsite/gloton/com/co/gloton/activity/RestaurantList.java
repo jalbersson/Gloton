@@ -1,12 +1,7 @@
 package onsite.gloton.com.co.gloton.activity;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,17 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.google.android.gms.maps.model.LatLng;
-import com.squareup.picasso.Picasso;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,7 +23,6 @@ import onsite.gloton.com.co.gloton.entity.Categoria;
 import onsite.gloton.com.co.gloton.entity.Plato;
 import onsite.gloton.com.co.gloton.entity.Restaurant;
 import onsite.gloton.com.co.gloton.location.GPSTracker;
-import onsite.gloton.com.co.gloton.location.Route;
 
 public class RestaurantList extends AppCompatActivity {
 
@@ -72,22 +59,25 @@ public class RestaurantList extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_restaurant_list);
-        TextView titulorest = (TextView) findViewById(R.id.titulorest);
-        ImageView imagenTitulo = (ImageView) findViewById(R.id.imgTitlePlato);
-        String nombreplato;
+        Button btnRestaurant = (Button) findViewById(R.id.btnTitle);
+        ImageView imagenTitulo = (ImageView) findViewById(R.id.imgTitleCateg);
+        String nombreplato = "";
+        int resourceImageCat = 0;
 
-        Bundle extras = getIntent().getExtras();
-        nombreplato = extras.getString("plato");
-
-        titulorest.setText(nombreplato);
+        if (getIntent().getExtras() != null) {
+            Bundle extras = getIntent().getExtras();
+            nombreplato = extras.getString("plato");
+            resourceImageCat = extras.getInt("categoriaImage");
+            btnRestaurant.setText(nombreplato);
+            imagenTitulo.setImageResource(resourceImageCat);
+        }
 
         List<Restaurant> ordenados;
         List<Plato> listPla = Plato.listAll(Plato.class);
         for (Plato pla : listPla) {
-
             if (pla.getNombre().equalsIgnoreCase(nombreplato)) {
                 plat = pla;
-                Picasso.with(this).load(plat.getImagen()).into(imagenTitulo);
+                break;
             }
         }
 

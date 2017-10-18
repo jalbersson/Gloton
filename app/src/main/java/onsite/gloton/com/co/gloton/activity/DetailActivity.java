@@ -156,8 +156,8 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
         searchView.setIconified(true);
         searchView.setQuery("", false);
         searchView.setOnQueryTextListener(this);
-        View searchPlate = searchView
-                .findViewById(android.support.v7.appcompat.R.id.search_plate);
+       // View searchPlate = searchView
+       //         .findViewById(android.support.v7.appcompat.R.id.search_plate);
        // searchPlate.setBackgroundResource(R.drawable.search_view_selector);
         return true;
 

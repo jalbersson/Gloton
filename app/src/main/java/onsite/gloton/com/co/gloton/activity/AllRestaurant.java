@@ -9,11 +9,14 @@ import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;
+
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,6 +24,7 @@ import java.util.List;
 import onsite.gloton.com.co.gloton.R;
 import onsite.gloton.com.co.gloton.adapter.AllRestaurantAdapter;
 import onsite.gloton.com.co.gloton.entity.Restaurant;
+import onsite.gloton.com.co.gloton.location.GPSTracker;
 
 public class AllRestaurant extends AppCompatActivity {
 
@@ -62,15 +66,13 @@ public class AllRestaurant extends AppCompatActivity {
         List<Restaurant> desorden = Restaurant.listAll(Restaurant.class);
         for (Restaurant rest : desorden) {
             float distancia = 0;
-            LocationManager loma = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-            Location origen = loma.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            if (origen != null)
+            Location location = requestLocation();
+            if (location != null)
             {
                 Location destino = new Location("");
                 destino.setLatitude(rest.getLatitud());
                 destino.setLongitude(rest.getLongitud());
-                distancia = origen.distanceTo(destino);
+                distancia = location.distanceTo(destino);
             }
             rest.setDistancia(distancia);
             rest.save();
@@ -78,6 +80,16 @@ public class AllRestaurant extends AppCompatActivity {
         Collections.sort(desorden);
 
         return desorden;
+    }
+
+
+    public Location requestLocation() {
+        GPSTracker mGPS = new GPSTracker(this);
+        if (mGPS.canGetLocation()) {
+            return mGPS.getLocation();
+        } else {
+            return null;
+        }
     }
 
 }

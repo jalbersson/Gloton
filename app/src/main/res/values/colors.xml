@@ -8,4 +8,5 @@
     <color name="colorTitleTransparent">#4df29403</color>
     <color name="colorTitle">#f29403</color>
     <color name="ListLabels">#ac4518</color>
+    <color name="color_transparent">#00ffffff</color>
 </resources>

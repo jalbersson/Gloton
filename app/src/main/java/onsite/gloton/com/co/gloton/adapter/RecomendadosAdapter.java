@@ -53,7 +53,11 @@ public class RecomendadosAdapter extends RecyclerView.Adapter<RecomendadosAdapte
         holder.prec.setText(String.valueOf(plato.getPrecio()));
        // holder.fondo.setBackgroundColor(colorTitle);
         Picasso.with(contexto).load(R.drawable.platocubiertos).into(holder.foto);
-
+        if (position % 2 == 0) {
+            holder.fondo.setBackgroundResource(R.color.colorTitle);
+        } else {
+            holder.fondo.setBackgroundResource(R.color.colorTitleTransparent);
+        }
         holder.fondo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

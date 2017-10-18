@@ -1,53 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:weightSum="3">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="2">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/txtItemRestDistancia"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:padding="5dp">
-        <ImageView
-            android:id="@+id/imgRestaurante"
-            android:src="@drawable/restaurantechiles"
-            android:layout_width="match_parent"
-            android:scaleType="centerCrop"
-            android:layout_height="match_parent" />
-        <TextView
-            android:id="@+id/txtNombreResta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="17dp"
-            android:background="@android:drawable/divider_horizontal_textfield"
-            android:text="Nombre Restaurante"
-            android:textAlignment="center"
-            android:textColor="@color/cardview_light_background"
-            android:shadowColor="#000000"
-            android:shadowDx="7"
-            android:shadowDy="7"
-            android:shadowRadius="4"
-            android:textStyle="bold"
-            android:textSize="30sp" />
+        android:textColor="@color/ListLabels"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="124 mtrs"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/activity_horizontal_margin"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:background="@android:drawable/divider_horizontal_textfield"
-            android:text="MAS CERCANO"
-            android:textColor="@android:color/background_light"
-            android:textSize="25sp"
-            android:shadowColor="#000000"
-            android:shadowDx="7"
-            android:shadowDy="7"
-            android:shadowRadius="4"
-            android:textStyle="bold"
-            android:id="@+id/txtItemRestDistancia" />
-
-    </RelativeLayout>
+    <ImageView
+        android:id="@+id/imgRestaurante"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:src="@drawable/restaurantechiles"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/activity_horizontal_margin"/>
 
 
 </LinearLayout>

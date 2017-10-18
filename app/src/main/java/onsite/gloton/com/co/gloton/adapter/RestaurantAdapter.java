@@ -39,12 +39,10 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView imgRestaurante;
-        private TextView titulorest;
         private TextView distRest;
         public ViewHolder(View itemView) {
             super(itemView);
             imgRestaurante = (ImageView) itemView.findViewById(R.id.imgRestaurante);
-            titulorest = (TextView) itemView.findViewById(R.id.txtNombreResta);
             distRest = (TextView) itemView.findViewById(R.id.txtItemRestDistancia);
         }
     }
@@ -63,7 +61,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
 
         Picasso.with(context).load(restaurantes.get(position).getLogo()).into(holder.imgRestaurante);
         holder.distRest.setText("Estás a "+String.valueOf((int) restaurantes.get(position).getDistancia())+" mts");
-        holder.titulorest.setText(restaurantes.get(position).getNombre());
         holder.imgRestaurante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,6 +69,12 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
                context.startActivity(intent);
             }
         });
+
+        if (position % 2 == 0) {
+            holder.distRest.setBackgroundResource(R.color.colorTitle);
+        } else {
+            holder.distRest.setBackgroundResource(R.color.colorTitleTransparent);
+        }
     }
 
     @Override
