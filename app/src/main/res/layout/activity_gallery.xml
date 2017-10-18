@@ -7,6 +7,12 @@
     tools:context=".activity.GalleryActivity"
     android:background="@drawable/markwater">
 
+    <ImageView
+        android:scaleType="centerCrop"
+        android:src="@drawable/markwater"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow
         android:id="@+id/coverflow"
         coverflow:coverHeight="250dp"

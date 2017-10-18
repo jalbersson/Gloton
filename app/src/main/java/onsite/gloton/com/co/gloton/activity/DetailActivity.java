@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,7 +25,6 @@ import onsite.gloton.com.co.gloton.adapter.DetailAdapter;
 import onsite.gloton.com.co.gloton.entity.Categoria;
 import onsite.gloton.com.co.gloton.entity.Plato;
 
-import static com.orm.SugarRecord.find;
 
 public class DetailActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 

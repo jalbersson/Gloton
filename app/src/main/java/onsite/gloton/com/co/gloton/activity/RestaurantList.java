@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -59,7 +61,7 @@ public class RestaurantList extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_restaurant_list);
-        Button btnRestaurant = (Button) findViewById(R.id.btnTitle);
+        TextView btnRestaurant = (TextView) findViewById(R.id.btnTitle);
         ImageView imagenTitulo = (ImageView) findViewById(R.id.imgTitleCateg);
         String nombreplato = "";
         int resourceImageCat = 0;
