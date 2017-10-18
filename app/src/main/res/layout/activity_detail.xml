@@ -45,7 +45,7 @@
                     android:layout_weight="1"
                     android:id="@+id/imgTitleCateg"
                     android:layout_width="0dp"
-                    android:paddingBottom="35dp"
+                    android:paddingBottom="15dp"
                     android:layout_height="match_parent"
                     android:textAlignment="viewStart"/>
 

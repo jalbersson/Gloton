@@ -1,10 +1,12 @@
 package onsite.gloton.com.co.gloton.activity;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,11 +15,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
@@ -37,6 +41,8 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
     Bundle extras;
     List<Caracteristicas_Plato> platos;
     MenuDetalleRestauranteAdapter adapter;
+    ImageView phone;
+    private static final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +64,7 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         });
         ////fin codigo poner icono y letra en el actionbar
 
+        phone = (ImageView) findViewById(R.id.imgPhoneRest);
 
         setContentView(R.layout.activity_detalle_restaurante);
 
@@ -117,11 +124,54 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         telefono.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:" + rest.getTelefono()));
-                startActivity(intent);
+                if (ActivityCompat.checkSelfPermission(DetalleRestauranteActivity.this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                    Intent intent = new Intent(Intent.ACTION_CALL);
+                    intent.setData(Uri.parse("tel:" + rest.getTelefono()));
+                    startActivity(intent);
+                }
+                else
+                {
+                    requestPermission();
+                }
             }
         });
+
+    }
+
+
+    @TargetApi(Build.VERSION_CODES.M)
+    private boolean addPermission(List<String> permissionsList, String permission) {
+        if (checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+            permissionsList.add(permission);
+            // Check for Rationale Option
+            if (!shouldShowRequestPermissionRationale(permission))
+                return false;
+        }
+        return true;
+    }
+
+
+
+    @TargetApi(Build.VERSION_CODES.M)
+    private void requestPermission() {
+        List<String> permissionsNeeded = new ArrayList<>();
+
+        final List<String> permissionsList = new ArrayList<String>();
+
+        if (!addPermission(permissionsList, Manifest.permission.CALL_PHONE)) {
+            permissionsNeeded.add("CALL_PHONE");
+        }
+
+        if (permissionsList.size() > 0) {
+            if (permissionsNeeded.size() > 0) {
+                // Need Rationale
+                String message = "You need to grant access to " + permissionsNeeded.get(0);
+                Log.d("permisos ", message);
+            }
+            requestPermissions(permissionsList.toArray(new String[permissionsList.size()]),
+                    REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
+            return;
+        }
 
     }
 }

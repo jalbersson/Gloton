@@ -117,8 +117,12 @@ public class GalleryActivity extends AppCompatActivity {
         final List<String> permissionsList = new ArrayList<String>();
       /*  if (!addPermission(permissionsList, Manifest.permission.ACCESS_FINE_LOCATION))
             permissionsNeeded.add("GPS");*/
-        if (!addPermission(permissionsList, Manifest.permission.ACCESS_FINE_LOCATION))
+        if (!addPermission(permissionsList, Manifest.permission.ACCESS_FINE_LOCATION)) {
             permissionsNeeded.add("LOCATION");
+        }
+        if (!addPermission(permissionsList, Manifest.permission.CALL_PHONE)) {
+            permissionsNeeded.add("CALL_PHONE");
+        }
         if (permissionsList.size() > 0) {
             if (permissionsNeeded.size() > 0) {
                 // Need Rationale
