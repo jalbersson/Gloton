@@ -10,72 +10,75 @@
         android:scaleType="centerCrop"
         android:src="@drawable/markwater"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent"/>
 
-    <RelativeLayout
-        android:layout_margin="10dp"
-        android:id="@+id/titulocatg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:background="@drawable/fondotitulocateg"
-            android:layout_centerInParent="true"
-            android:layout_height="wrap_content"
-            android:id="@+id/imgFondo"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/fondotitulocateg"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/colorTitle"
-            android:layout_centerVertical="true"
-            android:hint="PLATOS"
-            android:textAlignment="center"
-            android:textSize="25sp"
-            android:id="@+id/txtTitle"
-            android:layout_toRightOf="@+id/imgTitleCateg"/>
-
-        <ImageView
-            android:layout_margin="5dp"
-            android:id="@+id/imgTitleCateg"
-            android:layout_width="120dp"
-            android:layout_height="140dp" />
-        <TextView
-            android:layout_width="match_parent"
-            android:textColor="@color/colorTitle"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="55dp"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textSize="25sp" />
-
-    </RelativeLayout>
-
-    <ListView
-        android:id="@+id/listView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/titulocatg">
-    </ListView>
+        android:orientation="vertical"
+        android:weightSum="4">
+
+        <RelativeLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
 
-    <!--
-    <ImageView
-        android:id="@+id/imgTitleCateg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/fondotitulocateg"
+                android:layout_centerInParent="true"
+                android:id="@+id/imgFondo"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="4">
 
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/imgTitleCateg">
-    </ListView>
--->
+                <ImageView
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:id="@+id/imgTitleCateg"
+                    android:layout_width="0dp"
+                    android:paddingBottom="35dp"
+                    android:layout_height="match_parent"
+                    android:textAlignment="viewStart"/>
+
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/colorTitle"
+                    android:hint="PLATOS"
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:layout_weight="3"
+                    android:id="@+id/txtTitle"
+                    />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:layout_below="@+id/titulocatg">
+        </ListView>
+
+
+    </LinearLayout>
+
+
+
 </RelativeLayout>

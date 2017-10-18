@@ -50,7 +50,6 @@ public class AllRestaurant extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_all_restaurant);
-        TextView titulorest = (TextView) findViewById(R.id.titulorest);
         listrestaurantesall = ordenarPorCercania();
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerviewrestall);

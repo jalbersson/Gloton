@@ -32,7 +32,7 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
 
     private DetailAdapter detailAdapter;
     private ListView listView;
-    private Button textViewTitle;
+    private TextView textViewTitle;
     private ImageView imgTitleCateg;
     private ImageView imgFondo;
     private List<Plato> listPlato;
@@ -79,14 +79,14 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
         {
             imgFondo = (ImageView) findViewById(R.id.imgFondo);
             imgTitleCateg = (ImageView)findViewById(R.id.imgTitleCateg);
-            textViewTitle = (Button) findViewById(R.id.txtTitle);
+            textViewTitle = (TextView) findViewById(R.id.txtTitle);
             listPlato = Plato.listAll(Plato.class);
             textViewTitle.setText("Glot-On");
-            imgTitleCateg.setImageResource(R.drawable.splash4);
+            imgTitleCateg.setImageResource(R.drawable.icono_dos);
         }
         else
         {
-            textViewTitle = (Button) findViewById(R.id.txtTitle);
+            textViewTitle = (TextView) findViewById(R.id.txtTitle);
             imgFondo = (ImageView) findViewById(R.id.imgFondo);
             imgTitleCateg = (ImageView)findViewById(R.id.imgTitleCateg);
             Categoria cat = Categoria.find(Categoria.class, "name = ?", foodTitle).get(0);
