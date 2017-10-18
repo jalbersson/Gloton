@@ -78,6 +78,7 @@ public class DetailAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     Intent intent = new Intent(context, RestaurantList.class);
                     intent.putExtra("plato", data.get(position).getNombre());
+                    intent.putExtra("categoriaImage", data.get(position).getCategoria().getImageSource());
                     context.startActivity(intent);
                 }
             });

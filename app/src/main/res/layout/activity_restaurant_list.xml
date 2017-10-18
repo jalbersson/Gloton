@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.RestaurantList">
+    tools:context=".activity.RestaurantList"
+    android:background="@drawable/markwater">
 
 
     <RelativeLayout
@@ -45,7 +46,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/titulocatg"
         android:orientation="horizontal"
-        android:weightSum="4">
+        android:weightSum="4"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin">
 
         <ImageView
             android:layout_width="0dp"
@@ -65,7 +68,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:src="@drawable/platoicon"/>
+            android:src="@drawable/platoicon"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
 
         <TextView
             android:layout_width="0dp"

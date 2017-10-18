@@ -11,15 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,7 +23,6 @@ import onsite.gloton.com.co.gloton.entity.Categoria;
 import onsite.gloton.com.co.gloton.entity.Plato;
 import onsite.gloton.com.co.gloton.entity.Restaurant;
 import onsite.gloton.com.co.gloton.location.GPSTracker;
-import onsite.gloton.com.co.gloton.location.Route;
 
 public class RestaurantList extends AppCompatActivity {
 
@@ -69,20 +61,23 @@ public class RestaurantList extends AppCompatActivity {
         setContentView(R.layout.activity_restaurant_list);
         Button btnRestaurant = (Button) findViewById(R.id.btnTitle);
         ImageView imagenTitulo = (ImageView) findViewById(R.id.imgTitleCateg);
-        String nombreplato;
+        String nombreplato = "";
+        int resourceImageCat = 0;
 
-        Bundle extras = getIntent().getExtras();
-        nombreplato = extras.getString("plato");
-
-        btnRestaurant.setText(nombreplato);
+        if (getIntent().getExtras() != null) {
+            Bundle extras = getIntent().getExtras();
+            nombreplato = extras.getString("plato");
+            resourceImageCat = extras.getInt("categoriaImage");
+            btnRestaurant.setText(nombreplato);
+            imagenTitulo.setImageResource(resourceImageCat);
+        }
 
         List<Restaurant> ordenados;
         List<Plato> listPla = Plato.listAll(Plato.class);
         for (Plato pla : listPla) {
-
             if (pla.getNombre().equalsIgnoreCase(nombreplato)) {
                 plat = pla;
-                Picasso.with(this).load(plat.getImagen()).into(imagenTitulo);
+                break;
             }
         }
 

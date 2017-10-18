@@ -74,7 +74,6 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
 
         if (foodTitle.equals("Platos"))
         {
-            Log.d("entroporplato","plato");
             imgFondo = (ImageView) findViewById(R.id.imgFondo);
             imgTitleCateg = (ImageView)findViewById(R.id.imgTitleCateg);
             textViewTitle = (Button) findViewById(R.id.txtTitle);
@@ -84,7 +83,6 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
         }
         else
         {
-            Log.d("diferente","plato");
             textViewTitle = (Button) findViewById(R.id.txtTitle);
             imgFondo = (ImageView) findViewById(R.id.imgFondo);
             imgTitleCateg = (ImageView)findViewById(R.id.imgTitleCateg);
