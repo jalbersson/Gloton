@@ -77,7 +77,8 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
             imgFondo = (ImageView) findViewById(R.id.imgFondo);
             imgTitleCateg = (ImageView)findViewById(R.id.imgTitleCateg);
             textViewTitle = (Button) findViewById(R.id.txtTitle);
-            listPlato = Plato.listAll(Plato.class);
+            //Se ordena la lista por nombre de plato
+            listPlato = Plato.listAll(Plato.class,"nombre");
             textViewTitle.setText("Glot-On");
             imgTitleCateg.setImageResource(R.drawable.splash4);
         }
