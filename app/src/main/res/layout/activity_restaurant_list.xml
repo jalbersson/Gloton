@@ -1,88 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.RestaurantList"
-    android:background="@drawable/markwater">
+    android:background="@drawable/markwater"
+    android:orientation="vertical"
+    android:weightSum="2"
+    tools:context=".activity.RestaurantList">
 
-    <ImageView
-        android:scaleType="centerCrop"
-        android:src="@drawable/markwater"
+
+    <RelativeLayout
+        android:id="@+id/titulocatg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:weightSum="5">
-
-        <RelativeLayout
-            android:layout_weight="1"
-            android:id="@+id/titulocatg"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_weight="0.4">
 
         <ImageView
             android:id="@+id/imgFondo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/fondotitulocateg" />
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/fondotitulocateg"
+            android:layout_marginTop="@dimen/margin_30_dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/imgTitleCateg"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="4">
+                android:layout_weight="0.5"
+                android:scaleType="centerCrop"
+                android:paddingBottom="@dimen/margin_30_dp"
+                android:layout_marginLeft="10dp"/>
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/fondotitulocateg"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textColor="@color/colorTitle"
+                android:textSize="25sp"
+                android:layout_weight="1.5"
+                android:layout_marginTop="@dimen/margin_30_dp"/>
 
 
-                <ImageView
-                    android:layout_weight="1"
-                    android:id="@+id/imgTitleCateg"
-                    android:layout_width="0dp"
-                    android:paddingBottom="15dp"
-                    android:layout_marginLeft="7dp"
-                    android:scaleType="centerCrop"
-                    android:layout_height="match_parent"
-                    android:textAlignment="viewStart"/>
-
-
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:textColor="@color/colorTitle"
-                    android:hint="PLATOS"
-                    android:textAlignment="center"
-                    android:textSize="25sp"
-                    android:layout_weight="3"
-                    android:id="@+id/btnTitle"
-                    />
-
-
-            </LinearLayout>
-
-
-
+        </LinearLayout>
     </RelativeLayout>
 
-        <android.support.v7.widget.RecyclerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.6">
+
+        <LinearLayout
+            android:id="@+id/linearTitle"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:src="@drawable/location" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="Cercanía"
+                android:textColor="@color/ListLabels"
+                android:textSize="@dimen/text_size_20_sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_weight="0.5"
+                android:src="@drawable/platoicon" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="Restaurante"
+                android:textColor="@color/ListLabels"
+                android:textSize="@dimen/text_size_20_sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview"
-            android:layout_below="@id/titulorest">
-
-        </android.support.v7.widget.RecyclerView>
-    </LinearLayout>
-
-</RelativeLayout>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/linearTitle"
+            android:layout_margin="10dp" />
+    </RelativeLayout>
+</LinearLayout>

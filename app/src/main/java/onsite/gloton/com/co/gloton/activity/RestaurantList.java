@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,7 +20,6 @@ import java.util.List;
 import onsite.gloton.com.co.gloton.R;
 import onsite.gloton.com.co.gloton.adapter.RestaurantAdapter;
 import onsite.gloton.com.co.gloton.entity.Caracteristicas_Plato;
-import onsite.gloton.com.co.gloton.entity.Categoria;
 import onsite.gloton.com.co.gloton.entity.Plato;
 import onsite.gloton.com.co.gloton.entity.Restaurant;
 import onsite.gloton.com.co.gloton.location.GPSTracker;
@@ -29,13 +27,9 @@ import onsite.gloton.com.co.gloton.location.GPSTracker;
 public class RestaurantList extends AppCompatActivity {
 
 
-    private List<Categoria> listaCategorias;
-    private List<Caracteristicas_Plato> listaCaracteristicasPlato;
     private List<Caracteristicas_Plato> listaCaracteristicasPlatoQ;
     private List<Caracteristicas_Plato> listaCarac;
-    private List<Restaurant> listaRestaurantes;
-    private List<Plato> listaPlatos;
-    Plato plat=null;
+    Plato plat;
 
 
     @Override
@@ -61,10 +55,10 @@ public class RestaurantList extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_restaurant_list);
-        TextView btnRestaurant = (TextView) findViewById(R.id.btnTitle);
+        TextView btnRestaurant = (TextView) findViewById(R.id.txtTitle);
         ImageView imagenTitulo = (ImageView) findViewById(R.id.imgTitleCateg);
         String nombreplato = "";
-        int resourceImageCat = 0;
+        int resourceImageCat;
 
         if (getIntent().getExtras() != null) {
             Bundle extras = getIntent().getExtras();
