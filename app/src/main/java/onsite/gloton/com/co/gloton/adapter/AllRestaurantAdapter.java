@@ -63,7 +63,15 @@ public class AllRestaurantAdapter extends RecyclerView.Adapter<AllRestaurantAdap
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         Picasso.with(context).load(restaurants.get(position).getLogo()).into(holder.imgRestauranteall);
-        holder.dist.setText("Estás a "+String.valueOf((int) restaurants.get(position).getDistancia())+" mts");
+        int distancia = (int) restaurants.get(position).getDistancia();
+        if (distancia > 0)
+        {
+            holder.dist.setText("Estás a "+String.valueOf(distancia)+" mts");
+        }
+        else
+        {
+            holder.dist.setVisibility(View.INVISIBLE);
+        }
         holder.imgRestauranteall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

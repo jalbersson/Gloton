@@ -35,15 +35,15 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="onsite.gloton.com.co.gloton" />
 
-        <activity android:name=".MainActivity" />
-        <activity android:name=".activity.GalleryActivity" />
-        <activity android:name=".activity.DetailActivity">
+        <activity android:name=".MainActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activity.GalleryActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.DetailActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.RestaurantList" />
-        <activity android:name=".activity.DetalleRestauranteActivity" />
+        <activity android:name=".activity.RestaurantList" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.DetalleRestauranteActivity" android:screenOrientation="portrait"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -58,9 +58,10 @@
 
         <activity
             android:name=".activity.MapsActivity"
-            android:label="@string/title_activity_mapa" />
+            android:label="@string/title_activity_mapa" android:screenOrientation="portrait"/>
         <activity
             android:name=".Splash"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -69,8 +70,8 @@
             </intent-filter>
             <!-- <! -->
         </activity>
-        <activity android:name=".activity.detalle_plato" />
-        <activity android:name=".activity.AllRestaurant" />
+        <activity android:name=".activity.detalle_plato" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.AllRestaurant" android:screenOrientation="portrait"/>
 
         <!-- Notificaciones push
         <service android:name=".notification.FirebaseMessaging">
@@ -93,7 +94,7 @@
             </intent-filter>
         </receiver>
         -->
-        <activity android:name=".activity.recomendados"></activity>
+        <activity android:name=".activity.recomendados" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

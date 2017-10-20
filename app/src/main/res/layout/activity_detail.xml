@@ -43,7 +43,7 @@
                     android:layout_weight="1"
                     android:id="@+id/imgTitleCateg"
                     android:layout_width="0dp"
-                    android:paddingBottom="15dp"
+                    android:paddingBottom="25dp"
                     android:layout_marginLeft="7dp"
                     android:scaleType="centerCrop"
                     android:layout_height="match_parent"

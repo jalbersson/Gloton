@@ -96,7 +96,9 @@ public class GalleryActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.allrestaurantes:
-                Intent intent1 = new Intent(this, AllRestaurant.class);
+                Intent intent1 = new Intent(this, RestaurantList.class);
+                intent1.putExtra("plato", "Restaurantes");
+                intent1.putExtra("categoriaImage", R.drawable.icono_dos);
                 startActivity(intent1);
                 return true;
             case R.id.menBuscPlat:

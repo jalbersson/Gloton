@@ -83,7 +83,14 @@ public class RestaurantList extends AppCompatActivity {
             }
         }
 
-        listaCaracteristicasPlatoQ = Cargar(nombreplato);
+        if (nombreplato.equals("Restaurantes"))
+        {
+            listaCaracteristicasPlatoQ = null;
+        }
+        else
+        {
+            listaCaracteristicasPlatoQ = Cargar(nombreplato);
+        }
 
 
 
@@ -100,24 +107,29 @@ public class RestaurantList extends AppCompatActivity {
         Restaurant restaurant;
         Location location = requestLocation();
 
-        for (Caracteristicas_Plato carac : desordenada)
+        if (desordenada != null)
         {
-            restaurant = carac.getRestaurante();
-
-            float distancia = 0;
-            Log.d("location",String.valueOf(location));
-            if (location != null)
+            for (Caracteristicas_Plato carac : desordenada)
             {
-                Location destino = new Location("");
-                destino.setLatitude(restaurant.getLatitud());
-                destino.setLongitude(restaurant.getLongitud());
-                distancia = location.distanceTo(destino);
-            }
-            restaurant.setDistancia(distancia);
-            restaurant.save();
+                restaurant = carac.getRestaurante();
 
-            desorden.add(restaurant);
+                float distancia = 0;
+                Log.d("location",String.valueOf(location));
+                if (location != null)
+                {
+                    Location destino = new Location("");
+                    destino.setLatitude(restaurant.getLatitud());
+                    destino.setLongitude(restaurant.getLongitud());
+                    distancia = location.distanceTo(destino);
+                }
+                restaurant.setDistancia(distancia);
+                restaurant.save();
+
+                desorden.add(restaurant);
+            }
         }
+        else
+            desorden = Restaurant.listAll(Restaurant.class);
         Collections.sort(desorden);
 
         /* Location origen;

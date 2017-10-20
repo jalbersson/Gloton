@@ -70,61 +70,54 @@ public class Splash extends AppCompatActivity {
 
         if (Restaurant.listAll(Restaurant.class).size() == 0)
         {
-            String url1 = "http://2.bp.blogspot.com/-4AfwZbNkgUs/TZ5HeXyU1YI/AAAAAAAAAEg/vgddSArgGXQ/s1600/final%2Bazteca%2B1%2Bpro.jpg";
-            String url2 = "https://cdn3.f-cdn.com/contestentries/46029/2473637/52819d98de441_thumb900.jpg";
-            String url3 = "https://s3-sa-east-1.amazonaws.com/projetos-artes/fullsize%2F2011%2F06%2F09%2F01%2FWDL-Logo-4691_16653_035959023_63473633.jpg";
-            String url4 = "http://logospararestaurantes.com/wp-content/uploads/2015/05/mr-chilon.jpg";
-            String url5 = "http://www.shoppinginformer.com/images/Retailerlogos/McDonalds-logo.png";
-            String url6 = "https://static-s.aa-cdn.net/img/ios/925838466/75e615a4d974b5b6e4a57926d9123a0b?v=1";
-            String url7 = "https://lh5.googleusercontent.com/-9cJxhvzsOZM/U1vUzW8MIiI/AAAAAAAAAHY/9mYrobEvC8E/w991-h336/logo%2BPedro%2BParrilla%2Bsin%2Bfondo.PNG";
-            String url8 = "http://www.chipichape.com.co/new/wp-content/uploads/2015/04/logo_s_qbano.jpg.PNG";
-
-
-
-
             float distancia = 0;
-            listaRestaurantes.add(new Restaurant(1, "AKI MAKI","Carrera 7 # 13N35", "301 7284838","" +
+            listaRestaurantes.add(new Restaurant(1, "AKI MAKI","Carrera 7 # 13N35", "3017284838","" +
                     "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/11401475_937996492910936_8715022944863399614_n.jpg?oh=7fffed40a8fc7ef22b7d4fbd598944fb&oe=5A59B192" +
-                    "", "1", 2.45226, -76.60082,distancia));
+                    "", "1", 2.452194, -76.600850,distancia));
 
-            listaRestaurantes.add(new Restaurant(9, "China Min Wah","Calle 68A N", "23244","" +
-                    "http://anfitrion.com.mx/wp-content/uploads/2017/04/Restaurant-Min-Wah-Logo.jpg" +
-                    "", "1", 2.481354, -76.565012, distancia));
+            listaRestaurantes.add(new Restaurant(9, "Sr Wok","Centro comercial Campanario", "0328368090","" +
+                    "http://www.ccviva.com/villavicencio/PublishingImages/Logos%20locales%20comerciales/sr-wok.jpg" +
+                    "", "1", 2.460445, -76.594574, distancia));
 
-            listaRestaurantes.add(new Restaurant(10, "Mey Chow Norte","Carrera 9 78", "+5728246060","" +
+            listaRestaurantes.add(new Restaurant(10, "Mey Chow Norte","Cra. 9 #79N -80", "0328246060","" +
                     "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/11147022_128586060812090_1833302662633474475_n.jpg?oh=982327562f009a477ba27dcfe179fb76&oe=5A286CD2" +
-                    "", "1", 2.490493, -76.559423, distancia));
+                    "", "1", 2.491422, -76.559292, distancia));
 
-            listaRestaurantes.add(new Restaurant(2, "Mapanca", "Carrera 11 70", "23244", "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/1794799_303176843170314_7682520423875561195_n.jpg?oh=15eb92c1c8c63427695cedf86d75c4a2&oe=5A2896C0" +
-                    "", "1", 2.48387, -76.564031, distancia));
+            listaRestaurantes.add(new Restaurant(2, "Mapanca", " Cra. 11 #18 - 70", "0328372628", "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/1794799_303176843170314_7682520423875561195_n.jpg?oh=15eb92c1c8c63427695cedf86d75c4a2&oe=5A2896C0" +
+                    "", "1", 2.453515, -76.604879, distancia));
 
-            listaRestaurantes.add(new Restaurant(3, "Chingón Bar and Mexican Food", "Calle 20 Norte 6", "8335338", "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/15621797_1824066307877765_6771394614470824194_n.jpg?oh=9f9f97f9c9445c4bd6d6c6b74c5caa08&oe=5A128E03" +
-                    "", "1", 2.453629, -76.594135, distancia));
+            listaRestaurantes.add(new Restaurant(3, "Chingón Bar and Mexican Food", "Cl. 20 Nte. #610", "0328335338", "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/15621797_1824066307877765_6771394614470824194_n.jpg?oh=9f9f97f9c9445c4bd6d6c6b74c5caa08&oe=5A128E03" +
+                    "", "1", 2.453397, -76.594173, distancia));
 
-            listaRestaurantes.add(new Restaurant(4, "Mrchilon", "Carrera 9", "23244", url4, "1", 2.481551, -76.564666, distancia));
+            listaRestaurantes.add(new Restaurant(4, "Celio's Restaurante", "Cl. 60 Nte. #9a20", "311 7591767", "https://scontent-mia3-1.xx.fbcdn.net/v/t1.0-9/13512037_895230653956394_4654221007584781545_n.jpg" +
+                    "", "1", 2.483219, -76.578129, distancia));
 
             listaRestaurantes.add(new Restaurant(5, "Ciudad Blanca Restaurante - Bar", "Calle 72A Norte 9" +
-                    "", "+573146495533", url5, "1", 2.483709, -76.562419, distancia));
+                    "", "3146495533", "https://lh3.googleusercontent.com/p/AF1QipPJZQJ43A2S9LR9mTYd2l4Qb_qR_ezb-lFfLqz8=s1600-w400", "1", 2.483594, -76.562295, distancia));
 
-            listaRestaurantes.add(new Restaurant(6, "Cort Pizza", "Calle 71 Norte 13", "+573116380607", "" +
+            listaRestaurantes.add(new Restaurant(6, "Cort Pizza", "Calle 70b Norte #5a45", "3116380607", "" +
                     "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/14224759_1809699155933211_4294108971835015611_n.jpg?oh=be49a4c4896327afc69c22969cabdb48&oe=5A23E787" +
-                    "", "1", 2.485826, -76.564971, distancia));
+                    "", "1", 2.476441, -76.559636, distancia));
 
-            listaRestaurantes.add(new Restaurant(7, "Pedro Parrilla", "Carrera 10 #14 Norte-1 a 14 Norte-137", "23244" +
-                    "", url7, "1", 2.4582293f, -76.5960889f, distancia));
+            listaRestaurantes.add(new Restaurant(7, "Pedro Parrilla", "Carrera 10 #14 Norte-1 a 14 Norte-137", "0328230909" +
+                    "", "https://lh5.googleusercontent.com/-9cJxhvzsOZM/U1vUzW8MIiI/AAAAAAAAAHY/9mYrobEvC8E/w991-h336/logo%2BPedro%2BParrilla%2Bsin%2Bfondo.PNG", "1", 2.453770, -76.600525, distancia));
 
-            listaRestaurantes.add(new Restaurant(13, "Maderos Parrilla", "Calle 70 Norte 6", "+3235259170", "" +
+            listaRestaurantes.add(new Restaurant(13, "Maderos Parrilla", " Cl. 70b Nte. #6-1", "3235259170", "" +
                     "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/14224705_1077043299069942_7303976102058111738_n.png?oh=bda90b585d04ff913ac8fda139ba2c55&oe=5A5A4426" +
-                    "", "1", 2.476689,  -76.560772, distancia));
+                    "", "1", 2.476872, -76.560024, distancia));
 
-            listaRestaurantes.add(new Restaurant(8, "Super Olafo", "Calle 71A Norte 7B", "+573175168649", "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/14717304_1814740288803481_1366031938565540257_n.jpg?oh=304f64eae7333499ca42794771787e84&oe=5A1CF972" +
-                    "", "1",2.47893, -76.560601, distancia));
+            listaRestaurantes.add(new Restaurant(8, "Super Olafo", "Carrera 8 # 10N - 37", "3175168649", "https://scontent.feoh2-1.fna.fbcdn.net/v/t1.0-9/14717304_1814740288803481_1366031938565540257_n.jpg?oh=304f64eae7333499ca42794771787e84&oe=5A1CF972" +
+                    "", "1",2.478869, -76.560739, distancia));
 
-            listaRestaurantes.add(new Restaurant(11, "San Carlo Pastelería Artesanal", "Cra. 9 Nte. #79-105", "+57 312 7784603", "https://i.pinimg.com/originals/48/0d/dc/480ddc5c8f3f392ce47d0cb061a4999a.jpg" +
-                    "", "1", 2.491423, -76.559320, distancia));
+            listaRestaurantes.add(new Restaurant(11, "San Carlo Pastelería Artesanal", "Cra. 9 Nte. #79-105", "3127784603", "https://i.pinimg.com/originals/48/0d/dc/480ddc5c8f3f392ce47d0cb061a4999a.jpg" +
+                    "", "1", 2.491482, -76.559350, distancia));
 
-            listaRestaurantes.add(new Restaurant(12, "Mi vaquita", " Cra. 6 #45N-49", "+57 2 8339555", "https://img.pystatic.com/restaurants/mi-vaquita.jpg" +
+            listaRestaurantes.add(new Restaurant(12, "Mi vaquita", "Cra. 9 Nte. #79-105", "0328339555", "https://img.pystatic.com/restaurants/mi-vaquita.jpg" +
                     "" , "1", 2.469482, -76.577619, distancia));
+            listaRestaurantes.add(new Restaurant(11, "Il Gallo", "Cl. 35 Nte. #21-215", "304 6669014", "https://scontent-mia3-1.xx.fbcdn.net/v/t1.0-9/18198736_659698350884847_2314255150908576837_n.jpg" +
+                    "", "1", 2.478723, -76.590720, distancia));
+
+
             Restaurant.saveInTx(listaRestaurantes);
         }
 
