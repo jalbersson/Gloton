@@ -46,8 +46,7 @@
                     android:paddingBottom="25dp"
                     android:layout_marginLeft="7dp"
                     android:scaleType="centerCrop"
-                    android:layout_height="match_parent"
-                    android:textAlignment="viewStart"/>
+                    android:layout_height="match_parent"/>
 
 
 
