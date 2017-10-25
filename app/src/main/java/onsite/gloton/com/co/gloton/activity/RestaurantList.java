@@ -108,7 +108,6 @@ public class RestaurantList extends AppCompatActivity {
                 restaurant = carac.getRestaurante();
 
                 float distancia = 0;
-                Log.d("location",String.valueOf(location));
                 if (location != null)
                 {
                     Location destino = new Location("");
@@ -122,23 +121,24 @@ public class RestaurantList extends AppCompatActivity {
                 desorden.add(restaurant);
             }
         }
-        else
+        else {
             desorden = Restaurant.listAll(Restaurant.class);
-        Collections.sort(desorden);
-
-        /* Location origen;
-        GPSTracker tracker;
-        Location destino = new Location("");
-        Float distancia;
-        Float menor;
-        for (Caracteristicas_Plato carac : desordenada)
-        {
-            origen = tracker.getLocation();
-
-            distancia = origen.distanceTo(destino);
-
+            Restaurant.saveInTx(desorden);
+            for (Restaurant restaurante : desorden)
+            {
+                float distancia = 0;
+                if (location != null)
+                {
+                    Location destino = new Location("");
+                    destino.setLatitude(restaurante.getLatitud());
+                    destino.setLongitude(restaurante.getLongitud());
+                    distancia = location.distanceTo(destino);
+                }
+                restaurante.setDistancia(distancia);
+            }
+            Collections.sort(desorden);
+            Restaurant.saveInTx(desorden);
         }
-*/
         return desorden;
     }
 

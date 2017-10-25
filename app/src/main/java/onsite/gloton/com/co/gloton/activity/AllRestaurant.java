@@ -64,9 +64,9 @@ public class AllRestaurant extends AppCompatActivity {
 
     public List<Restaurant> ordenarPorCercania() {
         List<Restaurant> desorden = Restaurant.listAll(Restaurant.class);
+        Location location = requestLocation();
         for (Restaurant rest : desorden) {
             float distancia = 0;
-            Location location = requestLocation();
             if (location != null)
             {
                 Location destino = new Location("");
