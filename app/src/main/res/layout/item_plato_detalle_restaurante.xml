@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:weightSum="5">
 
     <RelativeLayout
@@ -21,32 +21,24 @@
             android:id="@+id/txtDetPlatoNomPlato"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="17dp"
             android:background="@android:drawable/divider_horizontal_textfield"
             android:text="Nombre plato"
-            android:textAlignment="center"
-            android:shadowColor="#000000"
-            android:shadowDx="7"
-            android:shadowDy="7"
-            android:shadowRadius="4"
             android:textColor="@color/cardview_light_background"
-            android:textSize="30sp" />
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/txtDetPlatoPrecioPlato"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:background="@android:drawable/divider_horizontal_textfield"
+            android:layout_centerInParent="true"
+            android:background="@drawable/rounded_text_view"
             android:text="$$$$$$$$$$$"
-            android:textColor="@android:color/background_light"
-            android:textSize="25sp"
-            android:shadowColor="#000000"
-            android:shadowDx="7"
-            android:shadowDy="7"
-            android:shadowRadius="4"
+            android:textColor="@color/ListLabels"
+            android:textSize="15sp"
             android:textStyle="bold"
-            android:id="@+id/txtDetPlatoPrecioPlato" />
+            android:layout_marginBottom="10dp"/>
 
 
     </RelativeLayout>

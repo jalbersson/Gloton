@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -36,7 +37,7 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
 
     ImageView ubicacion, logo;
     TextView direccion, telefono;
-    ListView menu;
+    private GridView gridViewMenu;
     Intent datos;
     Bundle extras;
     List<Caracteristicas_Plato> platos;
@@ -98,7 +99,7 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         telefono = (TextView) findViewById(R.id.txtDetResTel);
         logo = (ImageView) findViewById(R.id.imgDetRestLogo);
 
-        menu = (ListView) findViewById(R.id.lstDesResMenu);
+        gridViewMenu = (GridView) findViewById(R.id.gvMenu);
 
 
         //nit.setText(String.valueOf(rest.getNit()));
@@ -110,9 +111,9 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
 
         adapter = new MenuDetalleRestauranteAdapter(this, platos);
 
-        menu.setAdapter(adapter);
+        gridViewMenu.setAdapter(adapter);
 
-        menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        gridViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(DetalleRestauranteActivity.this, detalle_plato.class);

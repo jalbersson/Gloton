@@ -126,7 +126,7 @@ public class Splash extends AppCompatActivity {
         if (Plato.listAll(Plato.class).size() == 0)
         {
             Categoria aux = Categoria.find(Categoria.class, "name = ?", "Comida China").get(0);
-            listaPlatos.add(new Plato("Arroz Chino", String.valueOf(R.drawable.food_chinesse),"activo",aux));
+            listaPlatos.add(new Plato("Arroz Chino", String.valueOf(R.drawable.arroz_chino),"activo",aux));
             listaPlatos.add(new Plato("Pollo Kung Pao", String.valueOf(R.drawable.pollo_kung_pao),"activo",aux));
             listaPlatos.add(new Plato("Chop Suey", String.valueOf(R.drawable.chop_suey),"activo",aux));
             listaPlatos.add(new Plato("Chow Mein", String.valueOf(R.drawable.chow_mein),"activo",aux));
