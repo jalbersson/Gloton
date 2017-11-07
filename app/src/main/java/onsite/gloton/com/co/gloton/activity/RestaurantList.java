@@ -120,6 +120,7 @@ public class RestaurantList extends AppCompatActivity {
 
                 desorden.add(restaurant);
             }
+            Collections.sort(desorden);
         }
         else {
             desorden = Restaurant.listAll(Restaurant.class);
