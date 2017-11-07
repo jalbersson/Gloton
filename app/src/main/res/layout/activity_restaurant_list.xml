@@ -1,116 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/markwater"
-    android:orientation="vertical"
-    android:weightSum="2"
     tools:context=".activity.RestaurantList">
 
 
-    <RelativeLayout
-        android:id="@+id/titulocatg"
+    <ImageView
+        android:scaleType="centerCrop"
+        android:src="@drawable/markwater"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4">
+        android:layout_height="match_parent"/>
 
-        <ImageView
-            android:id="@+id/imgFondo"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:id="@+id/titulocatg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/fondotitulocateg"
-            android:layout_marginTop="@dimen/margin_30_dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="4">
-
+            android:layout_height="0dp"
+            android:layout_weight="0.4">
 
             <ImageView
-                android:layout_weight="1"
-                android:id="@+id/imgTitleCateg"
-                android:layout_width="0dp"
-                android:paddingBottom="25dp"
-                android:layout_marginLeft="7dp"
-                android:scaleType="centerCrop"
-                android:layout_height="match_parent"/>
-
-
-
-            <TextView
-                android:layout_width="0dp"
+                android:id="@+id/imgFondo"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textColor="@color/colorTitle"
-                android:hint="PLATOS"
-                android:textAlignment="center"
-                android:textSize="25sp"
-                android:layout_weight="3"
-                android:id="@+id/txtTitle"
-                />
+                android:background="@drawable/fondotitulocateg"
+                android:layout_marginTop="@dimen/margin_30_dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="4">
 
 
-        </LinearLayout>
-    </RelativeLayout>
+                <ImageView
+                    android:layout_weight="1"
+                    android:id="@+id/imgTitleCateg"
+                    android:layout_width="0dp"
+                    android:paddingBottom="25dp"
+                    android:layout_marginLeft="7dp"
+                    android:scaleType="centerCrop"
+                    android:layout_height="match_parent"/>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.6">
 
-        <LinearLayout
-            android:id="@+id/linearTitle"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/colorTitle"
+                    android:hint="PLATOS"
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:layout_weight="3"
+                    android:id="@+id/txtTitle"
+                    />
+
+
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="4">
+            android:layout_height="0dp"
+            android:layout_weight="1.6">
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:src="@drawable/location" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:text="Cercanía"
-                android:textColor="@color/ListLabels"
-                android:textSize="@dimen/text_size_20_sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/linearTitle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_weight="0.5"
-                android:src="@drawable/platoicon" />
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="4">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:text="Restaurante"
-                android:textColor="@color/ListLabels"
-                android:textSize="@dimen/text_size_20_sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:src="@drawable/location" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="Cercanía"
+                    android:textColor="@color/ListLabels"
+                    android:textSize="@dimen/text_size_20_sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_weight="0.5"
+                    android:src="@drawable/platoicon" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="Restaurante"
+                    android:textColor="@color/ListLabels"
+                    android:textSize="@dimen/text_size_20_sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/linearTitle"
-            android:layout_margin="10dp" />
-    </RelativeLayout>
-</LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/linearTitle"
+                android:layout_margin="10dp" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

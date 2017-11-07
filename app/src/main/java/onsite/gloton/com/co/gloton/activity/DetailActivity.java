@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import onsite.gloton.com.co.gloton.R;
 
@@ -101,6 +102,7 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
 
         //showOptionsMenuFood(optionSelected);
         listView = (ListView) findViewById(R.id.listView);
+        Collections.sort(listPlato);
         detailAdapter = new DetailAdapter(this, listPlato);
         listView.setAdapter(detailAdapter);
 

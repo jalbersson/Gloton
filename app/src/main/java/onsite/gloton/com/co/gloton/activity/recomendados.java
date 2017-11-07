@@ -15,6 +15,7 @@ import java.util.List;
 import onsite.gloton.com.co.gloton.R;
 import onsite.gloton.com.co.gloton.adapter.RecomendadosAdapter;
 import onsite.gloton.com.co.gloton.entity.Calificacion;
+import onsite.gloton.com.co.gloton.entity.Recomendados;
 
 public class recomendados extends AppCompatActivity {
 
@@ -39,28 +40,13 @@ public class recomendados extends AppCompatActivity {
         });
         ////fin codigo poner icono y letra en el actionbar
 
-        List<Calificacion> recos;
+        List<Recomendados> recos;
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.lstRecomendados);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recos = obtenerRecomendados();
-        recyclerView.setAdapter(new RecomendadosAdapter(recomendados.this, recos));
-    }
-
-    public List<Calificacion> obtenerRecomendados()
-    {
-        List<Calificacion> recos = new LinkedList<>();
-        List<Calificacion> cals = Calificacion.listAll(Calificacion.class);
-        for (Calificacion cal : cals)
-        {
-            if (cal.getUsuario().equals(""))
-            {
-                if (cal.getPuntuacion() >= 4)
-                    recos.add(cal);
-            }
-        }
+        recos = Recomendados.listAll(Recomendados.class);
         Collections.sort(recos);
-        return recos;
+        recyclerView.setAdapter(new RecomendadosAdapter(recomendados.this, recos));
     }
 }

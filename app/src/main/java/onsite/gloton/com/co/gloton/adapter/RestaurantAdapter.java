@@ -8,8 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -18,7 +18,6 @@ import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
 import onsite.gloton.com.co.gloton.activity.DetalleRestauranteActivity;
-import onsite.gloton.com.co.gloton.entity.Caracteristicas_Plato;
 import onsite.gloton.com.co.gloton.entity.Restaurant;
 
 /**
@@ -39,11 +38,15 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView imgRestaurante;
+        private TextView nomRest;
         private TextView distRest;
+        private LinearLayout linLay;
         public ViewHolder(View itemView) {
             super(itemView);
             imgRestaurante = (ImageView) itemView.findViewById(R.id.imgRestaurante);
             distRest = (TextView) itemView.findViewById(R.id.txtItemRestDistancia);
+            nomRest = (TextView) itemView.findViewById(R.id.txtItemRestNombre);
+            linLay = (LinearLayout) itemView.findViewById(R.id.linItemRestNom);
         }
     }
 
@@ -59,7 +62,10 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
     @Override
     public void onBindViewHolder(RestaurantAdapter.ViewHolder holder, final int position) {
 
-        Picasso.with(context).load(restaurantes.get(position).getLogo()).into(holder.imgRestaurante);
+        Log.i("logo:   ","-"+restaurantes.get(position).getLogo()+"-");
+        if (restaurantes.get(position).getLogo() != null && !restaurantes.get(position).getLogo().equals(""))
+            Picasso.with(context).load(restaurantes.get(position).getLogo()).into(holder.imgRestaurante);
+        holder.nomRest.setText(restaurantes.get(position).getNombre());
         holder.distRest.setText("Estás a "+String.valueOf((int) restaurantes.get(position).getDistancia())+" mts");
         holder.imgRestaurante.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,9 +77,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
         });
 
         if (position % 2 == 0) {
-            holder.distRest.setBackgroundResource(R.color.colorTitle);
+            holder.linLay.setBackgroundResource(R.color.colorTitle);
         } else {
-            holder.distRest.setBackgroundResource(R.color.colorTitleTransparent);
+            holder.linLay.setBackgroundResource(R.color.colorTitleTransparent);
         }
     }
 

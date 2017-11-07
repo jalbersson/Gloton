@@ -1,7 +1,6 @@
 package onsite.gloton.com.co.gloton.activity;
 
 import android.content.Intent;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,14 +12,11 @@ import android.widget.TextView;
 import android.provider.Settings.Secure;
 import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
 import onsite.gloton.com.co.gloton.entity.Calificacion;
-import onsite.gloton.com.co.gloton.entity.Caracteristicas_Plato;
-import onsite.gloton.com.co.gloton.entity.Categoria;
+import onsite.gloton.com.co.gloton.entity.CaracteristicasPlato;
 import onsite.gloton.com.co.gloton.entity.Plato;
 import onsite.gloton.com.co.gloton.entity.Restaurant;
 
@@ -31,7 +27,7 @@ public class detalle_plato extends AppCompatActivity {
     Intent datos;
     Bundle extras;
     RatingBar ratingBar;
-    Caracteristicas_Plato caract;
+    CaracteristicasPlato caract;
     Calificacion cal;
     String id;
 
@@ -66,7 +62,7 @@ public class detalle_plato extends AppCompatActivity {
         caracPlato = (long) extras.get("caracPlato");
         cal = null;
 
-        caract = Caracteristicas_Plato.findById(Caracteristicas_Plato.class,caracPlato);
+        caract = CaracteristicasPlato.findById(CaracteristicasPlato.class,caracPlato);
 
         Plato plato = caract.getPlato();
         Restaurant restaurant = caract.getRestaurante();
@@ -76,7 +72,12 @@ public class detalle_plato extends AppCompatActivity {
         ingre.setText(caract.getIngredientes());
         precio.setText("Precio:"+String.valueOf(caract.getPrecio()));
 
-        imgPlato.setImageResource(Integer.parseInt(plato.getImagen()));
+/*        if (plato.getImagen() != null)
+        {
+            if (!plato.getImagen().equals(""))
+                imgPlato.setImageResource(Integer.parseInt(plato.getImagen()));
+        }
+*/
 
         //ratingBar.setSaveEnabled(true);
         List<Calificacion> listcal = Calificacion.listAll(Calificacion.class);
@@ -84,8 +85,12 @@ public class detalle_plato extends AppCompatActivity {
         //id dispositivo android
         id = Secure.getString(getBaseContext().getContentResolver(),Secure.ANDROID_ID);
 
+        Log.i("id carac act",String.valueOf(caract.getId()));
+
         for (Calificacion cali : listcal)
         {
+            Log.i("id carac list",String.valueOf(cali.getCaracteristicas().getId()));
+
             if (cali.getCaracteristicas().getId() == caract.getId())
             {
                 if (cali.getUsuario().equals(id))

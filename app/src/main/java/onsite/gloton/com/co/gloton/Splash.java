@@ -1,57 +1,279 @@
 package onsite.gloton.com.co.gloton;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import onsite.gloton.com.co.gloton.activity.GalleryActivity;
+import onsite.gloton.com.co.gloton.entity.Auxiliar;
 import onsite.gloton.com.co.gloton.entity.Calificacion;
-import onsite.gloton.com.co.gloton.entity.Caracteristicas_Plato;
+import onsite.gloton.com.co.gloton.entity.CaracteristicasPlato;
 import onsite.gloton.com.co.gloton.entity.Categoria;
 import onsite.gloton.com.co.gloton.entity.Plato;
+import onsite.gloton.com.co.gloton.entity.Recomendados;
 import onsite.gloton.com.co.gloton.entity.Restaurant;
+import onsite.gloton.com.co.gloton.service.HttpAsyncTask;
+import onsite.gloton.com.co.gloton.service.Response;
 
-public class Splash extends AppCompatActivity {
+public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpResponse {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        Date fechaActualizacion = null;
+
+        List<Auxiliar> auxiliars = Auxiliar.listAll(Auxiliar.class);
+        if (auxiliars.size() > 0) {
+            fechaActualizacion = auxiliars.get(auxiliars.size() - 1).getFechaProxima();
+        }
+
+
+        Log.i("fecha:  ", "fecha actualizacion: " + fechaActualizacion);
+
+
+//        cargarDatos(0);
+
         cargarDatos();
 
-        TimerTask tarea = new TimerTask() {
-            @Override
-            public void run() {
-                //Intent intent = new Intent(Splash.this, GalleryActivity.class);
-                Intent intent = new Intent(Splash.this, GalleryActivity.class);
-                Intent intent2 = new Intent();
-                intent2.setAction("onsite.gloton.com.co.firebasebroad");
-                sendBroadcast(intent2);
-                //intent.putExtra("idRestaurante",7);
-                startActivity(intent);
-                finish();
+        // carga de datos programada por una fecha en específico
+/*
+        if (fechaActualizacion != null) {
+            if (fechaActualizacion.compareTo(Calendar.getInstance().getTime()) <= 0) {
+                Log.i("servicio:  ", "Actualizando servicio");
+                cargarDatos();
             }
-        };
-
-        Timer timer = new Timer();
-        timer.schedule(tarea,3000);
+        } else {
+            Log.i("servicio:  ", "creando datos");
+            cargarDatos();
+        }
+/**/
 
     }
 
-    public void cargarDatos()
+    /*
+    public void subirDatos() {
+        try {
+            //llenar JSON
+            JSONArray jsonArray = new JSONArray();
+            for (Calificacion cal : Calificacion.listAll(Calificacion.class)) {
+                JSONObject j = new JSONObject();
+                j.put("calificacion", cal.getPuntuacion());
+                j.put("plato", cal.getIdUniversalPlato());
+                jsonArray.put(j);
+
+            }
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("calificaciones", jsonArray);
+
+            HttpAsyncTask httpAsyncTask = new HttpAsyncTask(HttpAsyncTask.POST, this, this);
+            httpAsyncTask.execute(getResources().getString(R.string.servicioWeb), jsonObject.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+    */
+
+    public void cargarDatos() {
+        HttpAsyncTask httpAsyncTask = new HttpAsyncTask(HttpAsyncTask.GET, this, this);
+        httpAsyncTask.execute("http://wmyserver.sytes.net:8080/GlotonPrimefaces/webresources/webservice");
+        Log.i("mensaje:","entro a cargar datos");
+        //httpAsyncTask.execute(getResources().getString(R.string.servicioWeb));
+    }
+
+
+    @Override
+    public void onResponse(Response response) {
+        try {
+        if (response.getMsg() != null && response.getMsg() != "")
+        {
+            CaracteristicasPlato.deleteAll(CaracteristicasPlato.class);
+            Restaurant.deleteAll(Restaurant.class);
+            Plato.deleteAll(Plato.class);
+            Categoria.deleteAll(Categoria.class);
+            Recomendados.deleteAll(Recomendados.class);
+
+            Log.i("json", response.getMsg());
+            JSONObject jsonObject = new JSONObject(response.getMsg());
+            final List<Categoria> categorias = new ArrayList<>();
+            final List<Restaurant> listaRestaurantes = new ArrayList<>();
+            final List<Plato> listaPlatos = new ArrayList<>();
+            final List<CaracteristicasPlato> listaCaracteristicas = new ArrayList<>();
+            final List<Recomendados> listaRecomendados = new ArrayList<>();
+
+            Calendar calendar = Calendar.getInstance();
+            Date hoy = calendar.getTime();
+            calendar.add(calendar.DAY_OF_YEAR, 7);
+            Date prox = calendar.getTime();
+
+
+            //String fileServerURL = "http://192.168.1.109:8080/GlotonPrimefaces/imagenes/";
+
+            Log.i("cantidad ", "size " + categorias.size());
+
+            Auxiliar auxiliar = new Auxiliar();
+            auxiliar.setFechaUltima(hoy);
+            auxiliar.setFechaProxima(prox);
+            auxiliar.save();
+
+            JSONArray jsonArrayCategoria = jsonObject.getJSONArray("categoria");
+            JSONArray jsonArrayRestaurante = jsonObject.getJSONArray("restaurante");
+            JSONArray jsonArrayPlato = jsonObject.getJSONArray("plato");
+            JSONArray jsonArrayCaracteristicasPlato = jsonObject.getJSONArray("caracteristicasPlato");
+            JSONArray jsonArrayRecomendados = jsonObject.getJSONArray("recomendados");
+
+//insersión de las categorías
+            for (int i = 0; i < jsonArrayCategoria.length(); i++) {
+                JSONObject j = jsonArrayCategoria.getJSONObject(i);
+                Categoria categoria = new Categoria();
+                categoria.setImageSource(R.drawable.icono_dos);
+                categoria.setName(j.get("nombre").toString());
+                categorias.add(categoria);
+            }
+
+            Categoria.saveInTx(categorias);
+            Categoria aux = Categoria.find(Categoria.class, "name = ?", "China").get(0);
+            aux.setImageSource(R.drawable.food_chinesse);
+            aux.save();
+            aux = Categoria.find(Categoria.class, "name = ?", "Postres").get(0);
+            aux.setImageSource(R.drawable.postres);
+            aux.save();
+            aux = Categoria.find(Categoria.class, "name = ?", "Parrilla").get(0);
+            aux.setImageSource(R.drawable.parrilla);
+            aux.save();
+            aux = Categoria.find(Categoria.class, "name = ?", "Rapida").get(0);
+            aux.setImageSource(R.drawable.food_fast);
+            aux.save();
+            aux = Categoria.find(Categoria.class, "name = ?", "Mexicana").get(0);
+            aux.setImageSource(R.drawable.food_mexican);
+            aux.save();
+            aux = Categoria.find(Categoria.class, "name = ?", "Italiana").get(0);
+            aux.setImageSource(R.drawable.food_italian);
+            aux.save();
+
+            Log.i("categorias:", "" + categorias.size());
+//insersión de las Platos
+            for (int i = 0; i < jsonArrayPlato.length(); i++) {
+                JSONObject j = jsonArrayPlato.getJSONObject(i);
+                Categoria auxCate = Categoria.find(Categoria.class, "name = ?", j.get("categoria").toString()).get(0);
+                Plato plato = new Plato();
+                plato.setNombre(j.get("nombre").toString());
+                plato.setImagen(j.get("imagen").toString());
+                plato.setCategoria(auxCate);
+                listaPlatos.add(plato);
+            }
+            Plato.saveInTx(listaPlatos);
+
+//insersión de las Restaurantes
+            for (int i = 0; i < jsonArrayRestaurante.length(); i++) {
+                JSONObject j = jsonArrayRestaurante.getJSONObject(i);
+                Restaurant restaurante = new Restaurant();
+                restaurante.setNit(Integer.parseInt(j.get("Nit").toString()));
+                restaurante.setNombre(j.get("nombre").toString());
+                restaurante.setDireccion(j.get("direccion").toString());
+                restaurante.setTelefono(j.get("telefono").toString());
+                restaurante.setLogo(j.get("logo").toString());
+                restaurante.setLatitud(Double.parseDouble(j.get("latitud").toString()));
+                restaurante.setLongitud(Double.parseDouble(j.get("longitud").toString()));
+                listaRestaurantes.add(restaurante);
+            }
+            Restaurant.saveInTx(listaRestaurantes);
+//insersión de las CatacteristicasPlato
+            for (int i = 0; i < jsonArrayCaracteristicasPlato.length(); i++) {
+                JSONObject j = jsonArrayCaracteristicasPlato.getJSONObject(i);
+                Plato plato = Plato.find(Plato.class, "nombre = ?", j.get("plato").toString()).get(0);
+                Restaurant restaurante = Restaurant.find(Restaurant.class, "nit = ?", j.get("restaurante").toString()).get(0);
+
+                CaracteristicasPlato caracteristicas = new CaracteristicasPlato();
+                caracteristicas.setIngredientes(j.get("ingredientes").toString());
+                caracteristicas.setDescripcion(j.get("descripcion").toString());
+                caracteristicas.setPrecio(Integer.parseInt(j.get("precio").toString()));
+                caracteristicas.setIdUniversal(Integer.parseInt(j.get("id").toString()));
+                caracteristicas.setRestaurante(restaurante);
+                caracteristicas.setPlato(plato);
+                listaCaracteristicas.add(caracteristicas);
+            }
+            CaracteristicasPlato.saveInTx(listaCaracteristicas);
+
+//insersión de los recomendados
+            for (int i = 0; i < jsonArrayRecomendados.length(); i++) {
+                JSONObject j = jsonArrayRecomendados.getJSONObject(i);
+                CaracteristicasPlato caraux = null;
+                List<CaracteristicasPlato> liscar = CaracteristicasPlato.listAll(CaracteristicasPlato.class);
+                for (CaracteristicasPlato cara : liscar)
+                {
+                    if (cara.getIdUniversal() == Integer.parseInt(j.get("caracteristica").toString()))
+                    {
+                        caraux = cara;
+                    }
+                }
+                if (caraux != null)
+                {
+                    Recomendados rec = new Recomendados();
+                    rec.setCaracteristicas(caraux);
+                    rec.setPuntuacion(Integer.parseInt(j.get("puntuacion").toString()));
+                    listaRecomendados.add(rec);
+                }
+            }
+            Recomendados.saveInTx(listaRecomendados);
+
+            //Actualizar calificaciones a los nuevos platos
+            for (Calificacion cal : Calificacion.listAll(Calificacion.class)) {
+                CaracteristicasPlato caraux = null;
+                List<CaracteristicasPlato> liscar = CaracteristicasPlato.listAll(CaracteristicasPlato.class);
+                for (CaracteristicasPlato cara : liscar)
+                {
+                    if (cara.getIdUniversal() == cal.getIdUniversalPlato())
+                    {
+                        caraux = cara;
+                    }
+                }
+                if (caraux != null)
+                {
+                    cal.setCaracteristicas(caraux);
+                    cal.save();
+                }
+                else
+                    cal.delete();
+            }
+
+        }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Intent intent = new Intent(Splash.this, GalleryActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void cargarDatos( int a)
     {
 
         final List<Categoria> categorias = new ArrayList<>();
         final List<Restaurant> listaRestaurantes = new ArrayList<>();
         final List<Plato> listaPlatos = new ArrayList<>();
-        final List<Caracteristicas_Plato> listaCaracteristicas = new ArrayList<>();
+        final List<CaracteristicasPlato> listaCaracteristicas = new ArrayList<>();
 
         //insersión de las categorías
 
@@ -159,121 +381,121 @@ public class Splash extends AppCompatActivity {
 
         //insersión de la lista de las características de los platos
 
-        if (Caracteristicas_Plato.listAll(Caracteristicas_Plato.class).size() == 0)
+        if (CaracteristicasPlato.listAll(CaracteristicasPlato.class).size() == 0)
         {
 
             //Restaurantes que venden comida china:
             Plato plato = Plato.find(Plato.class, "nombre = ?", "Arroz Chino").get(0);
             Restaurant restaurante = Restaurant.find(Restaurant.class, "nit = ?", "1").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa especial","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "9").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "10").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa especial","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Pollo Kung Pao").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "10").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa especial","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "1").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
 
 
             plato = Plato.find(Plato.class, "nombre = ?", "Chop Suey").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "1").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa especial","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "10").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa especial","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Chow Mein").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "9").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "10").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa especial","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
 
             //restaurantes que venden Postres
             plato = Plato.find(Plato.class, "nombre = ?", "Banana Split").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "11").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("Banano, Helado, gomitas, salsas dulces","Super Banana Split del tio Tom",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("Banano, Helado, gomitas, salsas dulces","Super Banana Split del tio Tom",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Cheese Cake").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "11").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("queso, fruta, chocolate y salsas dulces","Cheese Cake de distintos tipos",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("queso, fruta, chocolate y salsas dulces","Cheese Cake de distintos tipos",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "12").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("queso, fruta, cremas, y más","Cheese Cake, pasteles y tortas",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("queso, fruta, cremas, y más","Cheese Cake, pasteles y tortas",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Tres Leches").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "11").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("ingredientes secretos","clásico postre de tres leches",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("ingredientes secretos","clásico postre de tres leches",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "12").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("leche, leche condensada, arequipe, galleta","tu paladar te traerá por más",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("leche, leche condensada, arequipe, galleta","tu paladar te traerá por más",0,14000,"activo",restaurante,plato));
 
             //restaurantes que venden parrilla
             plato = Plato.find(Plato.class, "nombre = ?", "Churrasco").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "7").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "13").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa especial","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Costillas a la parrilla").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "7").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "13").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa especial","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Baby beef").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "13").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
 
             //restaurantes que venden comidas rápidas
             plato = Plato.find(Plato.class, "nombre = ?", "Hamburguesa").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "5").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "6").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "7").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "8").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa especial","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Perro Caliente").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "6").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "7").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "8").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa especial","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Emparedado").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "5").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "6").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "8").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa especial","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
 
             //restaurantes que venden comida mexicana
 
             plato = Plato.find(Plato.class, "nombre = ?", "Tacos").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "2").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "4").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa especial","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Burritos").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "3").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "4").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa especial","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Nachos").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "2").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "3").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "4").get(0);
-            listaCaracteristicas.add(new Caracteristicas_Plato("carnes, vegetales, salsa especial","Arroz chino tracicional",14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
 
-            Caracteristicas_Plato.saveInTx(listaCaracteristicas);
+            CaracteristicasPlato.saveInTx(listaCaracteristicas);
         }
 
         //insersión de la lista de calificaciones
@@ -282,15 +504,15 @@ public class Splash extends AppCompatActivity {
         {
             List<Calificacion> listaCalificaciones = new ArrayList<>();
 
-            List<Caracteristicas_Plato> caracteristicas = Caracteristicas_Plato.listAll(Caracteristicas_Plato.class);
-            int a = 0;
-            for (Caracteristicas_Plato cat : caracteristicas)
+            List<CaracteristicasPlato> caracteristicas = CaracteristicasPlato.listAll(CaracteristicasPlato.class);
+            int aa = 0;
+            for (CaracteristicasPlato cat : caracteristicas)
             {
                 Random rnd = new Random();
 
                 int punt = (int)(rnd.nextDouble() * 5 + 1);
-                listaCalificaciones.add(new Calificacion(a,"",punt,cat));
-                a++;
+                listaCalificaciones.add(new Calificacion(aa,"",punt,0,cat));
+                aa++;
             }
 
 
@@ -300,4 +522,5 @@ public class Splash extends AppCompatActivity {
 
 
     }
+
 }

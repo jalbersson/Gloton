@@ -3,11 +3,9 @@ package onsite.gloton.com.co.gloton.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,19 +16,16 @@ import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
 import onsite.gloton.com.co.gloton.activity.detalle_plato;
-import onsite.gloton.com.co.gloton.entity.Calificacion;
-import onsite.gloton.com.co.gloton.entity.Caracteristicas_Plato;
-
-import static onsite.gloton.com.co.gloton.R.color.colorTitle;
-
+import onsite.gloton.com.co.gloton.entity.CaracteristicasPlato;
+import onsite.gloton.com.co.gloton.entity.Recomendados;
 
 
 public class RecomendadosAdapter extends RecyclerView.Adapter<RecomendadosAdapter.ViewHolder> {
 
     private Context contexto;
-    private List<Calificacion> menu;
+    private List<Recomendados> menu;
 
-    public RecomendadosAdapter(Context contexto, List<Calificacion> menu) {
+    public RecomendadosAdapter(Context contexto, List<Recomendados> menu) {
         this.contexto = contexto;
         this.menu = menu;
     }
@@ -45,7 +40,7 @@ public class RecomendadosAdapter extends RecyclerView.Adapter<RecomendadosAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        final Caracteristicas_Plato plato = menu.get(position).getCaracteristicas();
+        final CaracteristicasPlato plato = menu.get(position).getCaracteristicas();
 
         holder.nom.setText(plato.getPlato().getNombre());
         holder.cal.setText(String.valueOf(menu.get(position).getPuntuacion()));
@@ -98,38 +93,4 @@ public class RecomendadosAdapter extends RecyclerView.Adapter<RecomendadosAdapte
 
     }
 
-/*    @Override
-    public int getCount() {
-        return menu.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return menu.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return menu.get(position).getId();
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        Caracteristicas_Plato plato = menu.get(position).getCaracteristicas();
-
-        View v = View.inflate(contexto, R.layout.item_recomendado,null);
-
-        TextView nom = (TextView) v.findViewById(R.id.txtRecNomPlato);
-        TextView desc = (TextView) v.findViewById(R.id.txtRecPrecioPlato);
-        ImageView foto = (ImageView) v.findViewById(R.id.imgRecPlato);
-
-        String descrip = menu.get(position).getPuntuacion()+"\n"+plato.getRestaurante().getNombre()+"\n"+ String.valueOf(plato.getPrecio());
-
-        nom.setText(plato.getPlato().getNombre());
-        desc.setText(descrip);
-        foto.setImageResource(Integer.parseInt(plato.getPlato().getImagen()));
-
-        return v;
-    }*/
 }

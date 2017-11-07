@@ -7,10 +7,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
-import onsite.gloton.com.co.gloton.entity.Caracteristicas_Plato;
+import onsite.gloton.com.co.gloton.entity.CaracteristicasPlato;
 
 /**
  * Created by Prometheus on 29/06/2017.
@@ -19,9 +21,9 @@ import onsite.gloton.com.co.gloton.entity.Caracteristicas_Plato;
 public class MenuDetalleRestauranteAdapter extends BaseAdapter {
 
     Context contexto;
-    List<Caracteristicas_Plato> menu;
+    List<CaracteristicasPlato> menu;
 
-    public MenuDetalleRestauranteAdapter(Context contexto, List<Caracteristicas_Plato> menu) {
+    public MenuDetalleRestauranteAdapter(Context contexto, List<CaracteristicasPlato> menu) {
         this.contexto = contexto;
         this.menu = menu;
     }
@@ -55,7 +57,10 @@ public class MenuDetalleRestauranteAdapter extends BaseAdapter {
 
         nom.setText(menu.get(position).getPlato().getNombre());
         prec.setText("$ " + String.valueOf(menu.get(position).getPrecio()));
-        foto.setImageResource(Integer.parseInt(menu.get(position).getPlato().getImagen()));
+        if (menu.get(position).getPlato().getImagen() != null) {
+            if (!menu.get(position).getPlato().getImagen().equals(""))
+                Picasso.with(contexto).load(menu.get(position).getPlato().getImagen()).into(foto);
+        }
         return v;
     }
 }

@@ -8,24 +8,44 @@
     android:layout_marginBottom="@dimen/margin_2_dp">
 
 
-    <TextView
-        android:id="@+id/txtItemRestDistancia"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:textColor="@color/ListLabels"
-        android:textStyle="bold"
-        android:textSize="25sp"
         android:layout_weight="1"
-        android:gravity="center"
-        android:text="124 mtrs"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/activity_horizontal_margin"/>
+        android:orientation="vertical"
+        android:id="@+id/linItemRestNom"
+        android:weightSum="2">
+        <TextView
+            android:id="@+id/txtItemRestNombre"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/ListLabels"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:text="Chiles"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/activity_horizontal_margin"/>
+        <TextView
+            android:id="@+id/txtItemRestDistancia"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/ListLabels"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:text="124 mtrs"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/activity_horizontal_margin"/>
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/imgRestaurante"
         android:layout_width="0dp"
         android:layout_height="150dp"
-        android:src="@drawable/restaurantechiles"
+        android:src="@drawable/icono_dos"
         android:layout_weight="1"
         android:layout_gravity="center"
         android:layout_margin="@dimen/activity_horizontal_margin"/>

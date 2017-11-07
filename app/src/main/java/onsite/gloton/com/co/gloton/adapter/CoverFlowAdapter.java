@@ -63,6 +63,7 @@ public class CoverFlowAdapter extends BaseAdapter {
 
         viewHolder.foodImage.setImageResource(data.get(position).getImageSource());
         viewHolder.foodName.setText(data.get(position).getName());
+        viewHolder.foodId.setText(String.valueOf(position+1));
 
         convertView.setOnClickListener(onClickListener(position));
 
@@ -89,11 +90,13 @@ public class CoverFlowAdapter extends BaseAdapter {
 
     private static class ViewHolder {
         private TextView foodName;
+        private TextView foodId;
         private ImageView foodImage;
 
         public ViewHolder(View v) {
             foodImage = (ImageView) v.findViewById(R.id.image);
             foodName = (TextView) v.findViewById(R.id.name);
+            foodId = (TextView) v.findViewById(R.id.txtIdCat);
         }
     }
 

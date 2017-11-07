@@ -2,7 +2,6 @@ package onsite.gloton.com.co.gloton.activity;
 
 import android.Manifest;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -16,8 +15,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -27,8 +24,7 @@ import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
 import onsite.gloton.com.co.gloton.adapter.MenuDetalleRestauranteAdapter;
-import onsite.gloton.com.co.gloton.entity.Caracteristicas_Plato;
-import onsite.gloton.com.co.gloton.entity.Categoria;
+import onsite.gloton.com.co.gloton.entity.CaracteristicasPlato;
 import onsite.gloton.com.co.gloton.entity.Restaurant;
 
 //import onsite.gloton.com.co.gloton.activity.MapaActivity;
@@ -40,7 +36,7 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
     private GridView gridViewMenu;
     Intent datos;
     Bundle extras;
-    List<Caracteristicas_Plato> platos;
+    List<CaracteristicasPlato> platos;
     MenuDetalleRestauranteAdapter adapter;
     ImageView phone;
     private static final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
@@ -69,7 +65,7 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_detalle_restaurante);
 
-        Caracteristicas_Plato car = new Caracteristicas_Plato();
+        CaracteristicasPlato car = new CaracteristicasPlato();
         datos = getIntent();
         extras = datos.getExtras();
         //Log.d("categoriasize", String.valueOf(Categoria.listAll(Categoria.class).size()));
@@ -105,7 +101,8 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         //nit.setText(String.valueOf(rest.getNit()));
         direccion.setText(rest.getDireccion());
         telefono.setText(rest.getTelefono());
-        Picasso.with(this).load(rest.getLogo()).into(logo);
+        if (rest.getLogo() != null && !rest.getLogo().equals(""))
+            Picasso.with(this).load(rest.getLogo()).into(logo);
 
         platos = car.ListarMenu(rest);
 

@@ -6,7 +6,7 @@ import com.orm.SugarRecord;
  * Created by Prometheus on 26/06/2017.
  */
 
-public class Plato extends SugarRecord{
+public class Plato extends SugarRecord implements Comparable<Plato>{
     String nombre;
     String imagen;
     Categoria categoria;
@@ -44,5 +44,10 @@ public class Plato extends SugarRecord{
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    @Override
+    public int compareTo(Plato o) {
+            return nombre.compareTo(o.nombre);
     }
 }

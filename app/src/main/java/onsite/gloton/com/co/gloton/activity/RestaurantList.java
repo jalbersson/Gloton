@@ -14,12 +14,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import onsite.gloton.com.co.gloton.R;
 import onsite.gloton.com.co.gloton.adapter.RestaurantAdapter;
-import onsite.gloton.com.co.gloton.entity.Caracteristicas_Plato;
+import onsite.gloton.com.co.gloton.entity.CaracteristicasPlato;
 import onsite.gloton.com.co.gloton.entity.Plato;
 import onsite.gloton.com.co.gloton.entity.Restaurant;
 import onsite.gloton.com.co.gloton.location.GPSTracker;
@@ -27,8 +29,8 @@ import onsite.gloton.com.co.gloton.location.GPSTracker;
 public class RestaurantList extends AppCompatActivity {
 
 
-    private List<Caracteristicas_Plato> listaCaracteristicasPlatoQ;
-    private List<Caracteristicas_Plato> listaCarac;
+    private List<CaracteristicasPlato> listaCaracteristicasPlatoQ;
+    private List<CaracteristicasPlato> listaCarac;
     Plato plat;
 
 
@@ -86,8 +88,6 @@ public class RestaurantList extends AppCompatActivity {
             listaCaracteristicasPlatoQ = Cargar(nombreplato);
         }
 
-
-
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -96,14 +96,14 @@ public class RestaurantList extends AppCompatActivity {
 
     }
 
-    public List<Restaurant> ordenarPorCercania(List<Caracteristicas_Plato> desordenada) {
+    public List<Restaurant> ordenarPorCercania(List<CaracteristicasPlato> desordenada) {
         List<Restaurant> desorden = new LinkedList<>();
         Restaurant restaurant;
         Location location = requestLocation();
 
         if (desordenada != null)
         {
-            for (Caracteristicas_Plato carac : desordenada)
+            for (CaracteristicasPlato carac : desordenada)
             {
                 restaurant = carac.getRestaurante();
 
@@ -135,11 +135,23 @@ public class RestaurantList extends AppCompatActivity {
                     distancia = location.distanceTo(destino);
                 }
                 restaurante.setDistancia(distancia);
+                Restaurant.saveInTx(desorden);
             }
-            Collections.sort(desorden);
-            Restaurant.saveInTx(desorden);
         }
-        return desorden;
+
+        //Limpiar la lista de elementos repetidos:
+        List<Restaurant> listaLimpia = new ArrayList();
+
+        Map<Integer, Restaurant> mapPersonas = new HashMap<Integer, Restaurant>(desorden.size());
+        for(Restaurant p : desorden) {
+            mapPersonas.put(Integer.parseInt(p.getId().toString()), p);
+        }
+        for(Map.Entry<Integer, Restaurant> p : mapPersonas.entrySet()) {
+            listaLimpia.add(p.getValue());
+        }
+        Collections.sort(listaLimpia);
+
+        return listaLimpia;
     }
 
     public Location requestLocation() {
@@ -153,12 +165,12 @@ public class RestaurantList extends AppCompatActivity {
     }
 
 
-    public List<Caracteristicas_Plato> Cargar(String nombreplato) {
+    public List<CaracteristicasPlato> Cargar(String nombreplato) {
 
-        listaCaracteristicasPlatoQ = Caracteristicas_Plato.listAll(Caracteristicas_Plato.class);
+        listaCaracteristicasPlatoQ = CaracteristicasPlato.listAll(CaracteristicasPlato.class);
         if(plat!=null){
             listaCarac = new ArrayList<>();
-            for(Caracteristicas_Plato crcplato : listaCaracteristicasPlatoQ){
+            for(CaracteristicasPlato crcplato : listaCaracteristicasPlatoQ){
                 if(crcplato.getPlato().getId().equals(plat.getId())){
                     listaCarac.add(crcplato);
                 }

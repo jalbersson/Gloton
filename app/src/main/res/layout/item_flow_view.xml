@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="140dp"
-    android:layout_height="180dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <ImageView
         android:src="@drawable/fondo_categoria"
@@ -33,6 +33,22 @@
         android:textColor="@android:color/background_light"
         android:textAppearance="?android:attr/textAppearanceSmallInverse"
         android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/txtIdCat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:shadowColor="#000000"
+        android:shadowDx="7"
+        android:shadowDy="7"
+        android:shadowRadius="4"
+        android:textStyle="bold"
+        android:textSize="10dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@android:color/background_light"
+        android:textAppearance="?android:attr/textAppearanceSmallInverse"
+        android:layout_alignParentBottom="true"/>
 
 
 

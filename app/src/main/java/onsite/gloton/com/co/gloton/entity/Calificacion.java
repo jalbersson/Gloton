@@ -10,15 +10,18 @@ public class Calificacion extends SugarRecord  implements Comparable<Calificacio
     int ide;
     String usuario; //id android del celular que se usa
     int puntuacion;
-    Caracteristicas_Plato caracteristicas;
+    int idUniversalPlato;
+    CaracteristicasPlato caracteristicas;
 
-    public Calificacion() {    }
-
-    public Calificacion(int ide, String usuario, int puntuacion, Caracteristicas_Plato caracteristicas) {
+    public Calificacion(int ide, String usuario, int puntuacion, int idUniversalPlato, CaracteristicasPlato caracteristicas) {
         this.ide = ide;
         this.usuario = usuario;
         this.puntuacion = puntuacion;
+        this.idUniversalPlato = idUniversalPlato;
         this.caracteristicas = caracteristicas;
+    }
+
+    public Calificacion() {
     }
 
     public int getIde() {
@@ -45,11 +48,19 @@ public class Calificacion extends SugarRecord  implements Comparable<Calificacio
         this.puntuacion = puntuacion;
     }
 
-    public Caracteristicas_Plato getCaracteristicas() {
+    public int getIdUniversalPlato() {
+        return idUniversalPlato;
+    }
+
+    public void setIdUniversalPlato(int idUniversalPlato) {
+        this.idUniversalPlato = idUniversalPlato;
+    }
+
+    public CaracteristicasPlato getCaracteristicas() {
         return caracteristicas;
     }
 
-    public void setCaracteristicas(Caracteristicas_Plato caracteristicas) {
+    public void setCaracteristicas(CaracteristicasPlato caracteristicas) {
         this.caracteristicas = caracteristicas;
     }
 
