@@ -50,8 +50,7 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
 
         Log.i("fecha:  ", "fecha actualizacion: " + fechaActualizacion);
 
-
-//        cargarDatos(0);
+//       cargarDatos(0);
 
         cargarDatos();
 
@@ -70,7 +69,7 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
 
     }
 
-    /*
+
     public void subirDatos() {
         try {
             //llenar JSON
@@ -80,24 +79,24 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
                 j.put("calificacion", cal.getPuntuacion());
                 j.put("plato", cal.getIdUniversalPlato());
                 jsonArray.put(j);
-
             }
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("calificaciones", jsonArray);
-
+            Log.i("calis",jsonObject.toString());
             HttpAsyncTask httpAsyncTask = new HttpAsyncTask(HttpAsyncTask.POST, this, this);
             httpAsyncTask.execute(getResources().getString(R.string.servicioWeb), jsonObject.toString());
+    //       httpAsyncTask.execute("http://192.168.0.25:8080/GlotonPrimefaces/webresources/webservice", jsonObject.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
-    */
+
 
     public void cargarDatos() {
         HttpAsyncTask httpAsyncTask = new HttpAsyncTask(HttpAsyncTask.GET, this, this);
-        httpAsyncTask.execute("http://wmyserver.sytes.net:8080/GlotonPrimefaces/webresources/webservice");
-        Log.i("mensaje:","entro a cargar datos");
-        //httpAsyncTask.execute(getResources().getString(R.string.servicioWeb));
+        //httpAsyncTask.execute("http://wmyserver.sytes.net:8080/GlotonPrimefaces/webresources/webservice");
+        httpAsyncTask.execute(getResources().getString(R.string.servicioWeb));
+        subirDatos();
     }
 
 
@@ -126,7 +125,7 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
             Date prox = calendar.getTime();
 
 
-            //String fileServerURL = "http://192.168.1.109:8080/GlotonPrimefaces/imagenes/";
+            String fileServerURL = "http://192.168.0.24:8080/GlotonPrimefaces/imagenes/";
 
             Log.i("cantidad ", "size " + categorias.size());
 
@@ -237,7 +236,10 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
             Recomendados.saveInTx(listaRecomendados);
 
             //Actualizar calificaciones a los nuevos platos
-            for (Calificacion cal : Calificacion.listAll(Calificacion.class)) {
+            for (Calificacion cal : Calificacion.listAll(Calificacion.class))
+            {
+
+                Log.i("calAct"," Calificacion "+cal.getPuntuacion()+" id "+cal.getIdUniversalPlato());
                 CaracteristicasPlato caraux = null;
                 List<CaracteristicasPlato> liscar = CaracteristicasPlato.listAll(CaracteristicasPlato.class);
                 for (CaracteristicasPlato cara : liscar)
@@ -500,26 +502,23 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
 
         //insersión de la lista de calificaciones
 
-        if (Calificacion.listAll(Calificacion.class).size() == 0)
+        List<Calificacion> listaCalificaciones = new ArrayList<>();
+
+        List<CaracteristicasPlato> caracteristicas = CaracteristicasPlato.listAll(CaracteristicasPlato.class);
+        int aa = 0;
+        for (CaracteristicasPlato cat : caracteristicas)
         {
-            List<Calificacion> listaCalificaciones = new ArrayList<>();
-
-            List<CaracteristicasPlato> caracteristicas = CaracteristicasPlato.listAll(CaracteristicasPlato.class);
-            int aa = 0;
-            for (CaracteristicasPlato cat : caracteristicas)
-            {
-                Random rnd = new Random();
-
-                int punt = (int)(rnd.nextDouble() * 5 + 1);
-                listaCalificaciones.add(new Calificacion(aa,"",punt,0,cat));
-                aa++;
-            }
-
-
-
-            Calificacion.saveInTx(listaCalificaciones);
+            Random rnd = new Random();
+            int punt = (int)(rnd.nextDouble() * 5 + 1);
+            listaCalificaciones.add(new Calificacion(aa,"",punt,0,cat));
+            aa++;
         }
+        Calificacion.saveInTx(listaCalificaciones);
 
+
+        Intent intent = new Intent(Splash.this, GalleryActivity.class);
+        startActivity(intent);
+        finish();
 
     }
 

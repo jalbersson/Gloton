@@ -90,15 +90,12 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
         });
 
 
-        //nit = (TextView) findViewById(R.id.txtDetResNit);
         direccion = (TextView) findViewById(R.id.txtDetResDir);
         telefono = (TextView) findViewById(R.id.txtDetResTel);
         logo = (ImageView) findViewById(R.id.imgDetRestLogo);
 
         gridViewMenu = (GridView) findViewById(R.id.gvMenu);
 
-
-        //nit.setText(String.valueOf(rest.getNit()));
         direccion.setText(rest.getDireccion());
         telefono.setText(rest.getTelefono());
         if (rest.getLogo() != null && !rest.getLogo().equals(""))

@@ -45,8 +45,22 @@ public class recomendados extends AppCompatActivity {
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.lstRecomendados);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recos = Recomendados.listAll(Recomendados.class);
-        Collections.sort(recos);
+        recos = obtenerRecomendados();
         recyclerView.setAdapter(new RecomendadosAdapter(recomendados.this, recos));
+    }
+
+    public List<Recomendados> obtenerRecomendados()
+    {
+        List<Recomendados> recos = new LinkedList<>();
+        List<Recomendados> cals = Recomendados.listAll(Recomendados.class);
+        for (Recomendados cal : cals)
+        {
+
+     //revisar que tengan calificación por encima de 4
+     //           if (cal.getPuntuacion() >= 4)
+                    recos.add(cal);
+        }
+        Collections.sort(recos);
+        return recos;
     }
 }

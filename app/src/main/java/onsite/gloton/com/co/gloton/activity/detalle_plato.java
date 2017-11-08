@@ -72,12 +72,12 @@ public class detalle_plato extends AppCompatActivity {
         ingre.setText(caract.getIngredientes());
         precio.setText("Precio:"+String.valueOf(caract.getPrecio()));
 
-/*        if (plato.getImagen() != null)
+        if (plato.getImagen() != null)
         {
             if (!plato.getImagen().equals(""))
                 imgPlato.setImageResource(Integer.parseInt(plato.getImagen()));
         }
-*/
+/**/
 
         //ratingBar.setSaveEnabled(true);
         List<Calificacion> listcal = Calificacion.listAll(Calificacion.class);
@@ -91,16 +91,18 @@ public class detalle_plato extends AppCompatActivity {
         {
             Log.i("id carac list",String.valueOf(cali.getCaracteristicas().getId()));
 
-            if (cali.getCaracteristicas().getId() == caract.getId())
+            if (cali.getCaracteristicas().getIdUniversal() == caract.getIdUniversal())
             {
                 if (cali.getUsuario().equals(id))
                     cal = cali;
             }
         }
+
         if (cal == null)
         {
             cal = new Calificacion();
             cal.setCaracteristicas(caract);
+            cal.setIdUniversalPlato(caract.getIdUniversal());
             cal.setPuntuacion(0);
             cal.setUsuario(id);
         }

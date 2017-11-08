@@ -16,8 +16,8 @@ import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
 import onsite.gloton.com.co.gloton.activity.detalle_plato;
-import onsite.gloton.com.co.gloton.entity.CaracteristicasPlato;
 import onsite.gloton.com.co.gloton.entity.Recomendados;
+import onsite.gloton.com.co.gloton.entity.CaracteristicasPlato;
 
 
 public class RecomendadosAdapter extends RecyclerView.Adapter<RecomendadosAdapter.ViewHolder> {
@@ -46,7 +46,7 @@ public class RecomendadosAdapter extends RecyclerView.Adapter<RecomendadosAdapte
         holder.cal.setText(String.valueOf(menu.get(position).getPuntuacion()));
         holder.rest.setText(plato.getRestaurante().getNombre());
         holder.prec.setText(String.valueOf(plato.getPrecio()));
-       // holder.fondo.setBackgroundColor(colorTitle);
+        // holder.fondo.setBackgroundColor(colorTitle);
         Picasso.with(contexto).load(R.drawable.platocubiertos).into(holder.foto);
         if (position % 2 == 0) {
             holder.fondo.setBackgroundResource(R.color.colorTitle);
@@ -80,12 +80,12 @@ public class RecomendadosAdapter extends RecyclerView.Adapter<RecomendadosAdapte
             super(itemView);
 
 
-             fondo = (LinearLayout) itemView.findViewById(R.id.layoutItemRecomendado);
-             nom = (TextView) itemView.findViewById(R.id.txtRecNomPlato);
-             cal = (TextView) itemView.findViewById(R.id.txtRecCalPlato);
-             rest = (TextView) itemView.findViewById(R.id.txtRecRestPlato);
-             prec = (TextView) itemView.findViewById(R.id.txtRecPrecioPlato);
-             foto = (ImageView) itemView.findViewById(R.id.imgRecPlato);
+            fondo = (LinearLayout) itemView.findViewById(R.id.layoutItemRecomendado);
+            nom = (TextView) itemView.findViewById(R.id.txtRecNomPlato);
+            cal = (TextView) itemView.findViewById(R.id.txtRecCalPlato);
+            rest = (TextView) itemView.findViewById(R.id.txtRecRestPlato);
+            prec = (TextView) itemView.findViewById(R.id.txtRecPrecioPlato);
+            foto = (ImageView) itemView.findViewById(R.id.imgRecPlato);
         }
 
 
@@ -93,4 +93,38 @@ public class RecomendadosAdapter extends RecyclerView.Adapter<RecomendadosAdapte
 
     }
 
+/*    @Override
+    public int getCount() {
+        return menu.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return menu.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return menu.get(position).getId();
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        CaracteristicasPlato plato = menu.get(position).getCaracteristicas();
+
+        View v = View.inflate(contexto, R.layout.item_recomendado,null);
+
+        TextView nom = (TextView) v.findViewById(R.id.txtRecNomPlato);
+        TextView desc = (TextView) v.findViewById(R.id.txtRecPrecioPlato);
+        ImageView foto = (ImageView) v.findViewById(R.id.imgRecPlato);
+
+        String descrip = menu.get(position).getPuntuacion()+"\n"+plato.getRestaurante().getNombre()+"\n"+ String.valueOf(plato.getPrecio());
+
+        nom.setText(plato.getPlato().getNombre());
+        desc.setText(descrip);
+        foto.setImageResource(Integer.parseInt(plato.getPlato().getImagen()));
+
+        return v;
+    }*/
 }
