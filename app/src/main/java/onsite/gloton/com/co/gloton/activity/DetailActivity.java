@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -92,7 +94,9 @@ public class DetailActivity extends AppCompatActivity implements SearchView.OnQu
             listPlato = settingPlatos();
 
             textViewTitle.setText(foodTitle);
-            imgTitleCateg.setImageResource(cat.getImageSource());
+            if (cat.getImageSource() != null && !cat.getImageSource().equals(""))
+                Picasso.with(this).load(cat.getImageSource()).into(imgTitleCateg);
+            //imgTitleCateg.setImageResource(cat.getImageSource());
 
         }
 

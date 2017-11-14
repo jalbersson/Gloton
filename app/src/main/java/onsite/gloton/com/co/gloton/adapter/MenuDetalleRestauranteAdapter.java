@@ -55,13 +55,21 @@ public class MenuDetalleRestauranteAdapter extends BaseAdapter {
         TextView prec = (TextView) v.findViewById(R.id.txtDetPlatoPrecioPlato);
         ImageView foto = (ImageView) v.findViewById(R.id.imgDetRestPlato);
 
-        nom.setText(menu.get(position).getPlato().getNombre());
+        String nombrePlato = menu.get(position).getPlato().getNombre();
+        if (!menu.get(position).getDescripcion().equals(""))
+            nombrePlato = nombrePlato+" - "+menu.get(position).getDescripcion();
+
+        nom.setText(nombrePlato);
         prec.setText("$ " + String.valueOf(menu.get(position).getPrecio()));
+        if (menu.get(position).getPlato().getImagen() != null && !menu.get(position).getPlato().getImagen().equals(""))
+            Picasso.with(contexto).load(menu.get(position).getPlato().getImagen()).into(foto);
+
+        /*
         if (menu.get(position).getPlato().getImagen() != null)
         {
             if (!menu.get(position).getPlato().getImagen().equals(""))
                 foto.setImageResource(Integer.parseInt(menu.get(position).getPlato().getImagen()));
-        }
+        }*/
      //   Picasso.with(contexto).load(menu.get(position).getPlato().getImagen()).into(foto);
 
         return v;

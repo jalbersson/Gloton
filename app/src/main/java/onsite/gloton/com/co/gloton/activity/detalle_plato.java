@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.provider.Settings.Secure;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
@@ -48,7 +50,7 @@ public class detalle_plato extends AppCompatActivity {
         setContentView(R.layout.activity_detalle_plato);
 
         nomPlato = (TextView) findViewById(R.id.txtDetPlatNombre);
-        descri  = (TextView) findViewById(R.id.txtDetPlaDesc);
+     //   descri  = (TextView) findViewById(R.id.txtDetPlaDesc);
         ingre = (TextView) findViewById(R.id.txtDetPlaIngre);
         precio = (TextView) findViewById(R.id.txtDetPlaPrecio);
 
@@ -67,11 +69,15 @@ public class detalle_plato extends AppCompatActivity {
         Plato plato = caract.getPlato();
         Restaurant restaurant = caract.getRestaurante();
 
-        nomPlato.setText(plato.getNombre());
-        descri.setText(caract.getDescripcion());
+        nomPlato.setText(plato.getNombre()+" - "+caract.getDescripcion());
         ingre.setText(caract.getIngredientes());
         precio.setText("Precio:"+String.valueOf(caract.getPrecio()));
 
+        if (plato.getImagen() != null && !plato.getImagen().equals(""))
+            Picasso.with(this).load(plato.getImagen()).into(imgPlato);
+
+
+        /*
         if (plato.getImagen() != null)
         {
             if (!plato.getImagen().equals(""))

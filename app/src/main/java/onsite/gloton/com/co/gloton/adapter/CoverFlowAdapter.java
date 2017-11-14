@@ -11,6 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
@@ -23,12 +25,14 @@ import onsite.gloton.com.co.gloton.entity.Categoria;
 
 public class CoverFlowAdapter extends BaseAdapter {
 
+    Context contexto;
     private List<Categoria> data;
     private AppCompatActivity activity;
 
     public CoverFlowAdapter(List<Categoria> data, AppCompatActivity activity) {
         this.data = data;
         this.activity = activity;
+        this.contexto = activity.getBaseContext();
     }
 
     @Override
@@ -61,7 +65,9 @@ public class CoverFlowAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.foodImage.setImageResource(data.get(position).getImageSource());
+        if (data.get(position).getImageSource() != null && !data.get(position).getImageSource().equals(""))
+            Picasso.with(contexto).load(data.get(position).getImageSource()).into(viewHolder.foodImage);
+    //    viewHolder.foodImage.setImageResource(data.get(position).getImageSource());
         viewHolder.foodName.setText(data.get(position).getName());
         viewHolder.foodId.setText(String.valueOf(position+1));
 

@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -60,14 +62,16 @@ public class RestaurantList extends AppCompatActivity {
         TextView btnRestaurant = (TextView) findViewById(R.id.txtTitle);
         ImageView imagenTitulo = (ImageView) findViewById(R.id.imgTitleCateg);
         String nombreplato = "";
-        int resourceImageCat;
+        String resourceImageCat;
 
         if (getIntent().getExtras() != null) {
             Bundle extras = getIntent().getExtras();
             nombreplato = extras.getString("plato");
-            resourceImageCat = extras.getInt("categoriaImage");
+            resourceImageCat = extras.getString("categoriaImage");
             btnRestaurant.setText(nombreplato);
-            imagenTitulo.setImageResource(resourceImageCat);
+            if (resourceImageCat != null && !resourceImageCat.equals(""))
+                Picasso.with(this).load(resourceImageCat).into(imagenTitulo);
+        //    imagenTitulo.setImageResource(resourceImageCat);
         }
 
         List<Restaurant> ordenados;

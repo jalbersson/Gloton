@@ -125,7 +125,7 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
             Date prox = calendar.getTime();
 
 
-            String fileServerURL = "http://192.168.0.24:8080/GlotonPrimefaces/imagenes/";
+            String fileServerURL = "http://wmyserver.sytes.net:8080/GlotonPrimefaces/resources/imagenes/";
 
             Log.i("cantidad ", "size " + categorias.size());
 
@@ -144,12 +144,13 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
             for (int i = 0; i < jsonArrayCategoria.length(); i++) {
                 JSONObject j = jsonArrayCategoria.getJSONObject(i);
                 Categoria categoria = new Categoria();
-                categoria.setImageSource(R.drawable.icono_dos);
+                categoria.setImageSource(fileServerURL+"categoria/"+j.get("imagen").toString());
                 categoria.setName(j.get("nombre").toString());
                 categorias.add(categoria);
             }
 
             Categoria.saveInTx(categorias);
+            /*
             Categoria aux = Categoria.find(Categoria.class, "name = ?", "China").get(0);
             aux.setImageSource(R.drawable.food_chinesse);
             aux.save();
@@ -168,15 +169,15 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
             aux = Categoria.find(Categoria.class, "name = ?", "Italiana").get(0);
             aux.setImageSource(R.drawable.food_italian);
             aux.save();
-
-            Log.i("categorias:", "" + categorias.size());
+*/
+        //    Log.i("categorias:", "" + categorias.size());
 //insersión de las Platos
             for (int i = 0; i < jsonArrayPlato.length(); i++) {
                 JSONObject j = jsonArrayPlato.getJSONObject(i);
                 Categoria auxCate = Categoria.find(Categoria.class, "name = ?", j.get("categoria").toString()).get(0);
                 Plato plato = new Plato();
                 plato.setNombre(j.get("nombre").toString());
-                plato.setImagen(j.get("imagen").toString());
+                plato.setImagen(fileServerURL+"plato/"+j.get("imagen").toString());
                 plato.setCategoria(auxCate);
                 listaPlatos.add(plato);
             }
@@ -190,7 +191,7 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
                 restaurante.setNombre(j.get("nombre").toString());
                 restaurante.setDireccion(j.get("direccion").toString());
                 restaurante.setTelefono(j.get("telefono").toString());
-                restaurante.setLogo(j.get("logo").toString());
+                restaurante.setLogo(fileServerURL+"restaurante/"+j.get("logo").toString());
                 restaurante.setLatitud(Double.parseDouble(j.get("latitud").toString()));
                 restaurante.setLongitud(Double.parseDouble(j.get("longitud").toString()));
                 listaRestaurantes.add(restaurante);
@@ -281,13 +282,13 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
 
         if (Categoria.listAll(Categoria.class).size() == 0)
         {
-            categorias.add(new Categoria("Comida China",R.drawable.food_chinesse,1));
+         /*   categorias.add(new Categoria("Comida China",R.drawable.food_chinesse,1));
             categorias.add(new Categoria("Postres",R.drawable.postres,1));
             categorias.add(new Categoria("Parrilla",R.drawable.parrilla,1));
             categorias.add(new Categoria("Comidas rápidas",R.drawable.food_fast,1));
             categorias.add(new Categoria("Comida mexicana",R.drawable.food_mexican,1));
             categorias.add(new Categoria("Comida Italiana",R.drawable.food_italian,1));
-            Categoria.saveInTx(categorias);
+           */ Categoria.saveInTx(categorias);
         }
 
         //insersión de la lista de restaurantes

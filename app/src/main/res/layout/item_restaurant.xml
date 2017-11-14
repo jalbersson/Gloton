@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:weightSum="2"
+    android:id="@+id/linItemRestNom"
     android:background="@color/colorBlackTransparent"
     android:layout_marginBottom="@dimen/margin_2_dp">
 
@@ -13,7 +14,6 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:id="@+id/linItemRestNom"
         android:weightSum="2">
         <TextView
             android:id="@+id/txtItemRestNombre"

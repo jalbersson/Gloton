@@ -99,34 +99,13 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:layout_marginTop="25dp"
-                    android:background="@color/colorTitle"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Descripción:"
-                        android:textSize="25sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="#######"
-                        android:textSize="25sp"
-                        android:id="@+id/txtDetPlaDesc"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginTop="25dp"
                     android:background="@color/colorTitleTransparent"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Ingredientes:"
+                        android:text="Descripción:"
                         android:textSize="25sp" />
 
                     <TextView

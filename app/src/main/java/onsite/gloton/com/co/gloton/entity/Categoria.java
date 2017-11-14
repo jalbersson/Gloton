@@ -9,13 +9,13 @@ import com.orm.SugarRecord;
 public class Categoria extends SugarRecord{
 
     private String name;
-    private int imageSource;
+    private String imageSource;
     private int estado;
 
     public Categoria() {
     }
 
-    public Categoria(String name, int imageSource, int estado) {
+    public Categoria(String name, String imageSource, int estado) {
         this.name = name;
         this.imageSource = imageSource;
         this.estado = estado;
@@ -25,8 +25,16 @@ public class Categoria extends SugarRecord{
         return name;
     }
 
-    public int getImageSource() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImageSource() {
         return imageSource;
+    }
+
+    public void setImageSource(String imageSource) {
+        this.imageSource = imageSource;
     }
 
     public int getEstado() {
@@ -36,12 +44,4 @@ public class Categoria extends SugarRecord{
     public void setEstado(int estado) {
         this.estado = estado;
     }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setImageSource(int imagen) {
-        this.imageSource = imagen;
-    }
-
-
 }
