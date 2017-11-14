@@ -1,7 +1,12 @@
 package onsite.gloton.com.co.gloton.activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -44,7 +49,7 @@ public class RestaurantList extends AppCompatActivity {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         LayoutInflater inflator = LayoutInflater.from(this);
-        View v = inflator.inflate(R.layout.template_title_actionbar,null);
+        View v = inflator.inflate(R.layout.template_title_actionbar, null);
         getSupportActionBar().setCustomView(v);
         //listener para ir a home
         v.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +60,6 @@ public class RestaurantList extends AppCompatActivity {
             }
         });
         ////fin codigo poner icono y letra en el actionbar
-
 
 
         setContentView(R.layout.activity_restaurant_list);
@@ -71,7 +75,7 @@ public class RestaurantList extends AppCompatActivity {
             btnRestaurant.setText(nombreplato);
             if (resourceImageCat != null && !resourceImageCat.equals(""))
                 Picasso.with(this).load(resourceImageCat).into(imagenTitulo);
-        //    imagenTitulo.setImageResource(resourceImageCat);
+            //    imagenTitulo.setImageResource(resourceImageCat);
         }
 
         List<Restaurant> ordenados;
@@ -83,12 +87,9 @@ public class RestaurantList extends AppCompatActivity {
             }
         }
 
-        if (nombreplato.equals("Restaurantes"))
-        {
+        if (nombreplato.equals("Restaurantes")) {
             listaCaracteristicasPlatoQ = null;
-        }
-        else
-        {
+        } else {
             listaCaracteristicasPlatoQ = Cargar(nombreplato);
         }
 
@@ -103,13 +104,18 @@ public class RestaurantList extends AppCompatActivity {
     public List<Restaurant> ordenarPorCercania(List<CaracteristicasPlato> desordenada) {
         List<Restaurant> desorden = new LinkedList<>();
         Restaurant restaurant;
-        Location location = requestLocation();
 
+        GPSTracker gpsTracker = new GPSTracker(this);
+
+        Location location  = new Location("");
+        location.setLatitude(gpsTracker.getLatitude());
+        location.setLongitude(gpsTracker.getLongitude());
         if (desordenada != null)
         {
             for (CaracteristicasPlato carac : desordenada)
             {
                 restaurant = carac.getRestaurante();
+                Log.i("pos tracker ",String.valueOf(gpsTracker.getLatitude())+"  ,  "+String.valueOf(gpsTracker.getLongitude()));
 
                 float distancia = 0;
                 if (location != null)
@@ -125,6 +131,7 @@ public class RestaurantList extends AppCompatActivity {
                 desorden.add(restaurant);
             }
             Collections.sort(desorden);
+            gpsTracker.stopUsingGPS();
         }
         else {
             desorden = Restaurant.listAll(Restaurant.class);

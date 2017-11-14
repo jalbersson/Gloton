@@ -111,7 +111,7 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
             Categoria.deleteAll(Categoria.class);
             Recomendados.deleteAll(Recomendados.class);
 
-            Log.i("json", response.getMsg());
+            //Log.i("json", response.getMsg());
             JSONObject jsonObject = new JSONObject(response.getMsg());
             final List<Categoria> categorias = new ArrayList<>();
             final List<Restaurant> listaRestaurantes = new ArrayList<>();
