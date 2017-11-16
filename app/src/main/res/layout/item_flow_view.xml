@@ -34,19 +34,21 @@
         android:textAppearance="?android:attr/textAppearanceSmallInverse"
         android:layout_alignParentTop="true"/>
 
+
+
     <TextView
         android:id="@+id/txtIdCat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:shadowColor="#000000"
-        android:shadowDx="7"
-        android:shadowDy="7"
-        android:shadowRadius="4"
+        android:shadowColor="@color/colorPrimaryDark"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="7"
         android:textStyle="bold"
-        android:textSize="10dp"
+        android:textSize="15dp"
         android:layout_marginBottom="10dp"
-        android:textColor="@android:color/background_light"
+        android:textColor="@color/colorWhite"
         android:textAppearance="?android:attr/textAppearanceSmallInverse"
         android:layout_alignParentBottom="true"/>
 

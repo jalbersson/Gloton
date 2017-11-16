@@ -53,7 +53,7 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
 
         Log.i("fecha:  ", "fecha actualizacion: " + fechaActualizacion);
 
-       cargarDatos(0);
+//       cargarDatos(0);
 
         Timer timer = new Timer();
 
@@ -66,6 +66,7 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
 
         timer.schedule(task,120000);
 //        cargarDatos();
+        cargarDatos();
 
         // carga de datos programada por una fecha en específico
 /*
