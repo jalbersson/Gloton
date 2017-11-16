@@ -37,7 +37,7 @@ public final class Utilities {
                 .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(
                 context).setSmallIcon(R.drawable.icono)
-                .setContentTitle("Gloton Informa").setContentText(msg)
+                .setContentTitle("Glotón").setContentText(msg)
                 .setAutoCancel(true).setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
 

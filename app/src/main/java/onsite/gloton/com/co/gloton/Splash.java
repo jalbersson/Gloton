@@ -55,8 +55,16 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
 
        cargarDatos(0);
 
-        Utilities.sendNotification(this,"Recomendamos calificar nuestros platos");
+        Timer timer = new Timer();
 
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                Utilities.sendNotification(Splash.this,"Recuerda calificar nuestros platos.");
+            }
+        };
+
+        timer.schedule(task,120000);
 //        cargarDatos();
 
         // carga de datos programada por una fecha en específico
