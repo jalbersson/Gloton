@@ -242,7 +242,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         for (Route routeLocation : route) {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(routeLocation.startLocation, 16));
-            ((TextView) findViewById(R.id.txtDistance)).setText("Distancia: " + (int) restaurante.getDistancia()+ " metros");
+            float distan = restaurante.getDistancia();
+            float result = distan / 1000F;
+            ((TextView) findViewById(R.id.txtDistance)).setText("Distancia: " + String.format("%.2f", result) + " Km");
             ((TextView) findViewById(R.id.txtTime)).setText("Tiempo: " + routeLocation.duration.text);
 
             destinationMarkers.add(mMap.addMarker(new MarkerOptions()

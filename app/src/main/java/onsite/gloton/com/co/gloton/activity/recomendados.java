@@ -28,7 +28,7 @@ public class recomendados extends AppCompatActivity {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         LayoutInflater inflator = LayoutInflater.from(this);
-        View v = inflator.inflate(R.layout.template_title_actionbar,null);
+        View v = inflator.inflate(R.layout.template_title_actionbar, null);
         getSupportActionBar().setCustomView(v);
         //listener para ir a home
         v.setOnClickListener(new View.OnClickListener() {
@@ -49,16 +49,15 @@ public class recomendados extends AppCompatActivity {
         recyclerView.setAdapter(new RecomendadosAdapter(recomendados.this, recos));
     }
 
-    public List<Recomendados> obtenerRecomendados()
-    {
+    public List<Recomendados> obtenerRecomendados() {
         List<Recomendados> recos = new LinkedList<>();
         List<Recomendados> cals = Recomendados.listAll(Recomendados.class);
-        for (Recomendados cal : cals)
-        {
+        for (Recomendados cal : cals) {
 
-     //revisar que tengan calificación por encima de 4
-     //           if (cal.getPuntuacion() >= 4)
-                    recos.add(cal);
+            //revisar que tengan calificación por encima de 4
+            if (cal.getPuntuacion() >= 4) {
+                recos.add(cal);
+            }
         }
         Collections.sort(recos);
         return recos;

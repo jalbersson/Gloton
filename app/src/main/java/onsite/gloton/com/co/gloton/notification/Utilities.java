@@ -36,8 +36,8 @@ public final class Utilities {
         Uri defaultSoundUri = RingtoneManager
                 .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(
-                context).setSmallIcon(R.drawable.ic_action_search)
-                .setContentTitle("CCD Message").setContentText(msg)
+                context).setSmallIcon(R.drawable.icono)
+                .setContentTitle("Glotón").setContentText(msg)
                 .setAutoCancel(true).setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
 
