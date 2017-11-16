@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,9 +52,9 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
 
         Log.i("fecha:  ", "fecha actualizacion: " + fechaActualizacion);
 
-//       cargarDatos(0);
+       cargarDatos(0);
 
-        cargarDatos();
+//        cargarDatos();
 
         // carga de datos programada por una fecha en específico
 /*
@@ -282,13 +284,13 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
 
         if (Categoria.listAll(Categoria.class).size() == 0)
         {
-         /*   categorias.add(new Categoria("Comida China",R.drawable.food_chinesse,1));
-            categorias.add(new Categoria("Postres",R.drawable.postres,1));
-            categorias.add(new Categoria("Parrilla",R.drawable.parrilla,1));
-            categorias.add(new Categoria("Comidas rápidas",R.drawable.food_fast,1));
-            categorias.add(new Categoria("Comida mexicana",R.drawable.food_mexican,1));
-            categorias.add(new Categoria("Comida Italiana",R.drawable.food_italian,1));
-           */ Categoria.saveInTx(categorias);
+            categorias.add(new Categoria("Comida China", ""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.food_chinesse),1));
+            categorias.add(new Categoria("Postres",""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.postres),1));
+            categorias.add(new Categoria("Parrilla",""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.parrilla),1));
+            categorias.add(new Categoria("Comidas rápidas",""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.food_fast),1));
+            categorias.add(new Categoria("Comida mexicana",""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.food_mexican),1));
+            categorias.add(new Categoria("Comida Italiana",""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.food_italian),1));
+          /* */ Categoria.saveInTx(categorias);
         }
 
         //insersión de la lista de restaurantes
@@ -351,33 +353,33 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
         if (Plato.listAll(Plato.class).size() == 0)
         {
             Categoria aux = Categoria.find(Categoria.class, "name = ?", "Comida China").get(0);
-            listaPlatos.add(new Plato("Arroz Chino", String.valueOf(R.drawable.arroz_chino),"activo",aux));
-            listaPlatos.add(new Plato("Pollo Kung Pao", String.valueOf(R.drawable.pollo_kung_pao),"activo",aux));
-            listaPlatos.add(new Plato("Chop Suey", String.valueOf(R.drawable.chop_suey),"activo",aux));
-            listaPlatos.add(new Plato("Chow Mein", String.valueOf(R.drawable.chow_mein),"activo",aux));
+            listaPlatos.add(new Plato("Arroz Chino", ""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.arroz_chino),"activo",aux));
+            listaPlatos.add(new Plato("Pollo Kung Pao", ""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.pollo_kung_pao),"activo",aux));
+            listaPlatos.add(new Plato("Chop Suey", ""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.chop_suey),"activo",aux));
+            listaPlatos.add(new Plato("Chow Mein", ""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.chow_mein),"activo",aux));
 
             aux = Categoria.find(Categoria.class, "name = ?", "Postres").get(0);
             /*listaPlatos.add(new Plato("Arroz Ranchero", String.valueOf(R.drawable.ranchero),"activo",aux));
             listaPlatos.add(new Plato("Arroz con pollo", String.valueOf(R.drawable.pollo),"activo",aux));
             listaPlatos.add(new Plato("Arroz Paisa", String.valueOf(R.drawable.paisa),"activo",aux));*/
-            listaPlatos.add(new Plato("Banana Split", String.valueOf(R.drawable.bananasplit),"activo",aux));
-            listaPlatos.add(new Plato("Cheese Cake", String.valueOf(R.drawable.cheesecake),"activo",aux));
-            listaPlatos.add(new Plato("Tres Leches", String.valueOf(R.drawable.tresleches),"activo",aux));
+            listaPlatos.add(new Plato("Banana Split", ""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.bananasplit),"activo",aux));
+            listaPlatos.add(new Plato("Cheese Cake", ""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.cheesecake),"activo",aux));
+            listaPlatos.add(new Plato("Tres Leches", ""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.tresleches),"activo",aux));
 
             aux = Categoria.find(Categoria.class, "name = ?", "Parrilla").get(0);
-            listaPlatos.add(new Plato("Churrasco", String.valueOf(R.drawable.churrasco),"activo",aux));
-            listaPlatos.add(new Plato("Costillas a la parrilla", String.valueOf(R.drawable.costilla),"activo",aux));
-            listaPlatos.add(new Plato("Baby beef", String.valueOf(R.drawable.baby_beef),"activo",aux));
+            listaPlatos.add(new Plato("Churrasco", ""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.churrasco),"activo",aux));
+            listaPlatos.add(new Plato("Costillas a la parrilla", ""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.costilla),"activo",aux));
+            listaPlatos.add(new Plato("Baby beef", ""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.baby_beef),"activo",aux));
 
             aux = Categoria.find(Categoria.class, "name = ?", "Comidas rápidas").get(0);
-            listaPlatos.add(new Plato("Hamburguesa", String.valueOf(R.drawable.hamburguesa),"activo",aux));
-            listaPlatos.add(new Plato("Perro Caliente", String.valueOf(R.drawable.perros_calientes),"activo",aux));
-            listaPlatos.add(new Plato("Emparedado", String.valueOf(R.drawable.emparedado),"activo",aux));
+            listaPlatos.add(new Plato("Hamburguesa", ""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.hamburguesa),"activo",aux));
+            listaPlatos.add(new Plato("Perro Caliente", ""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.perros_calientes),"activo",aux));
+            listaPlatos.add(new Plato("Emparedado", ""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.emparedado),"activo",aux));
 
             aux = Categoria.find(Categoria.class, "name = ?", "Comida mexicana").get(0);
-            listaPlatos.add(new Plato("Tacos", String.valueOf(R.drawable.tacos),"activo",aux));
-            listaPlatos.add(new Plato("Burritos", String.valueOf(R.drawable.burritos),"activo",aux));
-            listaPlatos.add(new Plato("Nachos", String.valueOf(R.drawable.nachos),"activo",aux));
+            listaPlatos.add(new Plato("Tacos", ""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.tacos),"activo",aux));
+            listaPlatos.add(new Plato("Burritos", ""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.burritos),"activo",aux));
+            listaPlatos.add(new Plato("Nachos", ""+Uri.parse("android.resource://" + getPackageName() +"/"+R.drawable.nachos),"activo",aux));
 
             Plato.saveInTx(listaPlatos);
         }
@@ -390,22 +392,22 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
             //Restaurantes que venden comida china:
             Plato plato = Plato.find(Plato.class, "nombre = ?", "Arroz Chino").get(0);
             Restaurant restaurante = Restaurant.find(Restaurant.class, "nit = ?", "1").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","tracicional",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "9").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Especial",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "10").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Tradicional",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Pollo Kung Pao").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "10").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("pollo en salsa especial","",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "1").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("pollo especial","Especial de la casa",0,14000,"activo",restaurante,plato));
 
 
             plato = Plato.find(Plato.class, "nombre = ?", "Chop Suey").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "1").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","con carne",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "10").get(0);
             listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
 
@@ -418,85 +420,86 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
             //restaurantes que venden Postres
             plato = Plato.find(Plato.class, "nombre = ?", "Banana Split").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "11").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("Banano, Helado, gomitas, salsas dulces","Super Banana Split del tio Tom",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("Banano, Helado, gomitas, salsas dulces","del tio Tom",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Cheese Cake").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "11").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("queso, fruta, chocolate y salsas dulces","Cheese Cake de distintos tipos",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("queso, fruta, chocolate y salsas dulces","de distintos tipos",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "12").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("queso, fruta, cremas, y más","Cheese Cake, pasteles y tortas",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("queso, fruta, cremas, y más","Oreo, frutas, chicle",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Tres Leches").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "11").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("ingredientes secretos","clásico postre de tres leches",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("ingredientes secretos","clásico",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "12").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("leche, leche condensada, arequipe, galleta","tu paladar te traerá por más",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("leche, leche condensada, arequipe, galleta","",0,14000,"activo",restaurante,plato));
 
             //restaurantes que venden parrilla
             plato = Plato.find(Plato.class, "nombre = ?", "Churrasco").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "7").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "13").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Costillas a la parrilla").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "7").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "13").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Baby beef").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "13").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","",0,14000,"activo",restaurante,plato));
 
             //restaurantes que venden comidas rápidas
             plato = Plato.find(Plato.class, "nombre = ?", "Hamburguesa").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "5").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("pollo, doble jamon, doble queso","Especial",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carne, queso, tomate salsas","Cásica",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "6").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "7").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "8").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Perro Caliente").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "6").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "7").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "8").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Emparedado").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "5").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "6").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "8").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","",0,14000,"activo",restaurante,plato));
 
             //restaurantes que venden comida mexicana
 
             plato = Plato.find(Plato.class, "nombre = ?", "Tacos").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "2").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "4").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Burritos").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "3").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "4").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","",0,14000,"activo",restaurante,plato));
 
             plato = Plato.find(Plato.class, "nombre = ?", "Nachos").get(0);
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "2").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "3").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa agridulce","",0,14000,"activo",restaurante,plato));
             restaurante = Restaurant.find(Restaurant.class, "nit = ?", "4").get(0);
-            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","Arroz chino tracicional",0,14000,"activo",restaurante,plato));
+            listaCaracteristicas.add(new CaracteristicasPlato("carnes, vegetales, salsa especial","",0,14000,"activo",restaurante,plato));
 
             CaracteristicasPlato.saveInTx(listaCaracteristicas);
         }
