@@ -67,7 +67,10 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
             Picasso.with(context).load(restaurantes.get(position).getLogo()).into(holder.imgRestaurante);
         //    Picasso.with(context).load(restaurantes.get(position).getLogo()).into(holder.imgRestaurante);
         holder.nomRest.setText(restaurantes.get(position).getNombre());
-        holder.distRest.setText("Estás a "+String.valueOf((int) restaurantes.get(position).getDistancia())+" mts");
+        Log.d("DistanciaMts",String.valueOf(restaurantes.get(position).getDistancia()));
+        float distan = restaurantes.get(position).getDistancia();
+        float result = distan / 1000F;
+        holder.distRest.setText("Estás a "+String.valueOf(String.format("%.2f", result)) +" Km");
         holder.linLay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
