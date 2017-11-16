@@ -32,6 +32,7 @@ import onsite.gloton.com.co.gloton.entity.Categoria;
 import onsite.gloton.com.co.gloton.entity.Plato;
 import onsite.gloton.com.co.gloton.entity.Recomendados;
 import onsite.gloton.com.co.gloton.entity.Restaurant;
+import onsite.gloton.com.co.gloton.notification.Utilities;
 import onsite.gloton.com.co.gloton.service.HttpAsyncTask;
 import onsite.gloton.com.co.gloton.service.Response;
 
@@ -53,6 +54,8 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
         Log.i("fecha:  ", "fecha actualizacion: " + fechaActualizacion);
 
        cargarDatos(0);
+
+        Utilities.sendNotification(this,"Recomendamos calificar nuestros platos");
 
 //        cargarDatos();
 
@@ -506,18 +509,16 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
 
         //insersión de la lista de calificaciones
 
-        List<Calificacion> listaCalificaciones = new ArrayList<>();
+        List<Recomendados> listaRecomendados = new ArrayList<>();
 
         List<CaracteristicasPlato> caracteristicas = CaracteristicasPlato.listAll(CaracteristicasPlato.class);
-        int aa = 0;
         for (CaracteristicasPlato cat : caracteristicas)
         {
             Random rnd = new Random();
             int punt = (int)(rnd.nextDouble() * 5 + 1);
-            listaCalificaciones.add(new Calificacion(aa,"",punt,0,cat));
-            aa++;
+            listaRecomendados.add(new Recomendados(punt,0,"",cat));
         }
-        Calificacion.saveInTx(listaCalificaciones);
+        Recomendados.saveInTx(listaRecomendados);
 
 
         Intent intent = new Intent(Splash.this, GalleryActivity.class);
