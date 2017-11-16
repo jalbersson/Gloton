@@ -52,9 +52,9 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
 
         Log.i("fecha:  ", "fecha actualizacion: " + fechaActualizacion);
 
-       cargarDatos(0);
+//       cargarDatos(0);
 
-//        cargarDatos();
+        cargarDatos();
 
         // carga de datos programada por una fecha en específico
 /*
