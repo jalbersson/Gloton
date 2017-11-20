@@ -139,7 +139,7 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
             Date prox = calendar.getTime();
 
 
-            String fileServerURL = "http://wmyserver.sytes.net:8080/GlotonPrimefaces/resources/imagenes/";
+            String fileServerURL = "http://192.168.1.27:8080/GlotonPrimefaces/resources/imagenes/";
 
             Log.i("cantidad ", "size " + categorias.size());
 

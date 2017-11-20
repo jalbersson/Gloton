@@ -2,6 +2,7 @@ package onsite.gloton.com.co.gloton.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.List;
 
 import onsite.gloton.com.co.gloton.R;
@@ -65,11 +67,16 @@ public class CoverFlowAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        if (data.get(position).getImageSource() != null && !data.get(position).getImageSource().equals(""))
+        if (data.get(position).getImageSource() != null && !data.get(position).getImageSource().equals("")) {
+
+           /* File file = new File(data.get(position).getImageSource());
+            Uri uri = Uri.fromFile(file);
+            viewHolder.foodImage.setImageURI(uri);*/
+            Log.d("ImageResource", String.valueOf(data.get(position).getImageSource()));
             Picasso.with(contexto).load(data.get(position).getImageSource()).into(viewHolder.foodImage);
-    //    viewHolder.foodImage.setImageResource(data.get(position).getImageSource());
+        }
         viewHolder.foodName.setText(data.get(position).getName());
-        viewHolder.foodId.setText(String.valueOf(position+1));
+        viewHolder.foodId.setText(String.valueOf(position + 1));
 
         convertView.setOnClickListener(onClickListener(position));
 
