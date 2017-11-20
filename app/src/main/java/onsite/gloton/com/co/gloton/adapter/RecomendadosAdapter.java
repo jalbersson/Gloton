@@ -44,7 +44,12 @@ public class RecomendadosAdapter extends RecyclerView.Adapter<RecomendadosAdapte
 
         holder.nom.setText(plato.getPlato().getNombre());
         holder.cal.setText(String.valueOf(menu.get(position).getPuntuacion()));
-        holder.rest.setText(plato.getRestaurante().getNombre());
+        String platonombre = plato.getPlato().getNombre();
+        if (plato.getDescripcion() != null && !plato.getDescripcion().equals(""))
+        {
+            platonombre += " - "+plato.getDescripcion();
+        }
+        holder.rest.setText(platonombre);
         holder.prec.setText(String.valueOf(plato.getPrecio()));
         // holder.fondo.setBackgroundColor(colorTitle);
         Picasso.with(contexto).load(R.drawable.platocubiertos).into(holder.foto);

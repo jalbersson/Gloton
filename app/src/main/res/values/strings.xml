@@ -2,6 +2,6 @@
     <string name="app_name">Glotón</string>
     <string name="title_activity_mapa">Map</string>
     <string name="title_activity_maps">Map</string>
-       <string name="servicioWeb">http://192.168.0.28:8080/GlotonPrimefaces/webresources/webservice</string>
+       <string name="servicioWeb">http://192.168.1.27:8080/GlotonPrimefaces/webresources/webservice</string>
     <!--<string name="servicioWeb">http://wmyserver.sytes.net:8080/GlotonPrimefaces/webresources/webservice</string>-->
 </resources>

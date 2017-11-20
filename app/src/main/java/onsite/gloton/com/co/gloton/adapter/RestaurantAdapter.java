@@ -70,7 +70,11 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
         Log.d("DistanciaMts",String.valueOf(restaurantes.get(position).getDistancia()));
         float distan = restaurantes.get(position).getDistancia();
         float result = distan / 1000F;
-        holder.distRest.setText("Estás a "+String.valueOf(String.format("%.2f", result)) +" Km");
+        if (distan != 0F)
+            holder.distRest.setText("Estás a "+String.valueOf(String.format("%.2f", result)) +" Km");
+        else
+            holder.distRest.setVisibility(View.INVISIBLE);
+
         holder.linLay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
