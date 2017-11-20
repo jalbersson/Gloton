@@ -41,7 +41,7 @@ import onsite.gloton.com.co.gloton.location.DirectionFinderListener;
 import onsite.gloton.com.co.gloton.location.GPSTracker;
 import onsite.gloton.com.co.gloton.location.Route;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, DirectionFinderListener{
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, DirectionFinderListener {
 
     private GoogleMap mMap;
     private double latitud;
@@ -73,11 +73,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         streetViewButton = (ImageButton) findViewById(R.id.streetViewButton);
 
-        if (Build.VERSION.SDK_INT >= 23) {
-            requestPermission();
-        } else {
-            requestLocation();
-        }
+
+        requestLocation();
+
 
         if (getIntent().getExtras() != null) {
             latitudRestaurante = getIntent().getExtras().getDouble("latitud");
@@ -94,18 +92,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 fragmentTransaction = fragmentManager
                         .beginTransaction();
                 Fragment fragmentA = fragmentManager.findFragmentByTag("STREET");
-                Log.d("MapsActivity",String.valueOf(fragmentA));
+                Log.d("MapsActivity", String.valueOf(fragmentA));
 
                 if (fragmentA == null) {
 
                     Bundle bundle = new Bundle();
-                    bundle.putDouble("latitud", latitudRestaurante );
-                    bundle.putDouble("longitud", longitudRestaurante );
+                    bundle.putDouble("latitud", latitudRestaurante);
+                    bundle.putDouble("longitud", longitudRestaurante);
                     StreetViewFragment fragment = new StreetViewFragment();
                     fragment.setArguments(bundle);
-                    fragmentTransaction.replace(R.id.map, fragment,"STREET");
+                    fragmentTransaction.replace(R.id.map, fragment, "STREET");
                 } else {
-                    fragmentTransaction.replace(R.id.map, mapFragment,"MAP");
+                    fragmentTransaction.replace(R.id.map, mapFragment, "MAP");
                 }
                 fragmentTransaction.commit();
 
@@ -115,7 +113,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    public  void clearFragmentByTag(Context context, String tag) {
+    public void clearFragmentByTag(Context context, String tag) {
         try {
 
             for (int i = fragmentManager.getBackStackEntryCount() - 1; i >= 0; i--) {
@@ -142,7 +140,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Log.d("Unable", "location");
         }
     }
-
 
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -204,19 +201,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.setMyLocationEnabled(true);
         }
 
-        sendRequest(myLocation,locationRestaurante);
+        sendRequest(myLocation, locationRestaurante);
     }
 
 
     private void sendRequest(LatLng origin, LatLng target) {
 
         try {
-            new DirectionFinder(this, String.valueOf(origin.latitude + ","  + origin.longitude), String.valueOf(target.latitude + "," + target.longitude)).execute();
+            new DirectionFinder(this, String.valueOf(origin.latitude + "," + origin.longitude), String.valueOf(target.latitude + "," + target.longitude)).execute();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }
-
 
 
     @Override
