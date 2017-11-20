@@ -92,6 +92,7 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
                 JSONObject j = new JSONObject();
                 j.put("calificacion", cal.getPuntuacion());
                 j.put("plato", cal.getIdUniversalPlato());
+                j.put("usuario", cal.getUsuario());
                 jsonArray.put(j);
             }
             JSONObject jsonObject = new JSONObject();
@@ -138,6 +139,7 @@ public class Splash extends AppCompatActivity implements HttpAsyncTask.OnHttpRes
             calendar.add(calendar.DAY_OF_YEAR, 7);
             Date prox = calendar.getTime();
 
+    //        String fileServerURL = "http://wmyserver.sytes.net:8080/GlotonPrimefaces/resources/imagenes/";
 
             String fileServerURL = "http://192.168.1.27:8080/GlotonPrimefaces/resources/imagenes/";
 

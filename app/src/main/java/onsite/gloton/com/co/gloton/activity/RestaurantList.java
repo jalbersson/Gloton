@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -110,12 +111,27 @@ public class RestaurantList extends AppCompatActivity {
         Location location  = new Location("");
         location.setLatitude(gpsTracker.getLatitude());
         location.setLongitude(gpsTracker.getLongitude());
+
+        if (gpsTracker.getLatitude() == 0.0 && gpsTracker.getLongitude() == 0.0)
+        {
+            Toast toast1 =
+                    Toast.makeText(getApplicationContext(),
+                            "Activa el GPS para ver los Restaurantes cercanos!", Toast.LENGTH_LONG);
+            toast1.show();
+        }
+
         if (desordenada != null)
         {
             for (CaracteristicasPlato carac : desordenada)
             {
                 restaurant = carac.getRestaurante();
                 Log.i("pos tracker ",String.valueOf(gpsTracker.getLatitude())+"  ,  "+String.valueOf(gpsTracker.getLongitude()));
+
+                if (gpsTracker.getLatitude()== 0.0 && gpsTracker.getLongitude() == 0.0)
+                {
+                    location.setLatitude(restaurant.getLatitud());
+                    location.setLongitude(restaurant.getLongitud());
+                }
 
                 float distancia = 0;
                 if (location != null)
@@ -150,6 +166,7 @@ public class RestaurantList extends AppCompatActivity {
                 Restaurant.saveInTx(desorden);
             }
         }
+
 
         //Limpiar la lista de elementos repetidos:
         List<Restaurant> listaLimpia = new ArrayList();

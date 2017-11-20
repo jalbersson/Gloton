@@ -69,7 +69,13 @@ public class detalle_plato extends AppCompatActivity {
         Plato plato = caract.getPlato();
         Restaurant restaurant = caract.getRestaurante();
 
-        nomPlato.setText(plato.getNombre()+" - "+caract.getDescripcion());
+        String platonombre = plato.getNombre();
+        if (caract.getDescripcion() != null && !caract.getDescripcion().equals(""))
+        {
+            platonombre += " - "+caract.getDescripcion();
+        }
+
+        nomPlato.setText(platonombre);
         ingre.setText(caract.getIngredientes());
         precio.setText("Precio:"+String.valueOf(caract.getPrecio()));
 
